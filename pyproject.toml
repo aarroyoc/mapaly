@@ -8,6 +8,7 @@ authors = ["Adrián Arroyo Calle <adrian.arroyocalle@gmail.com>"]
 python = "^3.7"
 Django = "^3.0.5"
 djangorestframework = "^3.11.0"
+uwsgi = "^2.0.18"
 
 [tool.poetry.dev-dependencies]
 
