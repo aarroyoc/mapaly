@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% load static %}
+
+
+{% block main %}
+<div id="map"></div>
+<script type="application/json" id="geojson-map">
+{{ quiz.map.content | safe }}
+</script>
+<script type="application/json" id="quiz-data">
+{{ quiz_data | safe }}
+</script>
+<script type="module" src="{% static 'mapaly/index.js' %}"></script>
+{% endblock %}

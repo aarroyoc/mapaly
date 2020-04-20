@@ -1,0 +1,20 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>{% block title %}Mapaly - Free interactive maps for learning{% endblock %}</title>
+        <link rel="stylesheet" href="{% static 'leaflet-1.6/leaflet.css' %}">
+        <link rel="stylesheet" href="{% static 'mapaly/main.css' %}">
+        <script type="module" src="{% static 'leaflet-1.6/leaflet-src.esm.js' %}"></script>
+    </head>
+    <body>
+        <header>
+            <h1>Mapaly</h1>
+        </header>
+        <main>{% block main %}{% endblock %}</main>
+        <footer>
+
+        </footer>
+    </body>
+</html>
