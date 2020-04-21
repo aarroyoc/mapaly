@@ -1,10 +1,9 @@
-import * as L from '../leaflet-1.6/leaflet-src.esm.js';
+import * as L from "../leaflet-1.6/leaflet-src.esm.js";
 
 class Quest {
-    constructor(questions){
+    constructor(){
         this.questions = JSON.parse(document.getElementById("quiz-data").textContent).questions;
         this.currentQuestion = -1;
-        console.dir(this.questions);
     }
 
     checkAnswer(id){
@@ -36,13 +35,13 @@ function main(){
     let mapDataDOM = document.getElementById("geojson-map");
     let mapData = JSON.parse(mapDataDOM.textContent);
 
-    function style(feature){
+    function style(features){
         return {
-            fillColor: '#800026',
+            fillColor: "#800026",
             weight: 2,
             opacity: 1,
-            color: 'black',
-            dashArray: '3',
+            color: "black",
+            dashArray: "3",
             fillOpacity: 0.7
         };
     }
@@ -77,7 +76,7 @@ function main(){
 
     let info = L.control();
     info.onAdd = function(){
-        this._div = L.DomUtil.create('div', 'info');
+        this._div = L.DomUtil.create("div", "info");
         this.update();
         return this._div;
     };
