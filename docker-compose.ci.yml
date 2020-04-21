@@ -1,0 +1,14 @@
+version: "3.6"
+
+services:
+  lint-python:
+    build:
+      dockerfile: Dockerfile.py.ci
+      context: .
+    command: flake8 --ignore=E501
+  
+  lint-js:
+    build:
+      dockerfile: Dockerfile.js.ci
+      context: .
+    command: eslint .

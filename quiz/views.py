@@ -5,6 +5,7 @@ from quiz.models import Quiz, Question
 
 import json
 
+
 class QuizView(View):
     def get(self, request, slug):
         try:
@@ -17,5 +18,5 @@ class QuizView(View):
                 "quiz_data": json.dumps(quiz_data),
             }
             return render(request, "quiz/quiz.html", context)
-        except:
+        except Quiz.DoesNotExist:
             return HttpResponseNotFound()
