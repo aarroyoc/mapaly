@@ -1,15 +1,71 @@
-body{
-    margin: 0;
-    padding: 0;
-}
 header{
     height: 10vh;
 }
+#main{
+    height: calc(80vh - 100px);
+    display: flex;
+}
+#dialog{
+    height: 50vh;
+    width: 50vw;
+    position: absolute;
+    left: 25vw;
+    top: 25vh;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+/* Desktop */
 #map{
-    height: 80vh;
+    flex: 6;
+    order: 1;
+}
+#info{
+    flex: 1;
+    order: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+#info-question{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    order: 1;
+}
+#info-time{
+    order: 2;
+}
+#info-progress{
+    order: 3;
 }
 footer{
     height: 10vh;
+}
+
+/* Mobile */
+@media(max-width: 600px){
+    #main{
+        flex-direction: column;
+    }
+    #map{
+        order: 2;
+    }
+    #info{
+        order: 1;
+        flex-direction: row;
+    }
+    #info-question{
+        order: 2;
+    }
+    #info-time{
+        order: 1;
+    }
+    #info-progress{
+        order: 3;
+    }
+
 }
 
 .info {

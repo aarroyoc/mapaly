@@ -22,7 +22,6 @@ class Quest {
     get finished(){
         return this.currentQuestion === this.questions.length;
     }
-
 }
 
 function main(){
@@ -38,10 +37,10 @@ function main(){
     function style(features){
         return {
             fillColor: "#800026",
-            weight: 2,
+            weight: 1,
             opacity: 1,
             color: "black",
-            dashArray: "3",
+            dashArray: "1",
             fillOpacity: 0.7
         };
     }
@@ -57,9 +56,10 @@ function main(){
                 // SONIDO VICTORIA
                 let question = quest.nextQuestion();
                 if(question !== null){
-                    info.update(question);
+                    updateInfo(question);
                 }else{
-                    info.update("VICTORIA");
+                    //updateInfo("VICTORIA");
+                    dialog.style.display = "flex";
                 }
             }else{
                 // ERROR
@@ -74,18 +74,14 @@ function main(){
     }).addTo(map);
 
 
-    let info = L.control();
-    info.onAdd = function(){
-        this._div = L.DomUtil.create("div", "info");
-        this.update();
-        return this._div;
+    let info = document.getElementById("info");
+    let questionItem = document.getElementById("question-item");
+    let dialog = document.getElementById("dialog");
+    let updateInfo = function(question){
+        questionItem.textContent = question;
     };
-    info.update = function(question){
-        this._div.innerHTML = `<h5>¿Dónde está?</h5><br><h4>${question}</h4>`;
-    };
-    info.addTo(map);
 
-    info.update(quest.nextQuestion());
+    updateInfo(quest.nextQuestion());
 
 }
 

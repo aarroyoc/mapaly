@@ -3,17 +3,22 @@
 <html>
     <head>
         <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width">
         <title>{% block title %}Mapaly - Free interactive maps for learning{% endblock %}</title>
         <link rel="stylesheet" href="{% static 'leaflet-1.6/leaflet.css' %}">
         <link rel="stylesheet" href="{% static 'mapaly/main.css' %}">
+        <link rel="stylesheet" href="{% static 'fonts.css' %}">
+        <link rel="stylesheet" href="{% static 'main.css' %}">
         <script type="module" src="{% static 'leaflet-1.6/leaflet-src.esm.js' %}"></script>
     </head>
     <body>
-        <header>
-            <h1>Mapaly</h1>
+        <header class="page">
+            <a href="/">Volver a Mapaly</a>
+            <h1>Provincias de España</h1>
+            <span></span>
         </header>
         <main>{% block main %}{% endblock %}</main>
-        <footer>
+        <footer class="page">
 
         </footer>
     </body>
