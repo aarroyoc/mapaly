@@ -1,7 +1,7 @@
-FROM node:12.16.2
+FROM node:12.17.0
 
 WORKDIR /opt/mapaly/mapaly/static/mapaly
 
-RUN npm install -g eslint@6.8.0
+RUN npm install -g eslint@7.1.0
 
 COPY ./mapaly/static/mapaly/ .
