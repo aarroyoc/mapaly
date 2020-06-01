@@ -22,6 +22,7 @@ class QuizView(View):
         except Quiz.DoesNotExist:
             return HttpResponseNotFound()
 
+
 class HomeView(ListView):
     paginate_by = 20
     template_name = "quiz/home.html"

@@ -1,4 +1,9 @@
-@font-face{
+/*@font-face{
     font-family: 'Girassol';
     src: url('Girassol-Regular.woff2'), url('Girassol-Regular.ttf');
+}*/
+
+@font-face{
+    font-family: 'Fredoka One';
+    src: local('Fredoka One'), url('FredokaOne-Regular.woff2') format('woff2'), url('FredokaOne-Regular.ttf') format('truetype');
 }
