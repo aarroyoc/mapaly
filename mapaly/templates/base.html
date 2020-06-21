@@ -13,12 +13,12 @@
     </head>
     <body>
         <header class="page">
-            <a href="/">Volver a Mapaly</a>
-            <h1>Mapaly</h1>
-            <span></span>
+            <img src="{% static 'mapaly-icon.svg' %}"><h1><span class="green">Map</span><span class="blue">aly</span></h1>
         </header>
-        <main>{% block main %}{% endblock %}</main>
-        <footer class="page">
+        <main>
+            {% block main %}{% endblock %}
+        </main>
+        <footer>
 
         </footer>
     </body>

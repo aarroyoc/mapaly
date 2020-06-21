@@ -1,26 +1,53 @@
 body{
     margin: 0;
     padding: 0;
-    font-family: 'Girassol';
-    background-image: url('compass.jpg');
+    font-family: 'Fredoka One';
+}
+
+.green{
+    color: #37c837;
+}
+
+.blue{
+    color: #0066ff;
 }
 
 .page{
-    margin: 25px;
-    background-color: hsl(218, 23%, 23%);
-    border-radius: 15px;
-    color: white;
-}
-
-header{
     display: flex;
+    justify-content: center;
     align-items: center;
+    background-color: white;
 }
-header > * {
-    flex: 1;
-    text-align: center;
+.page > img{
+    height: 50pt;
+    width: auto;
+}
+.page > h1 {
+    font-size: 32pt;
+}
+main{
+    margin: 2.5%;
+    border-color: #37c837;
+    border-style: solid;
+    border-width: 10px;
+    border-radius: 25px;
+}
+.content{
+    width: 100%;
+    height: 100%;
+    background-color: white;
 }
 
-header a {
-    color: white;
+.quiz-grid{
+    display: flex;
+    margin: 10px;
+}
+.quiz-item{
+    border-width: 5px;
+    border-style: solid;
+    border-color:  #0066ff;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    width: 20vw;
 }
