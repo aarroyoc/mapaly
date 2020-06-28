@@ -9,11 +9,9 @@ jobs:
     runs-on: ubuntu-18.04
     steps:
     - uses: actions/checkout@v2
-    - name: Build Docker Compose
+    - name: Build images
       run: docker-compose -f docker-compose.yml -f docker-compose.ci.yml build
     - name: Run flake8
       run: docker-compose -f docker-compose.yml -f docker-compose.ci.yml run lint-python
-    - name: Run eslint
-      run: docker-compose -f docker-compose.yml -f docker-compose.ci.yml run lint-js
 
     

@@ -29,7 +29,7 @@ class QuizComment(models.Model):
 
 
 class Question(models.Model):
-    quiz = models.ForeignKey(Quiz, on_delete=models.CASCADE)
+    quiz = models.ForeignKey(Quiz, on_delete=models.CASCADE, related_name="questions")
     question = models.CharField(max_length=200)
     answer = models.CharField(max_length=200)
     created_at = models.DateTimeField(auto_now_add=True)

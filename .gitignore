@@ -1,4 +1,6 @@
 data
+node_modules
+intermap/*.js
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

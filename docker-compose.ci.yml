@@ -6,9 +6,3 @@ services:
       dockerfile: PythonCI.dockerfile
       context: .
     command: flake8 --ignore=E501
-  
-  lint-js:
-    build:
-      dockerfile: JavaScriptCI.dockerfile
-      context: .
-    command: eslint .

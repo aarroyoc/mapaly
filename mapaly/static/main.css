@@ -26,7 +26,8 @@ body{
     font-size: 32pt;
 }
 main{
-    margin: 2.5%;
+    margin-left: 2.5%;
+    margin-right: 2.5%;
     border-color: #37c837;
     border-style: solid;
     border-width: 10px;

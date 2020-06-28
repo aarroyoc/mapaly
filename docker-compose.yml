@@ -8,7 +8,7 @@ services:
     - ./data:/opt/mapaly/data
     - static:/opt/mapaly/static
   nginx:
-    image: nginx:1.17.2
+    image: nginx:1.19.0
     restart: always
     ports:
     - 1133:1133
@@ -17,6 +17,10 @@ services:
     - ./nginx.conf:/etc/nginx/conf.d/default.conf:ro
     depends_on:
     - django
+    - intermap
+  intermap:
+    build: intermap
+    restart: always
 
 volumes:
   static:

@@ -11,12 +11,8 @@ class QuizView(View):
     def get(self, request, slug):
         try:
             quiz = Quiz.objects.get(slug=slug)
-            quiz_data = {
-                "questions": list(Question.objects.values("question", "answer").filter(quiz=quiz)),
-            }
             context = {
-                "quiz": quiz,
-                "quiz_data": json.dumps(quiz_data),
+                "slug": quiz.slug
             }
             return render(request, "quiz/quiz.html", context)
         except Quiz.DoesNotExist:

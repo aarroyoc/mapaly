@@ -5,27 +5,20 @@
 {% block main %}
 <div class="page" id="main">
     <div id="map"></div>
-    <div id="info">
-        <div id="info-question">
-            <h5>¿Dónde está?</h5>
-            <h4 id="question-item"></h4>
+    <div id="panel-info">
+        <div id="question">
+            
         </div>
-        <div id="info-time">
-
+        <div id="time">
+            <span>0:00</span>
         </div>
-        <div id="info-progress">
+        <div id="progress">
+            <p>Puntuación: <span id="points">0</span></p>
+        </div>
+        <div id="info">
 
         </div>
     </div>
 </div>
-<div class="page" id="dialog">
-    <h3>¡VICTORIA!</h3>
-</div>
-<script type="application/json" id="geojson-map">
-{{ quiz.map.content | safe }}
-</script>
-<script type="application/json" id="quiz-data">
-{{ quiz_data | safe }}
-</script>
-<script type="module" src="{% static 'mapaly/index.js' %}"></script>
+<script type="module" src="/intermap/bundle.js"></script>
 {% endblock %}
