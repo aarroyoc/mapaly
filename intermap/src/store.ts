@@ -10,9 +10,9 @@ const initialState: QuizState = {
 };
 
 function selectQuestion(state: QuizState): void{
-    let answers = state.questions.filter((question)=> !question.done);
+    const answers = state.questions.filter((question)=> !question.done);
     if(answers.length > 0){
-        let rnd = Math.floor(Math.random() * answers.length);
+        const rnd = Math.floor(Math.random() * answers.length);
         state.activeQuestion = answers[rnd];
     }else{
         state.activeQuestion = null;
@@ -29,7 +29,12 @@ const slice = createSlice({
         },
         submitAnswer: (state: QuizState, action: PayloadAction<string>) => {
             if(action.payload === state.activeQuestion?.answer){
-                state.activeQuestion.done = true;
+                state.activeQuestion.done = true; // TODO: Why doesn't work?
+                for(let qst of state.questions){
+                    if(qst.question === state.activeQuestion.question){
+                        qst.done = true;
+                    }
+                }
                 selectQuestion(state);
                 state.score += 25;
             }else{
@@ -37,7 +42,9 @@ const slice = createSlice({
             }
         },
         tick: (state: QuizState) => {
-            state.time += 1;
+            if(state.activeQuestion){
+                state.time += 1;
+            }
         }
     }
 });

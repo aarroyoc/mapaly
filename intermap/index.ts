@@ -39,7 +39,10 @@ async function init(){
     }
 
     function onEachFeature(feature: any, layer: any){
-        //layer.on("click",check);
+        layer.on("click",(e: any)=>{
+            let props = e.target.feature.properties;
+            store.dispatch(actions.submitAnswer(props.mapaly_id));
+        });
     }
 
     L.geoJSON(mapData,{
@@ -64,9 +67,11 @@ function updatePage(){
         time.textContent = `${minutes}:${secondsStr}`;
     }
     const question = document.getElementById("question");
-    console.dir(state);
     if(question && state.activeQuestion){
         question.textContent = state.activeQuestion.question;
+    }
+    if(question && state.activeQuestion === null){
+        question.textContent = "VICTORIA";
     }
 }
 

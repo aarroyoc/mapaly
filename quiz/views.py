@@ -2,9 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponseNotFound
 from django.views.generic import ListView
 from django.views.generic import View
-from quiz.models import Quiz, Question
-
-import json
+from quiz.models import Quiz
 
 
 class QuizView(View):
