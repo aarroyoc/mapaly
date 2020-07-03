@@ -5,7 +5,7 @@ import {QuizState, Question, cleanupQuestion} from "./models";
 const initialState: QuizState = {
     score: 0,
     questions: [],
-    time: new Date(),
+    time: 0,
     activeQuestion: null,
 };
 
@@ -35,6 +35,9 @@ const slice = createSlice({
             }else{
                 state.score = Math.max(0, state.score-10);
             }
+        },
+        tick: (state: QuizState) => {
+            state.time += 1;
         }
     }
 });

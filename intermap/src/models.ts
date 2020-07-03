@@ -7,7 +7,7 @@ export interface Question {
 export interface QuizState {
     score: number;
     questions: Question[];
-    time: Date;
+    time: number;
     activeQuestion: Question | null;
 }
 

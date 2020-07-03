@@ -13,12 +13,15 @@ async function init(){
     store.subscribe(updatePage);
 
     let questions = cleanupQuestion(data.questions as any[]);
-    actions.setQuestions(questions);
+    store.dispatch(actions.setQuestions(questions));
 
     let info = document.getElementById("info");
     if(info !== null){
         info.textContent = data.description;
     }
+    setInterval(()=>{
+        store.dispatch(actions.tick());
+    },1000);
 
 
     let map = L.map("map",{attributionControl: false}).setView([40.416775, -3.703790], 6);
@@ -48,12 +51,20 @@ async function init(){
 }
 
 function updatePage(){
-    let state = store.getState();
-    let score = document.getElementById("points");
+    const state = store.getState();
+    const score = document.getElementById("points");
     if(score){
         score.textContent = `${state.score}`;
     }
-    let question = document.getElementById("question");
+    const time = document.getElementById("time-string");
+    if(time){
+        const minutes = Math.floor(state.time / 60);
+        const seconds = state.time % 60;
+        const secondsStr = seconds < 10 ? `0${seconds}` : `${seconds}`;
+        time.textContent = `${minutes}:${secondsStr}`;
+    }
+    const question = document.getElementById("question");
+    console.dir(state);
     if(question && state.activeQuestion){
         question.textContent = state.activeQuestion.question;
     }
