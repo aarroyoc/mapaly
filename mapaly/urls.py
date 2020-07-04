@@ -22,6 +22,6 @@ from quiz.api import QuizDetailAPI
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('quiz/<str:slug>/', QuizView.as_view(), name="quiz"),
-    path('api/quiz/<str:slug>', QuizDetailAPI.as_view(), name="quiz_detail_api"),
+    path('api/quiz/<str:slug>/', QuizDetailAPI.as_view(), name="quiz_detail_api"),
     path('', HomeView.as_view(), name="home"),
 ]

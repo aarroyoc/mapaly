@@ -1,6 +1,6 @@
 declare var L: any;
 
-import store, {actions} from "./src/store";
+import store from "./src/store";
 import { Question, QuizState, cleanupQuestion} from "./src/models";
 
 async function init(){
@@ -13,14 +13,14 @@ async function init(){
     store.subscribe(updatePage);
 
     let questions = cleanupQuestion(data.questions as any[]);
-    store.dispatch(actions.setQuestions(questions));
+    store.setQuestions(questions);
 
     let info = document.getElementById("info");
     if(info !== null){
         info.textContent = data.description;
     }
     setInterval(()=>{
-        store.dispatch(actions.tick());
+        store.tick();
     },1000);
 
 
@@ -41,7 +41,7 @@ async function init(){
     function onEachFeature(feature: any, layer: any){
         layer.on("click",(e: any)=>{
             let props = e.target.feature.properties;
-            store.dispatch(actions.submitAnswer(props.mapaly_id));
+            store.submitAnswer(props.mapaly_id);
         });
     }
 
@@ -53,8 +53,7 @@ async function init(){
     .addTo(map);
 }
 
-function updatePage(){
-    const state = store.getState();
+function updatePage(state: QuizState){
     const score = document.getElementById("points");
     if(score){
         score.textContent = `${state.score}`;
