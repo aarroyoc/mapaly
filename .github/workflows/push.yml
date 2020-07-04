@@ -13,5 +13,7 @@ jobs:
       run: docker-compose -f docker-compose.yml -f docker-compose.ci.yml build
     - name: Run flake8
       run: docker-compose -f docker-compose.yml -f docker-compose.ci.yml run lint-python
+    - name: Run Django tests
+      run: docker-compose run django python manage.py test
 
     
