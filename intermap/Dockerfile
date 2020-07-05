@@ -10,6 +10,7 @@ RUN npm install
 COPY . .
 
 RUN npm run build
+RUN npm run test
 RUN npm run bundle
 
 FROM nginx:1.19.0
