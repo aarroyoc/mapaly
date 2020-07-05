@@ -16,7 +16,7 @@ jobs:
     - name: Run Django tests
       run: docker-compose run django python manage.py test
     - name: Copy test database
-      run: cp test/test.db data/mapaly.db
+      run: mkdir data && cp test/test.db data/mapaly.db
     - name: Build E2E tests
       run: docker build -t mapaly-e2e test
     - name: Run application
