@@ -15,5 +15,13 @@ jobs:
       run: docker-compose -f docker-compose.yml -f docker-compose.ci.yml run lint-python
     - name: Run Django tests
       run: docker-compose run django python manage.py test
+    - name: Copy test database
+      run: cp test/test.db data/mapaly.db
+    - name: Build E2E tests
+      run: docker build -t mapaly-e2e test
+    - name: Run application
+      run: docker-compose up -d
+    - name: Run E2E tests
+      run: docker run --rm --network host mapaly-e2e
 
     
