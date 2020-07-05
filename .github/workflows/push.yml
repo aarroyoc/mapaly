@@ -10,9 +10,9 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: Build images
-      run: docker-compose -f docker-compose.yml -f docker-compose.ci.yml build
+      run: docker-compose build
     - name: Run flake8
-      run: docker-compose -f docker-compose.yml -f docker-compose.ci.yml run lint-python
+      run: docker-compose run django flake8 --ignore=E501
     - name: Run Django tests
       run: docker-compose run django python manage.py test
     - name: Copy test database
