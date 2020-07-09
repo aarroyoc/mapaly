@@ -9,6 +9,8 @@ jobs:
     runs-on: ubuntu-18.04
     steps:
     - uses: actions/checkout@v2
+    - name: Copy test database
+      run: cp test/test.db data/mapaly.db
     - name: Build production images
       run: docker-compose build
     - name: Lint Python (flake8)
@@ -21,8 +23,6 @@ jobs:
       run: docker build -t mapaly-js -f intermap/Test.dockerfile intermap
     - name: Test JavaScript
       run: docker run mapaly-js
-    - name: Copy test database
-      run: cp test/test.db data/mapaly.db
     - name: Build E2E tests
       run: docker build -t mapaly-e2e test
     - name: Run application
