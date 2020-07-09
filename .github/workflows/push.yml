@@ -11,8 +11,10 @@ jobs:
     - uses: actions/checkout@v2
     - name: Build production images
       run: docker-compose build
-    - name: Lint Python
+    - name: Lint Python (flake8)
       run: docker-compose run django flake8 --ignore=E501
+    - name: Lint Python (mypy)
+      run: docker-compose run django mypy . --ignore-missing-imports
     - name: Test Python
       run: docker-compose run django python manage.py test
     - name: Build JavaScript testing image
@@ -20,7 +22,7 @@ jobs:
     - name: Test JavaScript
       run: docker run mapaly-js
     - name: Copy test database
-      run: mkdir data && cp test/test.db data/mapaly.db
+      run: cp test/test.db data/mapaly.db
     - name: Build E2E tests
       run: docker build -t mapaly-e2e test
     - name: Run application
