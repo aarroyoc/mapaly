@@ -10,7 +10,7 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: Copy test database
-      run: cp test/test.db data/mapaly.db
+      run: mkdir data && cp test/test.db data/mapaly.db
     - name: Build production images
       run: docker-compose build
     - name: Lint Python (flake8)
