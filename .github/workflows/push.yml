@@ -9,12 +9,16 @@ jobs:
     runs-on: ubuntu-18.04
     steps:
     - uses: actions/checkout@v2
-    - name: Build images
+    - name: Build production images
       run: docker-compose build
-    - name: Run flake8
+    - name: Lint Python
       run: docker-compose run django flake8 --ignore=E501
-    - name: Run Django tests
+    - name: Test Python
       run: docker-compose run django python manage.py test
+    - name: Build JavaScript testing image
+      run: docker build -t mapaly-js -f intermap/Test.dockerfile intermap
+    - name: Test JavaScript
+      run: docker run mapaly-js
     - name: Copy test database
       run: mkdir data && cp test/test.db data/mapaly.db
     - name: Build E2E tests
