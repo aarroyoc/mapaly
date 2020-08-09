@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block main %}
+<div class="center-form">
+    <form method="POST" class="login-form">
+        <p>
+            Inicia sesión en Mapaly para poder crear tus propios quizes y comentar en quizes de otros usuarios.
+        </p>
+        <ul class="errors">
+        {% for error in error_messages %}
+            <li>{{ error }}</li>
+        {% endfor %}
+        </ul>
+        {{ form.as_p }}
+        {% csrf_token %}
+        <p>¿No tienes cuenta? <a href="{% url 'login' %}">Regístrate</a></p>
+        <input type="submit" value="Iniciar sesión">
+    </form>
+</div>
+{% endblock %}

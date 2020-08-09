@@ -4,6 +4,11 @@
 }*/
 
 @font-face{
+    font-family: 'BalooTamma';
+    src: local('Baloo Tamma 2'), url('BalooTamma2-Regular.woff2') format('woff2'), url('BalooTamma2-Regular.ttf') format('truetype');
+}
+
+@font-face{
     font-family: 'Fredoka One';
     src: local('Fredoka One'), url('FredokaOne-Regular.woff2') format('woff2'), url('FredokaOne-Regular.ttf') format('truetype');
 }

@@ -12,8 +12,20 @@
         <script src="/intermap/leaflet.js"></script>
     </head>
     <body>
-        <header class="page">
-            <img src="{% static 'mapaly-icon.svg' %}"><h1><span class="green">Map</span><span class="blue">aly</span></h1>
+        <header>
+            <div class="spacer"></div>
+            <div class="logo">
+                <img src="{% static 'mapaly-icon.svg' %}"><h1><span class="green">Map</span><span class="blue">aly</span></h1>
+            </div>
+            <div class="login-header">
+                {% if user.is_authenticated %}
+                <a class="primary-action-button" href="{% url 'login' %}">Mi perfil</a>
+                <a class="secondary-action-button" href="{% url 'logout' %}">Cerrar sesión</a>
+                {% else %}
+                <a class="primary-action-button" href="{% url 'login' %}">Iniciar sesión</a>
+                <a class="secondary-action-button" href="{% url 'login' %}">Registrarse</a>
+                {% endif %}
+            </div>
         </header>
         <main>
             {% block main %}{% endblock %}
