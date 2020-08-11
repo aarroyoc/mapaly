@@ -4,6 +4,7 @@ from django.contrib.auth import logout, authenticate, login
 
 from users.forms import LoginForm
 
+
 class LoginView(View):
     def get(self, request):
         form = LoginForm()
@@ -30,6 +31,7 @@ class LoginView(View):
             "error_messages": error_messages
         }
         return render(request, "users/login.html", context)
+
 
 class LogoutView(View):
     def get(self, request):

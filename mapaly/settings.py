@@ -27,6 +27,8 @@ DEBUG = True
 
 ALLOWED_HOSTS = [
     "mapaly.com",
+    "localhost",
+    "nginx",
     "127.0.0.1"
 ]
 

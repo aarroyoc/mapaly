@@ -11,23 +11,13 @@ jobs:
     - uses: actions/checkout@v2
     - name: Copy test database
       run: mkdir data && cp test/test.db data/mapaly.db
-    - name: Build production images
-      run: docker-compose build
-    - name: Lint Python (flake8)
-      run: docker-compose run django flake8 --ignore=E501
-    - name: Lint Python (mypy)
-      run: docker-compose run django mypy . --ignore-missing-imports
+    - name: Build images
+      run: docker-compose -f docker-compose.test.yml -f docker-compose.yml build
     - name: Test Python
-      run: docker-compose run django python manage.py test
-    - name: Build JavaScript testing image
-      run: docker build -t mapaly-js -f intermap/Test.dockerfile intermap
+      run: docker-compose -f docker-compose.test.yml -f docker-compose.yml up django-test
     - name: Test JavaScript
-      run: docker run mapaly-js
-    - name: Build E2E tests
-      run: docker build -t mapaly-e2e test
-    - name: Run application
-      run: docker-compose up -d
+      run: docker-compose -f docker-compose.test.yml -f docker-compose.yml up intermap-test
     - name: Run E2E tests
-      run: docker run --rm --network host mapaly-e2e
+      run: docker-compose -f docker-compose.test.yml -f docker-compose.yml up test-e2e
 
     

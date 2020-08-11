@@ -1,0 +1,21 @@
+version: "3.6"
+services:
+  django-test:
+    build:
+      dockerfile: images/django-test.dockerfile
+      context: .
+    command: sh python-test.sh
+    volumes:
+    - ./data:/opt/mapaly/data
+    - static:/opt/mapaly/static
+  intermap-test:
+    build:
+      dockerfile: ../images/intermap-test.dockerfile
+      context: intermap
+    command: npm run test
+  test-e2e:
+    build:
+      dockerfile: ../images/test-e2e.dockerfile
+      context: test
+    depends_on:
+    - nginx

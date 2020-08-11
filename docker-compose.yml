@@ -1,7 +1,9 @@
 version: "3.6"
 services:
   django:
-    build: .
+    build:
+      dockerfile: images/django.dockerfile
+      context: .
     restart: always
     command: bash start.sh
     volumes:
@@ -19,7 +21,9 @@ services:
     - django
     - intermap
   intermap:
-    build: intermap
+    build:
+      dockerfile: ../images/intermap.dockerfile
+      context: intermap
     restart: always
 
 volumes:

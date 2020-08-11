@@ -1,19 +1,19 @@
 describe('Home Page', () => {
     it('shows maps', () => {
-      cy.visit("http://127.0.0.1:1133/");
+      cy.visit("http://nginx:1133/");
 
       cy.contains('Provincias de España');
     });
 
     it("when I click I go to quiz page", () => {
-      cy.visit("http://127.0.0.1:1133/");
+      cy.visit("http://nginx:1133/");
       cy.contains('Provincias de España').click();
 
       cy.url().should("include", "quiz");
     });
 
     it("when I wait, time passes", () => {
-      cy.visit("http://127.0.0.1:1133/");
+      cy.visit("http://nginx:1133/");
       cy.contains('Provincias de España').click();
       cy.get('#time-string').contains("0:00");
       cy.wait(1000);
@@ -22,7 +22,7 @@ describe('Home Page', () => {
     });
 
     it("when I click on a correct province, question changes", ()=>{
-      cy.visit("http://127.0.0.1:1133/");
+      cy.visit("http://nginx:1133/");
       cy.contains('Provincias de España').click();
       cy.get('#question').then(x => {
         let question = x.text();
@@ -39,7 +39,7 @@ describe('Home Page', () => {
     });
 
     it("when I click on a correct province, score goes up", ()=>{
-      cy.visit("http://127.0.0.1:1133/");
+      cy.visit("http://nginx:1133/");
       cy.contains('Provincias de España').click();
       cy.get('#question').then(q=>{
         const question = q.text();
