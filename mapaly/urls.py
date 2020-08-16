@@ -18,13 +18,14 @@ from django.urls import path
 
 from quiz.views import QuizView, HomeView
 from quiz.api import QuizDetailAPI
-from users.views import LoginView, LogoutView
+from users.views import LoginView, LogoutView, RegisterView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('quiz/<str:slug>/', QuizView.as_view(), name="quiz"),
     path('users/login/', LoginView.as_view(), name="login"),
     path('users/logout/', LogoutView.as_view(), name="logout"),
+    path('users/register/', RegisterView.as_view(), name="register"),
     path('api/quiz/<str:slug>/', QuizDetailAPI.as_view(), name="quiz_detail_api"),
     path('', HomeView.as_view(), name="home"),
 ]

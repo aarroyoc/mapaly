@@ -13,7 +13,7 @@
         </ul>
         {{ form.as_p }}
         {% csrf_token %}
-        <p>¿No tienes cuenta? <a href="{% url 'login' %}">Regístrate</a></p>
+        <p>¿No tienes cuenta? <a href="{% url 'register' %}">Regístrate</a></p>
         <input type="submit" value="Iniciar sesión">
     </form>
 </div>

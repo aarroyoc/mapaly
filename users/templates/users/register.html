@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block main %}
+<div class="center-form">
+    <form method="POST" class="login-form">
+        <p>Regístrate en Mapaly para poder crear tus propios quizes y comentar en quizes de otros usuarios</p>
+        <ul class="errors">
+        {% for error in error_messages %}
+            <li>{{ error }}</li>
+        {% endfor %}
+        </ul>
+        {{ form.as_p }}
+        {% csrf_token %}
+        <p>En Mapaly guardamos únicamente tu usuario, tu correo electrónico, tu contraseña (cifrada), los comentarios que realizas y los quizes que creas. No compartimos tus datos con terceros. En cualquier momento puedes pedir que borremos tus datos contactando con nosotros.</p>
+        <input type="submit" value="Registrarse">
+    </form>
+</div>
+{% endblock %}
