@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block main %}
+<div class="center-form">
+    <form method="POST" class="login-form">
+        <p>
+            ¿Estás seguro que deseas borrar el quiz "{{ quiz.name }}"?
+        </p>
+        {% csrf_token %}
+        <div class="center-button">
+            <a class="secondary-action-button" href="{% url 'dashboard' %}">Cancelar</a>
+            <input class="red-action-input" type="submit" value="Borrar">
+        </div>
+    </form>
+</div>
+{% endblock %}

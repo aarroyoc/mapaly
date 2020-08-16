@@ -1,7 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponseNotFound
-from django.views.generic import ListView
-from django.views.generic import View
+from django.views.generic import View, ListView
 from quiz.models import Quiz
 
 

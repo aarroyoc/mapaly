@@ -19,7 +19,7 @@
             </div>
             <div class="login-header">
                 {% if user.is_authenticated %}
-                <a class="primary-action-button" href="{% url 'login' %}">Mi perfil</a>
+                <a class="primary-action-button" href="{% url 'dashboard' %}">Mi perfil</a>
                 <a class="secondary-action-button" href="{% url 'logout' %}">Cerrar sesión</a>
                 {% else %}
                 <a class="primary-action-button" href="{% url 'login' %}">Iniciar sesión</a>

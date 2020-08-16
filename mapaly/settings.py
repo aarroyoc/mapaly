@@ -37,6 +37,7 @@ ALLOWED_HOSTS = [
 
 INSTALLED_APPS = [
     'quiz',
+    'editor',
     'users',
     'mapaly',
     'django.contrib.admin',

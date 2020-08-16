@@ -65,6 +65,19 @@ header > div{
     margin-right: 10px;
 }
 
+.red-action-button{
+    background-color: white;
+    color: #ee5d4a;
+    border-radius: 12px;
+    border-width: 2px;
+    border-style: solid;
+    font-size: 15pt;
+    padding-top: 5px;
+    padding-left: 5px;
+    padding-right: 5px;
+    text-decoration: none;
+}
+
 .green{
     color: #37c837;
 }
@@ -103,6 +116,7 @@ main{
     background-color: white;
 }
 
+/* Login/Register */
 .center-form{
     margin: 10px;
     justify-content: center;
@@ -152,4 +166,43 @@ main{
     .spacer{
         flex: 1;
     }
+}
+/* Dashboard */
+.dashboard{
+    display: flex;
+}
+
+.quiz-list{
+    background-color: white;
+    margin-left: 5em;
+    border-color: #0066ff;
+    border-width: 5px;
+    border-style: solid;
+    border-radius: 10px;
+    flex: 1;
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+    grid-auto-rows: 1fr;
+    padding-left: 5px;
+    align-items: center;
+    font-size: 15pt;
+}
+
+.header-list{
+    font-weight: bold;
+}
+
+.center-button{
+    display: flex;
+    justify-content: center;
+}
+
+.red-action-input {
+    background-color: #ee5d4a;
+    color: white;
+    border-radius: 12px;
+    border-width: 0px;
+    font-size: 15pt;
+    padding-top: 5px;
+    padding-bottom: 5px;
 }
