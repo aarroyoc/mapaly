@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block main %}
+<div class="center-form">
+    <form method="POST" class="login-form">
+        {{ form.as_p }}
+        {% csrf_token %}
+        <div class="center-button">
+            <a class="secondary-action-button" href="{% url 'dashboard' %}">Cancelar</a>
+        </div>
+        <input class="primary-action-input" type="submit" value="Crear quiz">
+    </form>
+</div>
+{% endblock %}

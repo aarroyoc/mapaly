@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block main %}
+<h2>Quiz "{{ quiz.name }}"</h2>
+<div class="editor">
+    <div class="top-editor">
+        <div id="editor-map"></div>
+        <form method="POST" class="question-adder">
+            <label for="id_question">Pregunta: </label>
+            <input required id="id_question" name="question" type="text" placeholder="¿Dónde nació Felipe II?">
+            <label for="id_answer">Respuesta: </label>
+            <output id="id_answer"></output>
+            <input id="answer" type="hidden" name="answer" value="">
+            {% csrf_token %}
+            <input type="submit" class="primary-action-button" value="Añadir pregunta">
+        </form>
+    </div>
+    <h3>Preguntas del quiz</h3>
+    <div class="list-questions">
+        <span class="header-list">Pregunta</span>
+        <span class="header-list">Respuesta</span>
+        <span></span>
+    {% for question in questions %}
+        <span>{{ question.question }}</span>
+        <span>{{ question.answer }}</span>
+        <div class="center-button">
+            <a class="red-action-button" href="{% url 'delete-question' question.pk %}">Borrar</a>
+        </div>
+    {% endfor %}
+    </div>
+</div>
+<script type="module" src="/intermap/bundle.js"></script>
+{% endblock %}

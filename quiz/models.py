@@ -9,6 +9,9 @@ class Map(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     modified_at = models.DateTimeField(auto_now=True)
 
+    def __str__(self):
+        return self.name
+
 
 class Quiz(models.Model):
     slug = models.CharField(max_length=150, unique=True)

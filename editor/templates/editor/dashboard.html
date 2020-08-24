@@ -4,7 +4,7 @@
 <h2>Quizes de {{ user.username }}</h2>
 <div class="dashboard">
     <div class="sidebar">
-        <a class="primary-action-button" href="{% url 'login' %}">Crear nuevo quiz</a>
+        <a class="primary-action-button" href="{% url 'create-quiz' %}">Crear nuevo quiz</a>
     </div>
     <div class="quiz-list">
         <span class="header-list">Nombre</span>
@@ -14,7 +14,7 @@
         {% for quiz in page_obj %}
             <a href="{% url 'quiz' quiz.slug %}">{{ quiz.name }}</a>
             <span>{{ quiz.map.name }}</span>
-            <div class="center-button"><a class="primary-action-button" href="">Editar</a></div>
+            <div class="center-button"><a class="primary-action-button" href="{% url 'editor' quiz.slug %}">Editar</a></div>
             <div class="center-button"><a class="red-action-button" href="{% url 'delete-quiz' quiz.pk %}">Borrar</a></div>
         {% endfor %}
         <span></span>

@@ -3,7 +3,7 @@ declare var L: any;
 import store from "./src/store";
 import { Question, QuizState, cleanupQuestion} from "./src/models";
 
-async function init(){
+async function initGame(){
     let urlSplit = window.location.href.split("/");
     let slug = urlSplit[urlSplit.length-2];
     let dataRequest = await fetch(`/api/quiz/${slug}`);
@@ -74,14 +74,60 @@ function updatePage(state: QuizState){
     }
 }
 
+async function initEditor(){
+    let urlSplit = window.location.href.split("/");
+    let slug = urlSplit[urlSplit.length-2];
+    let dataRequest = await fetch(`/api/quiz/${slug}`);
+    let data = await dataRequest.json();
+    let mapData = JSON.parse(data.map.content);
+
+    let id_answer = document.getElementById("id_answer") as HTMLOutputElement;
+    let answer = document.getElementById("answer") as HTMLInputElement;
+
+    let map = L.map("editor-map",{attributionControl: false}).setView([40.416775, -3.703790], 6);
+
+    function style(features: any){
+        return {
+            fillColor: "#37c837",
+            weight: 1,
+            opacity: 1,
+            color: "black",
+            dashArray: "1",
+            fillOpacity: 0.7
+        };
+    }
+
+    function onEachFeature(feature: any, layer: any){
+        layer.on("click",(e: any)=>{
+            let props = e.target.feature.properties;
+            id_answer.textContent = props.mapaly_id;
+            answer.value = props.mapaly_id;
+        });
+    }
+
+    L.geoJSON(mapData,{
+        style: style,
+        onEachFeature: onEachFeature,
+        attribution: data.map.license
+    })
+    .addTo(map);
+
+}
+
 window.addEventListener("load",function(){
-    init().then(()=>{
-        console.log("OK");
-    }).catch((e)=>{
-        console.log("ERROR");
-        console.error(e);
-    });
+    if(document.getElementById("map")){
+        initGame().then(()=>{
+            console.log("OK");
+        }).catch((e)=>{
+            console.log("ERROR");
+            console.error(e);
+        });
+    }else{
+        initEditor().then(()=>{
+            console.log("OK");
+        }).catch((e)=>{
+            console.log("ERROR");
+            console.error(e);
+        });
+    }
 });
-
-
-

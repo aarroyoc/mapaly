@@ -139,6 +139,10 @@ main{
     align-items: center;
 }
 
+.login-form textarea{
+    max-width: 100%;
+}
+
 .login-form > input[type="submit"] {
     background-color: #37c837;
     color: white;
@@ -205,4 +209,40 @@ main{
     font-size: 15pt;
     padding-top: 5px;
     padding-bottom: 5px;
+}
+
+/* Editor */
+.question-adder{
+    display: grid;
+    gap: 10px;
+    background-color: white;
+    border-color: #0066ff;
+    border-width: 5px;
+    border-style: solid;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+.list-questions{
+    display: grid;
+    grid-template-columns: auto auto auto;
+    background-color: white;
+    border-color: #0066ff;
+    border-width: 5px;
+    border-style: solid;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+.top-editor{
+    display: flex;
+    width: 100%;
+    height: 75vh;
+}
+#editor-map{
+    flex: 5;
+    margin-right: 25px;
+}
+.question-adder{
+    flex: 1;
 }
