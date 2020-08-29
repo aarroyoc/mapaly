@@ -9,7 +9,7 @@ class QuizView(View):
         try:
             quiz = Quiz.objects.get(slug=slug)
             context = {
-                "slug": quiz.slug
+                "quiz": quiz
             }
             return render(request, "quiz/quiz.html", context)
         except Quiz.DoesNotExist:

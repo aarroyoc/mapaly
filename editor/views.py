@@ -102,3 +102,24 @@ def publish_quiz(request, pk):
         return redirect("quiz", quiz.slug)
     else:
         return HttpResponse(status_code=403)
+
+@login_required
+def remix_quiz(request, pk):
+    quiz = Quiz.objects.get(pk=pk)
+    remix = Quiz()
+    remix.author = request.user
+    remix.description = quiz.description
+    remix.map = quiz.map
+    remix.name = f"{quiz.name} Remix"
+    remix.slug = slugizer(remix.name)
+    remix.save()
+
+    questions = Question.objects.filter(quiz=quiz)
+    for question in questions:
+        remix_question = Question()
+        remix_question.quiz = remix
+        remix_question.question = question.question
+        remix_question.answer = question.answer
+        remix_question.save()
+    
+    return redirect("editor", remix.slug)

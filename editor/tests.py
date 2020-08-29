@@ -38,7 +38,7 @@ class DashboardTestCase(TestCase):
         c.login(username="test", password="test")
         response = c.get("/dashboard/")
         self.assertEqual(response.status_code, 200)
-        self.assertContains(response, '<a class="primary-action-button" href="/users/login/">Crear nuevo quiz</a>', html=True)
+        self.assertContains(response, '<a class="primary-action-button" href="/dashboard/create/">Crear nuevo quiz</a>', html=True)
         self.assertContains(response, '<a href="/quiz/provincias/">Provincias</a>', html=True)
 
     def test_show_delete_quiz(self):
@@ -65,5 +65,10 @@ class DashboardTestCase(TestCase):
         response = c.get("/dashboard/")
         self.assertContains(response, '<a href="/quiz/provincias/">Provincias</a>', html=True)
 
-
-
+    def test_remix_ok(self):
+        c = Client()
+        c.login(username="test", password="test")
+        response = c.get("/dashboard/remix/1/")
+        self.assertEqual(response.status_code, 302)
+        response = c.get("/dashboard/")
+        self.assertContains(response, 'Provincias Remix')

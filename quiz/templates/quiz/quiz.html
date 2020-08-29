@@ -3,6 +3,7 @@
 
 
 {% block main %}
+<h1>{{ quiz.name }}</h1>
 <div class="page" id="main">
     <div id="map"></div>
     <div id="panel-info">
@@ -17,6 +18,9 @@
         </div>
         <div id="info">
 
+        </div>
+        <div class="panel-center">
+            <a class="secondary-action-button" href="{% url 'remix' quiz.pk %}">Remix</a>
         </div>
     </div>
 </div>

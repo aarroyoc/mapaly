@@ -18,7 +18,8 @@ class QuizTestCase(TestCase):
             name="Provincias",
             author=user,
             description="Quiz de las provincias de España",
-            map=map
+            map=map,
+            status=Quiz.QuizStatus.PUBLISHED,
         )
         Question.objects.create(
             quiz=quiz,
