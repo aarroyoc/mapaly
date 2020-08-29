@@ -221,6 +221,8 @@ main{
     border-style: solid;
     border-radius: 10px;
     padding: 10px;
+    flex: 1;
+    height: 140pt;
 }
 
 .list-questions{
@@ -232,6 +234,11 @@ main{
     border-style: solid;
     border-radius: 10px;
     padding: 10px;
+    align-items: center;
+}
+
+.question-item{
+    height: 14pt;
 }
 
 .top-editor{
@@ -243,6 +250,18 @@ main{
     flex: 5;
     margin-right: 25px;
 }
-.question-adder{
-    flex: 1;
+@media(max-width: 600px){
+    .top-editor{
+        flex-direction: column;
+    }
+}
+.end-menu{
+    background-color: white;
+    border-color: #0066ff;
+    border-width: 5px;
+    border-style: solid;
+    border-radius: 10px;
+    padding-top: 10px;
+    text-align: center;
+    margin-top: 10px;
 }

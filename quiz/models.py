@@ -14,13 +14,18 @@ class Map(models.Model):
 
 
 class Quiz(models.Model):
-    slug = models.CharField(max_length=150, unique=True)
+    class QuizStatus(models.TextChoices):
+        DRAFT = "DF", "Draft"
+        PUBLISHED = "PB", "Published"
+
+    slug = models.SlugField(max_length=150, unique=True)
     name = models.CharField(max_length=150)
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     description = models.TextField()
     map = models.ForeignKey(Map, on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
     modified_at = models.DateTimeField(auto_now=True)
+    status = models.CharField(max_length=2, choices=QuizStatus.choices, default=QuizStatus.DRAFT)
 
 
 class QuizComment(models.Model):

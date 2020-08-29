@@ -19,7 +19,7 @@ from django.urls import path
 from quiz.views import QuizView, HomeView
 from quiz.api import QuizDetailAPI
 from users.views import LoginView, LogoutView, RegisterView
-from editor.views import DashboardView, DeleteMapView, EditorView, NewView, delete_question
+from editor.views import DashboardView, DeleteMapView, EditorView, NewView, delete_question, publish_quiz
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -32,6 +32,7 @@ urlpatterns = [
     path('dashboard/create/', NewView.as_view(), name="create-quiz"),
     path('editor/<str:slug>/', EditorView.as_view(), name="editor"),
     path('editor/question/<int:pk>', delete_question, name="delete-question"),
+    path('editor/publish/<int:pk>', publish_quiz, name="publish"),
     path('api/quiz/<str:slug>/', QuizDetailAPI.as_view(), name="quiz_detail_api"),
     path('', HomeView.as_view(), name="home"),
 ]

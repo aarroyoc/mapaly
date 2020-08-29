@@ -92,3 +92,13 @@ def delete_question(request, pk):
         return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
     else:
         return HttpResponse(status_code=403)
+
+@login_required
+def publish_quiz(request, pk):
+    quiz = Quiz.objects.get(pk=pk)
+    if quiz.author == request.user:
+        quiz.status = Quiz.QuizStatus.PUBLISHED
+        quiz.save()
+        return redirect("quiz", quiz.slug)
+    else:
+        return HttpResponse(status_code=403)

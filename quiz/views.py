@@ -21,4 +21,4 @@ class HomeView(ListView):
     template_name = "quiz/home.html"
 
     def get_queryset(self):
-        return Quiz.objects.all().order_by("-created_at")
+        return Quiz.objects.filter(status=Quiz.QuizStatus.PUBLISHED).order_by("-created_at")

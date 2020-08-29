@@ -6,10 +6,10 @@
     <div class="top-editor">
         <div id="editor-map"></div>
         <form method="POST" class="question-adder">
-            <label for="id_question">Pregunta: </label>
-            <input required id="id_question" name="question" type="text" placeholder="¿Dónde nació Felipe II?">
-            <label for="id_answer">Respuesta: </label>
-            <output id="id_answer"></output>
+            <label class="question-item" for="id_question">Pregunta: </label>
+            <input class="question-item" required id="id_question" name="question" type="text" placeholder="¿Dónde nació Felipe II?">
+            <label class="question-item" for="id_answer">Respuesta: </label>
+            <output class="question-item" id="id_answer"></output>
             <input id="answer" type="hidden" name="answer" value="">
             {% csrf_token %}
             <input type="submit" class="primary-action-button" value="Añadir pregunta">
@@ -28,6 +28,14 @@
         </div>
     {% endfor %}
     </div>
+    
+    {% if quiz.status == "DF" %}
+    <div class="end-menu">
+            <a class="primary-action-button" href="{% url 'publish' quiz.pk %}">¡Publicar en Mapaly!</a>
+            <p>Una vez publicado, el mapa será público y ya se podrá jugar a él.</p>
+    </div>
+    {% endif %}
+    
 </div>
 <script type="module" src="/intermap/bundle.js"></script>
 {% endblock %}
