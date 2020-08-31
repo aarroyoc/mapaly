@@ -1,6 +1,8 @@
 declare var L: any;
 
 import store from "./src/store";
+import style from "./src/style";
+import { showDialog, quitDialog } from "./src/dialog";
 import { Question, QuizState, cleanupQuestion} from "./src/models";
 
 async function initGame(){
@@ -26,18 +28,6 @@ async function initGame(){
 
     let map = L.map("map",{attributionControl: false}).setView([40.416775, -3.703790], 6);
 
-
-    function style(features: any){
-        return {
-            fillColor: "#37c837",
-            weight: 1,
-            opacity: 1,
-            color: "black",
-            dashArray: "1",
-            fillOpacity: 0.7
-        };
-    }
-
     function onEachFeature(feature: any, layer: any){
         layer.on("click",(e: any)=>{
             let props = e.target.feature.properties;
@@ -51,6 +41,11 @@ async function initGame(){
         attribution: data.map.license
     })
     .addTo(map);
+
+    document.getElementById("share")?.addEventListener("click", () => showDialog("share-dialog"));
+    document.getElementById("close-share-dialog")?.addEventListener("click", () => quitDialog());
+
+    document.getElementById("dialog-background")?.addEventListener("click", () => quitDialog());
 }
 
 function updatePage(state: QuizState){
@@ -85,17 +80,6 @@ async function initEditor(){
     let answer = document.getElementById("answer") as HTMLInputElement;
 
     let map = L.map("editor-map",{attributionControl: false}).setView([40.416775, -3.703790], 6);
-
-    function style(features: any){
-        return {
-            fillColor: "#37c837",
-            weight: 1,
-            opacity: 1,
-            color: "black",
-            dashArray: "1",
-            fillOpacity: 0.7
-        };
-    }
 
     function onEachFeature(feature: any, layer: any){
         layer.on("click",(e: any)=>{

@@ -21,6 +21,25 @@
         </div>
         <div class="panel-center">
             <a class="secondary-action-button" href="{% url 'remix' quiz.pk %}">Remix</a>
+            <a class="secondary-action-button" id="share">Compartir</a>
+        </div>
+    </div>
+</div>
+<div id="dialog-background"></div>
+<div id="share-dialog" class="dialog">
+    <div id="share-dialog-top">
+        <h2>Compartir:</h2>
+        <div id="close-share-dialog"></div>
+    </div>
+    <div id="share-dialog-middle">
+        <p>Comparte el mapquiz en redes sociales</p>
+        <div id="share-icons">
+            <a href="https://www.facebook.com/sharer.php?u=https://mapaly.com{{ request.path }}" id="share-dialog-facebook"></a>
+            <a href="https://www.twitter.com/share?url=https://mapaly.com{{ request.path }}&via=mapaly"" id="share-dialog-twitter"></a>
+            <a href="https://reddit.com/submit?url=https://mapaly.com{{ request.path }}" id="share-dialog-reddit"></a>
+            <a href="https://t.me/share/url?url=https://mapaly.com{{ request.path }}" id="share-dialog-telegram"></a>
+            <a href="mailto:?body=https://mapaly.com{{ request.path }}" id="share-dialog-email"></a>
+            <a href="https://wa.me/?text=https://mapaly.com{{ request.path }}" id="share-dialog-whatsapp"></a>
         </div>
     </div>
 </div>
