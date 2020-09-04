@@ -4,18 +4,13 @@ services:
     build:
       dockerfile: images/django-test.dockerfile
       context: .
-    command: sh python-test.sh
+    command: python manage.py test -v 3
     volumes:
     - ./data:/opt/mapaly/data
-    - static:/opt/mapaly/static
+    environment:
+    - SELENIUM_CHROME=/usr/bin/google-chrome
   intermap-test:
     build:
       dockerfile: ../images/intermap-test.dockerfile
       context: intermap
     command: npm run test
-  test-e2e:
-    build:
-      dockerfile: ../images/test-e2e.dockerfile
-      context: test
-    depends_on:
-    - nginx

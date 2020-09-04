@@ -21,14 +21,14 @@ class UserTestCase(TestCase):
 
     def test_login_post_non_existing_user(self):
         c = Client()
-        response = c.post("/users/login/", {"username": self.username+"67", "password": self.password})
+        response = c.post("/users/login/", {"username": self.username + "67", "password": self.password})
         self.assertEqual(response.status_code, 200)
         self.assertEqual(len(response.context["error_messages"]), 1)
         self.assertEqual(response.context["error_messages"][0], "Usuario y/o contraseña erróneos")
 
     def test_login_post_invalid_password(self):
         c = Client()
-        response = c.post("/users/login/", {"username": self.username, "password": self.password+"67"})
+        response = c.post("/users/login/", {"username": self.username, "password": self.password + "67"})
         self.assertEqual(response.status_code, 200)
         self.assertEqual(len(response.context["error_messages"]), 1)
         self.assertEqual(response.context["error_messages"][0], "Usuario y/o contraseña erróneos")
@@ -40,7 +40,7 @@ class UserTestCase(TestCase):
 
     def test_register_post_ok(self):
         c = Client()
-        response = c.post("/users/register/", {"username": self.username+"42", "password": self.password, "email": self.email})
+        response = c.post("/users/register/", {"username": self.username + "42", "password": self.password, "email": self.email})
         self.assertEqual(response.status_code, 302)
 
     def test_register_post_already_existing(self):
@@ -51,7 +51,6 @@ class UserTestCase(TestCase):
 
     def test_register_post_empty_email(self):
         c = Client()
-        response = c.post("/users/register/", {"username": self.username+"27", "password": self.password, "email": ""})
+        response = c.post("/users/register/", {"username": self.username + "27", "password": self.password, "email": ""})
         self.assertEqual(response.status_code, 200)
         self.assertEqual(len(response.context["error_messages"]), 1)
-    

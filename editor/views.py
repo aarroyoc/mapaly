@@ -10,12 +10,14 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from editor.forms import QuizForm
 from quiz.models import Quiz, Question
 
+
 def slugizer(name):
     name = name.lower()
     name = re.sub(r"\s", r"-", name)
     code = str(uuid.uuid4())[0:6]
     name = f"{name}-{code}"
     return name
+
 
 class NewView(LoginRequiredMixin, View):
     def get(self, request):
@@ -39,6 +41,7 @@ class NewView(LoginRequiredMixin, View):
             }
             return render(request, "editor/new.html", context)
 
+
 class EditorView(LoginRequiredMixin, View):
     def get(self, request, slug):
         quiz = Quiz.objects.get(slug=slug)
@@ -56,7 +59,8 @@ class EditorView(LoginRequiredMixin, View):
         question.answer = request.POST["answer"]
         question.quiz = quiz
         question.save()
-        return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+        return self.get(request, slug)
+
 
 class DashboardView(LoginRequiredMixin, ListView):
     paginate_by = 20
@@ -75,12 +79,9 @@ class DeleteMapView(LoginRequiredMixin, View):
         return render(request, "editor/delete.html", context)
 
     def post(self, request, pk):
-        try:
-            quiz = Quiz.objects.get(pk=pk)
-            if quiz.author == request.user:
-                quiz.delete()
-        except:
-            pass
+        quiz = Quiz.objects.get(pk=pk)
+        if quiz.author == request.user:
+            quiz.delete()
         return redirect("dashboard")
 
 
@@ -93,6 +94,7 @@ def delete_question(request, pk):
     else:
         return HttpResponse(status_code=403)
 
+
 @login_required
 def publish_quiz(request, pk):
     quiz = Quiz.objects.get(pk=pk)
@@ -102,6 +104,7 @@ def publish_quiz(request, pk):
         return redirect("quiz", quiz.slug)
     else:
         return HttpResponse(status_code=403)
+
 
 @login_required
 def remix_quiz(request, pk):
@@ -121,5 +124,5 @@ def remix_quiz(request, pk):
         remix_question.question = question.question
         remix_question.answer = question.answer
         remix_question.save()
-    
+
     return redirect("editor", remix.slug)

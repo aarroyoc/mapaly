@@ -32,8 +32,8 @@ urlpatterns = [
     path('dashboard/create/', NewView.as_view(), name="create-quiz"),
     path('dashboard/remix/<int:pk>/', remix_quiz, name="remix"),
     path('editor/<str:slug>/', EditorView.as_view(), name="editor"),
-    path('editor/question/<int:pk>', delete_question, name="delete-question"),
-    path('editor/publish/<int:pk>', publish_quiz, name="publish"),
+    path('editor/question/<int:pk>/', delete_question, name="delete-question"),
+    path('editor/publish/<int:pk>/', publish_quiz, name="publish"),
     path('api/quiz/<str:slug>/', QuizDetailAPI.as_view(), name="quiz_detail_api"),
     path('', HomeView.as_view(), name="home"),
 ]

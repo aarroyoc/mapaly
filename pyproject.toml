@@ -5,7 +5,7 @@ description = ""
 authors = ["Adrián Arroyo Calle <adrian.arroyocalle@gmail.com>"]
 
 [tool.poetry.dependencies]
-python = "^3.7"
+python = "^3.8"
 Django = "^3.0.5"
 djangorestframework = "^3.11.0"
 uwsgi = "^2.0.18"
@@ -13,6 +13,7 @@ uwsgi = "^2.0.18"
 [tool.poetry.dev-dependencies]
 flake8 = "^3.8.3"
 mypy = "^0.782"
+selenium = "^3.141.0"
 
 [build-system]
 requires = ["poetry>=0.12"]

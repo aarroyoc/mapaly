@@ -1,6 +1,9 @@
 data
 node_modules
 intermap/*.js
+mapaly/static/bundle.js
+mapaly/static/leaflet.css
+mapaly/static/leaflet.js
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

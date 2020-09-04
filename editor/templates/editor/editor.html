@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load static %}
 
 {% block main %}
 <h2>Quiz "{{ quiz.name }}"</h2>
@@ -37,5 +38,5 @@
     {% endif %}
     
 </div>
-<script type="module" src="/intermap/bundle.js"></script>
+<script type="module" src="{% static 'bundle.js' %}"></script>
 {% endblock %}

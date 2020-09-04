@@ -5,26 +5,14 @@ services:
       dockerfile: images/django.dockerfile
       context: .
     restart: always
-    command: bash start.sh
     volumes:
     - ./data:/opt/mapaly/data
-    - static:/opt/mapaly/static
   nginx:
     image: nginx:1.19.0
     restart: always
     ports:
     - 1133:1133
     volumes:
-    - static:/opt/mapaly/static:ro
     - ./nginx.conf:/etc/nginx/conf.d/default.conf:ro
     depends_on:
     - django
-    - intermap
-  intermap:
-    build:
-      dockerfile: ../images/intermap.dockerfile
-      context: intermap
-    restart: always
-
-volumes:
-  static:
