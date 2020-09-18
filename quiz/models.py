@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 
+from mapaly.settings import AZURE_STORAGE_CONTAINER_FRONT_PREFIX
 
 class Map(models.Model):
     name = models.CharField(max_length=150)
@@ -26,6 +27,11 @@ class Quiz(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     modified_at = models.DateTimeField(auto_now=True)
     status = models.CharField(max_length=2, choices=QuizStatus.choices, default=QuizStatus.DRAFT)
+    front_image = models.TextField(blank=False)
+
+    @property
+    def front_image_url(self):
+        return f"{AZURE_STORAGE_CONTAINER_FRONT_PREFIX}{self.front_image}"
 
 
 class QuizComment(models.Model):

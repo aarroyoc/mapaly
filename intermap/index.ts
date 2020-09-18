@@ -3,7 +3,7 @@ declare var L: any;
 import store from "./src/store";
 import style from "./src/style";
 import { showDialog, quitDialog } from "./src/dialog";
-import { Question, QuizState, cleanupQuestion} from "./src/models";
+import { QuizState, cleanupQuestion} from "./src/models";
 
 async function initGame(){
     let urlSplit = window.location.href.split("/");
@@ -12,7 +12,11 @@ async function initGame(){
     let data = await dataRequest.json();
     let mapData = JSON.parse(data.map.content);
 
-    store.subscribe(updatePage);
+    let clock = setInterval(()=>{
+        store.tick();
+    },1000);
+
+    store.subscribe(updatePage(clock));
 
     let questions = cleanupQuestion(data.questions as any[]);
     store.setQuestions(questions);
@@ -21,10 +25,6 @@ async function initGame(){
     if(info !== null){
         info.textContent = data.description;
     }
-    setInterval(()=>{
-        store.tick();
-    },1000);
-
 
     let map = L.map("map",{attributionControl: false}).setView([40.416775, -3.703790], 6);
 
@@ -44,28 +44,37 @@ async function initGame(){
 
     document.getElementById("share")?.addEventListener("click", () => showDialog("share-dialog"));
     document.getElementById("close-share-dialog")?.addEventListener("click", () => quitDialog());
+    document.getElementById("close-win-dialog")?.addEventListener("click", () => quitDialog());
 
     document.getElementById("dialog-background")?.addEventListener("click", () => quitDialog());
 }
 
-function updatePage(state: QuizState){
-    const score = document.getElementById("points");
-    if(score){
-        score.textContent = `${state.score}`;
-    }
-    const time = document.getElementById("time-string");
-    if(time){
-        const minutes = Math.floor(state.time / 60);
-        const seconds = state.time % 60;
-        const secondsStr = seconds < 10 ? `0${seconds}` : `${seconds}`;
-        time.textContent = `${minutes}:${secondsStr}`;
-    }
-    const question = document.getElementById("question");
-    if(question && state.activeQuestion){
-        question.textContent = state.activeQuestion.question;
-    }
-    if(question && state.activeQuestion === null){
-        question.textContent = "VICTORIA";
+function updatePage(clock: NodeJS.Timeout){
+    return (state: QuizState) => {
+        const score = document.getElementById("points");
+        const scoreDialog = document.getElementById("points-dialog");
+        if(score && scoreDialog){
+            score.textContent = `${state.score}`;
+            scoreDialog.textContent = `${state.score}`;
+        }
+        const time = document.getElementById("time-string");
+        const timeDialog = document.getElementById("time-string-dialog");
+        if(time && timeDialog){
+            const minutes = Math.floor(state.time / 60);
+            const seconds = state.time % 60;
+            const secondsStr = seconds < 10 ? `0${seconds}` : `${seconds}`;
+            time.textContent = `${minutes}:${secondsStr}`;
+            timeDialog.textContent = `${minutes}:${secondsStr}`;
+        }
+        const question = document.getElementById("question");
+        if(question && state.activeQuestion){
+            question.textContent = state.activeQuestion.question;
+        }
+        if(question && state.activeQuestion === null){
+            question.textContent = "¡Fin del quiz!";
+            clearInterval(clock);
+            showDialog("win-dialog");
+        }
     }
 }
 
@@ -95,7 +104,6 @@ async function initEditor(){
         attribution: data.map.license
     })
     .addTo(map);
-
 }
 
 window.addEventListener("load",function(){

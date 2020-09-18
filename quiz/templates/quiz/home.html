@@ -5,6 +5,7 @@
 <div class="quiz-grid">
     {% for quiz in page_obj %}
     <div class="quiz-item">
+        <img src="{{ quiz.front_image_url }}">
         <a href="{% url 'quiz' quiz.slug %}">{{ quiz.name }}</a>
         <small>{{ quiz.author }}</small>
     </div>

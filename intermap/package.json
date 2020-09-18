@@ -11,13 +11,13 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "leaflet": "^1.6.0",
-    "typescript": "^3.9.5"
+    "leaflet": "^1.7.1",
+    "typescript": "^3.9.7"
   },
   "devDependencies": {
-    "@types/jest": "^26.0.3",
-    "jest": "^26.1.0",
-    "webpack": "^4.43.0",
+    "@types/jest": "^26.0.14",
+    "jest": "^26.4.2",
+    "webpack": "^4.44.1",
     "webpack-cli": "^3.3.12"
   }
 }

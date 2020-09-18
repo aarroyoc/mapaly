@@ -42,6 +42,12 @@ header > div{
     justify-content: flex-end;
 }
 
+footer{
+    display: flex;
+    justify-content: center;
+    padding: 2px;
+}
+
 .primary-action-button{
     background-color: #37c837;
     color: white;
@@ -114,7 +120,12 @@ main{
     display: flex;
     flex-direction: column;
     width: 20vw;
+    height: 20vw;
     background-color: white;
+}
+
+.quiz-item > img {
+    object-fit: cover;
 }
 
 /* Login/Register */
@@ -271,15 +282,16 @@ main{
 #main{
     display: flex;
     width: 100%;
-    height: 75vh;
 }
 #map{
     width: 100%;
-    height: 100%;
+    height: 70vh;
+    min-height: 50vh;
     flex: 5;
 }
 #panel-info{
     display: grid;
+    grid-template-rows: auto auto auto auto auto 1fr auto;
     gap: 10px;
     background-color: white;
     border-color: #0066ff;
@@ -288,7 +300,6 @@ main{
     border-radius: 10px;
     padding: 10px;
     flex: 1;
-    height: 170pt;
 }
 .panel-center{
     text-align: center;
@@ -299,12 +310,22 @@ main{
     }
 }
 
+#mini-image{
+    display: flex;
+    justify-content: center;
+}
+
+#mini-image-img{
+    width: 128px;
+    height: auto;
+}
+
 .dialog{
     position: absolute;
-    top: 25vh;
-    left: 25vw;
-    width: 50vw;
-    height: 50vh;
+    top: 32.5vh;
+    left: 32.5vw;
+    width: 25vw;
+    height: 25vh;
     background-color: white;
     z-index: 1000;
     border-color: #0066ff;
@@ -315,7 +336,7 @@ main{
     display: none;
 }
 #dialog-background{
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     width: 100%;
@@ -330,7 +351,19 @@ main{
     height: 16px;
 }
 
+#close-win-dialog{
+    background-image: url("close.png");
+    width: 16px;
+    height: 16px;
+}
+
 #share-dialog-top{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#win-dialog-top{
     display: flex;
     justify-content: space-between;
     align-items: center;
