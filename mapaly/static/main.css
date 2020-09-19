@@ -21,17 +21,18 @@ header > div{
     flex: 0;
 }
 
-.logo{
+.logo > a{
     display: flex;
     align-items: center;
     justify-content: center;
+    text-decoration: none;
 }
 
-.logo > img{
+.logo > a > img{
     height: 50pt;
     width: auto;
 }
-.logo > h1 {
+.logo > a > h1 {
     font-size: 32pt;
     font-family: 'Fredoka One';
 }

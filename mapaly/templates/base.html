@@ -14,7 +14,9 @@
         <header>
             <div class="spacer"></div>
             <div class="logo">
-                <img src="{% static 'mapaly-icon.svg' %}"><h1><span class="green">Map</span><span class="blue">aly</span></h1>
+                <a href="/">
+                    <img src="{% static 'mapaly-icon.svg' %}"><h1><span class="green">Map</span><span class="blue">aly</span></h1>
+                </a>
             </div>
             <div class="login-header">
                 {% if user.is_authenticated %}

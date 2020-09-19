@@ -12,7 +12,7 @@ jobs:
     - name: Build images
       run: docker-compose -f docker-compose.test.yml -f docker-compose.yml build
     - name: Test Python
-      run: docker-compose -f docker-compose.test.yml -f docker-compose.yml up django-test
+      run: docker-compose -f docker-compose.test.yml -f docker-compose.yml run django-test
     - name: Test JavaScript
-      run: docker-compose -f docker-compose.test.yml -f docker-compose.yml up intermap-test
+      run: docker-compose -f docker-compose.test.yml -f docker-compose.yml run intermap-test
     
