@@ -120,9 +120,7 @@ class QuizBrowserTestCase(StaticLiveServerTestCase):
 
     def test_timer(self):
         self.browser.get(f"{self.live_server_url}/quiz/provincias/")
-        timer = self.browser.find_element_by_id("time-string")
-        assert timer.text == "0:00"
-        time.sleep(2)
+        self.browser.implicitly_wait(5)
         timer = self.browser.find_element_by_id("time-string")
         self.assertNotEquals(timer.text, "0:00")
 

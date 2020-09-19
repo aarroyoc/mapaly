@@ -58,10 +58,8 @@ class DashboardTestCase(TestCase):
     def test_delete_quiz_fail(self):
         c = Client()
         c.login(username="test", password="test")
-        response = c.post("/dashboard/delete/456/")
-        self.assertEqual(response.status_code, 302)
-        response = c.get("/dashboard/")
-        self.assertContains(response, '<a href="/quiz/provincias/">Provincias</a>', html=True)
+        with self.assertRaises(Quiz.DoesNotExist):
+            c.post("/dashboard/delete/456/")
 
     def test_remix_ok(self):
         c = Client()
