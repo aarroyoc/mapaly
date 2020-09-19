@@ -1,3 +1,4 @@
+import logging
 import time
 
 from django.test import TestCase, Client
@@ -127,7 +128,7 @@ class QuizBrowserTestCase(StaticLiveServerTestCase):
         self.browser.implicitly_wait(10)
         map = self.browser.find_element_by_id("map")
         question = self.browser.find_element_by_id("question")
-        print(question.text)
+        logging.error(question.text)
         WebDriverWait(self.browser, 30).until(expected_conditions.text_to_be_present_in_element((By.ID, "question"), "¿Dónde está"))
         question = self.browser.find_element_by_id("question")
         action = ActionChains(self.browser)
@@ -147,7 +148,7 @@ class QuizBrowserTestCase(StaticLiveServerTestCase):
         self.browser.implicitly_wait(10)
         map = self.browser.find_element_by_id("map")
         question = self.browser.find_element_by_id("question")
-        print(question.text)
+        logging.error(question.text)
         WebDriverWait(self.browser, 30).until(expected_conditions.text_to_be_present_in_element((By.ID, "question"), "¿Dónde está"))
         question = self.browser.find_element_by_id("question")
         action = ActionChains(self.browser)
@@ -164,7 +165,7 @@ class QuizBrowserTestCase(StaticLiveServerTestCase):
         self.browser.implicitly_wait(10)
         map = self.browser.find_element_by_id("map")
         question = self.browser.find_element_by_id("question")
-        print(question.text)
+        logging.error(question.text)
         WebDriverWait(self.browser, 30).until(expected_conditions.text_to_be_present_in_element((By.ID, "question"), "¿Dónde está"))
         question = self.browser.find_element_by_id("question")
         action = ActionChains(self.browser)
