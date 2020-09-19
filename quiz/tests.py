@@ -120,15 +120,13 @@ class QuizBrowserTestCase(StaticLiveServerTestCase):
 
     def test_timer(self):
         self.browser.get(f"{self.live_server_url}/quiz/provincias/")
-        self.browser.implicitly_wait(5)
-        timer = self.browser.find_element_by_id("time-string")
-        self.assertNotEquals(timer.text, "0:00")
+        WebDriverWait(self.browser, 10).until(expected_conditions.text_to_be_present_in_element((By.ID, "time-string"), "0:05"))
 
     def test_click_correct_province(self):
         self.browser.get(f"{self.live_server_url}/quiz/provincias/")
-        self.browser.implicitly_wait(5)
+        self.browser.implicitly_wait(10)
         map = self.browser.find_element_by_id("map")
-        WebDriverWait(self.browser, 10).until(expected_conditions.text_to_be_present_in_element((By.ID, "question"), "¿Dónde está"))
+        WebDriverWait(self.browser, 30).until(expected_conditions.text_to_be_present_in_element((By.ID, "question"), "¿Dónde está"))
         question = self.browser.find_element_by_id("question")
         action = ActionChains(self.browser)
         question1 = str(question.text)
@@ -144,8 +142,9 @@ class QuizBrowserTestCase(StaticLiveServerTestCase):
 
     def test_click_incorrect_province(self):
         self.browser.get(f"{self.live_server_url}/quiz/provincias/")
-        self.browser.implicitly_wait(5)
+        self.browser.implicitly_wait(10)
         map = self.browser.find_element_by_id("map")
+        WebDriverWait(self.browser, 30).until(expected_conditions.text_to_be_present_in_element((By.ID, "question"), "¿Dónde está"))
         question = self.browser.find_element_by_id("question")
         action = ActionChains(self.browser)
         action.move_to_element_with_offset(map, 400, 400)
@@ -158,9 +157,9 @@ class QuizBrowserTestCase(StaticLiveServerTestCase):
 
     def test_click_correct_then_incorrect(self):
         self.browser.get(f"{self.live_server_url}/quiz/provincias/")
-        self.browser.implicitly_wait(5)
+        self.browser.implicitly_wait(10)
         map = self.browser.find_element_by_id("map")
-        WebDriverWait(self.browser, 10).until(expected_conditions.text_to_be_present_in_element((By.ID, "question"), "¿Dónde está"))
+        WebDriverWait(self.browser, 30).until(expected_conditions.text_to_be_present_in_element((By.ID, "question"), "¿Dónde está"))
         question = self.browser.find_element_by_id("question")
         action = ActionChains(self.browser)
         question1 = str(question.text)
