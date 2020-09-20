@@ -1,3 +1,17 @@
+FROM node:12.18.3 AS builder
+
+WORKDIR /opt/intermap
+
+COPY ./intermap/package.json .
+COPY ./intermap/package-lock.json .
+
+RUN npm install
+
+COPY ./intermap/ .
+
+RUN npm run build
+RUN npm run bundle
+
 FROM python:3.8.5
 
 WORKDIR /opt/mapaly
@@ -15,6 +29,12 @@ RUN python -m pip install poetry
 
 COPY . .
 
+COPY --from=builder /opt/intermap/build/bundle.js /opt/mapaly/mapaly/static/
+COPY --from=builder /opt/intermap/node_modules/leaflet/dist/leaflet.css /opt/mapaly/mapaly/static/
+COPY --from=builder /opt/intermap/node_modules/leaflet/dist/leaflet.js /opt/mapaly/mapaly/static/
+
 RUN poetry install --no-root
+
+RUN poetry run python manage.py collectstatic --noinput
 
 ENTRYPOINT ["poetry", "run"]
