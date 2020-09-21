@@ -241,7 +241,7 @@ main{
     border-radius: 10px;
     padding: 10px;
     flex: 1;
-    height: 140pt;
+    height: 200pt;
 }
 
 .list-questions{
@@ -274,7 +274,7 @@ main{
         flex-direction: column;
     }
 }
-.end-menu{
+.end-menu, .general-settings{
     background-color: white;
     border-color: #0066ff;
     border-width: 5px;
@@ -283,6 +283,29 @@ main{
     padding-top: 10px;
     text-align: center;
     margin-top: 10px;
+}
+
+.general-settings{
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.general-settings > div{
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin: 5px;
+}
+
+.general-settings > div > textarea{
+    width: 100%;
+    height: 100%;
+}
+
+.general-settings > div > img{
+    width: 100%;
 }
 
 /* Quiz */

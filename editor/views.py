@@ -9,6 +9,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 
 from editor.forms import QuizForm
 from quiz.models import Quiz, Question
+from editor.upload import upload_image
 
 
 def slugizer(name):
@@ -98,12 +99,12 @@ def delete_question(request, pk):
 @login_required
 def publish_quiz(request, pk):
     quiz = Quiz.objects.get(pk=pk)
-    if quiz.author == request.user:
-        quiz.status = Quiz.QuizStatus.PUBLISHED
-        quiz.save()
-        return redirect("quiz", quiz.slug)
-    else:
+    if quiz.author != request.user:
         return HttpResponse(status_code=403)
+
+    quiz.status = Quiz.QuizStatus.PUBLISHED
+    quiz.save()
+    return redirect("quiz", quiz.slug) 
 
 
 @login_required
@@ -126,3 +127,14 @@ def remix_quiz(request, pk):
         remix_question.save()
 
     return redirect("editor", remix.slug)
+
+@login_required
+def save_quiz_settings(request, pk):
+    quiz = Quiz.objects.get(pk=pk)
+    if quiz.author != request.user:
+        return HttpResponse(status_code=403)
+    quiz.description = request.POST["description"]
+    quiz.front_image = upload_image(request.FILES["front_image"])
+    quiz.save()
+    return redirect("editor", quiz.slug)
+

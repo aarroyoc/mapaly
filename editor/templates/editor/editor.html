@@ -10,13 +10,14 @@
             <label class="question-item" for="id_question">Pregunta: </label>
             <input class="question-item" required id="id_question" name="question" type="text" placeholder="¿Dónde nació Felipe II?">
             <label class="question-item" for="id_answer">Respuesta: </label>
-            <output class="question-item" id="id_answer"></output>
+            <output class="question-item" id="id_answer">Haz click en el mapa para seleccionar una respuesta</output>
             <input id="answer" type="hidden" name="answer" value="">
             {% csrf_token %}
             <input type="submit" class="primary-action-button" value="Añadir pregunta">
         </form>
     </div>
     <h3>Preguntas del mapquiz</h3>
+    <p>Estas son las preguntas y respuestas que ya forman parte del mapquiz.</p>
     <div class="list-questions">
         <span class="header-list">Pregunta</span>
         <span class="header-list">Respuesta</span>
@@ -29,7 +30,20 @@
         </div>
     {% endfor %}
     </div>
-    
+    <h3>Ajustes generales</h3>
+    <form enctype="multipart/form-data" method="POST" action="{% url 'save-quiz-settings' quiz.pk %}" class="general-settings">
+        {% csrf_token %}
+        <div>
+            <label>Descripción del mapquiz</label>
+            <textarea name="description" placeholder="Un mapquiz para descubrir América Latina...">{{ quiz.description }}</textarea>
+        </div>
+        <div>
+            <label>Imagen de portada</label>
+            <input type="file" name="front_image">
+            <img src="{{ quiz.front_image_url }}" alt="">
+        </div>
+        <input class="primary-action-button" style="padding-bottom:5px;" type="submit" value="Guardar ajustes">
+    </form>
     {% if quiz.status == "DF" %}
     <div class="end-menu">
             <a class="primary-action-button" href="{% url 'publish' quiz.pk %}">¡Publicar en Mapaly!</a>

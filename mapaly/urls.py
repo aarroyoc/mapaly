@@ -19,7 +19,8 @@ from django.urls import path
 from quiz.views import QuizView, HomeView
 from quiz.api import QuizDetailAPI
 from users.views import LoginView, LogoutView, RegisterView
-from editor.views import DashboardView, DeleteMapView, EditorView, NewView, delete_question, publish_quiz, remix_quiz
+from editor.views import DashboardView, DeleteMapView, EditorView, NewView, \
+    delete_question, publish_quiz, remix_quiz, save_quiz_settings
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -34,6 +35,7 @@ urlpatterns = [
     path('editor/<str:slug>/', EditorView.as_view(), name="editor"),
     path('editor/question/<int:pk>/', delete_question, name="delete-question"),
     path('editor/publish/<int:pk>/', publish_quiz, name="publish"),
+    path('editor/settings/<int:pk>/', save_quiz_settings, name="save-quiz-settings"),
     path('api/quiz/<str:slug>/', QuizDetailAPI.as_view(), name="quiz_detail_api"),
     path('', HomeView.as_view(), name="home"),
 ]
