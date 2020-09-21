@@ -1,7 +1,17 @@
 {% extends "base.html" %}
 
 {% block main %}
-<h2>Quizs de mapas</h2>
+<h2>Top Mapaly</h2>
+<div class="quiz-grid">
+    {% for quiz in top %}
+    <div class="quiz-item">
+        <img src="{{ quiz.front_image_url }}">
+        <a href="{% url 'quiz' quiz.slug %}">{{ quiz.name }}</a>
+        <small>{{ quiz.author }}</small>
+    </div>
+    {% endfor %}
+</div>
+<h2>Mapquizs más recientes</h2>
 <div class="quiz-grid">
     {% for quiz in page_obj %}
     <div class="quiz-item">

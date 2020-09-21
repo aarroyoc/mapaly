@@ -22,3 +22,8 @@ class HomeView(ListView):
 
     def get_queryset(self):
         return Quiz.objects.filter(status=Quiz.QuizStatus.PUBLISHED).order_by("-created_at")
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["top"] = Quiz.objects.filter(status=Quiz.QuizStatus.PUBLISHED, top=True).order_by("-created_at")[0:5]
+        return context

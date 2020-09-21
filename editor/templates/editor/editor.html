@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block main %}
-<h2>Quiz "{{ quiz.name }}"</h2>
+<h2>Mapquiz "{{ quiz.name }}"</h2>
 <div class="editor">
     <div class="top-editor">
         <div id="editor-map"></div>
@@ -16,7 +16,7 @@
             <input type="submit" class="primary-action-button" value="Añadir pregunta">
         </form>
     </div>
-    <h3>Preguntas del quiz</h3>
+    <h3>Preguntas del mapquiz</h3>
     <div class="list-questions">
         <span class="header-list">Pregunta</span>
         <span class="header-list">Respuesta</span>
@@ -33,7 +33,7 @@
     {% if quiz.status == "DF" %}
     <div class="end-menu">
             <a class="primary-action-button" href="{% url 'publish' quiz.pk %}">¡Publicar en Mapaly!</a>
-            <p>Una vez publicado, el mapa será público y ya se podrá jugar a él.</p>
+            <p>Una vez publicado, el mapquiz será público y ya se podrá jugar a él.</p>
     </div>
     {% endif %}
     

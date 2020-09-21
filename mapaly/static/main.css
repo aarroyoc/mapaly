@@ -46,7 +46,13 @@ header > div{
 footer{
     display: flex;
     justify-content: center;
+    align-items: center;
+    flex-direction: column;
     padding: 2px;
+}
+
+.footer__description{
+    width: 50vw;
 }
 
 .primary-action-button{

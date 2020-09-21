@@ -19,7 +19,7 @@ class Quiz(models.Model):
         DRAFT = "DF", "Draft"
         PUBLISHED = "PB", "Published"
 
-    slug = models.SlugField(max_length=150, unique=True)
+    slug = models.SlugField(max_length=150, unique=True, allow_unicode=True)
     name = models.CharField(max_length=150)
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     description = models.TextField()
@@ -28,6 +28,7 @@ class Quiz(models.Model):
     modified_at = models.DateTimeField(auto_now=True)
     status = models.CharField(max_length=2, choices=QuizStatus.choices, default=QuizStatus.DRAFT)
     front_image = models.TextField(blank=False)
+    top = models.BooleanField(default=False)
 
     @property
     def front_image_url(self):
