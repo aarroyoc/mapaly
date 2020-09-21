@@ -1,7 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 
-from mapaly.settings import AZURE_STORAGE_CONTAINER_FRONT_PREFIX
+from mapaly.settings import AZURE_CONTAINER_URL_FRONT
 
 class Map(models.Model):
     name = models.CharField(max_length=150)
@@ -32,7 +32,7 @@ class Quiz(models.Model):
 
     @property
     def front_image_url(self):
-        return f"{AZURE_STORAGE_CONTAINER_FRONT_PREFIX}{self.front_image}"
+        return f"{AZURE_CONTAINER_URL_FRONT}{self.front_image}"
 
 
 class QuizComment(models.Model):

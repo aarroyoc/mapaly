@@ -132,7 +132,5 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
 
 # Azure Storage Account
 
-AZURE_STORAGE_ACCOUNT_NAME = os.environ.get("AZURE_STORAGE_ACCOUNT_NAME", "mapaly")
+AZURE_CONTAINER_URL_FRONT = "https://mapaly.blob.core.windows.net/front/"
 AZURE_ACCESS_KEY = os.environ.get("AZURE_ACCESS_KEY")
-AZURE_STORAGE_CONTAINER_FRONT = "front"
-AZURE_STORAGE_CONTAINER_FRONT_PREFIX = "https://mapaly.blob.core.windows.net/front/"
