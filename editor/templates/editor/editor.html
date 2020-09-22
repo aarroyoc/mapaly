@@ -46,8 +46,12 @@
     </form>
     {% if quiz.status == "DF" %}
     <div class="end-menu">
+        {% if quiz.description and quiz.front_image %}
             <a class="primary-action-button" href="{% url 'publish' quiz.pk %}">¡Publicar en Mapaly!</a>
             <p>Una vez publicado, el mapquiz será público y ya se podrá jugar a él.</p>
+        {% else %}
+            <p>Antes de publicar debes rellenar los ajustes generales con una descripción y una imagen de portada.</p>
+        {% endif %}
     </div>
     {% endif %}
     

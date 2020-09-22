@@ -1,3 +1,6 @@
+from unittest.mock import MagicMock, patch
+
+from azure.storage.blob import ContainerClient
 from django.test import TestCase, Client
 from django.contrib.auth.models import User
 
@@ -37,7 +40,7 @@ class DashboardTestCase(TestCase):
         c.login(username="test", password="test")
         response = c.get("/dashboard/")
         self.assertEqual(response.status_code, 200)
-        self.assertContains(response, '<a class="primary-action-button" href="/dashboard/create/">Crear nuevo quiz</a>', html=True)
+        self.assertContains(response, '<a class="primary-action-button" href="/dashboard/create/">Crear nuevo mapquiz</a>', html=True)
         self.assertContains(response, '<a href="/quiz/provincias/">Provincias</a>', html=True)
 
     def test_show_delete_quiz(self):
@@ -45,7 +48,7 @@ class DashboardTestCase(TestCase):
         c.login(username="test", password="test")
         response = c.get("/dashboard/delete/1/")
         self.assertEqual(response.status_code, 200)
-        self.assertContains(response, '¿Estás seguro que deseas borrar el quiz "Provincias"?')
+        self.assertContains(response, '¿Estás seguro que deseas borrar el mapquiz "Provincias"?')
 
     def test_delete_quiz_ok(self):
         c = Client()
@@ -103,15 +106,29 @@ class EditorTestCase(TestCase):
         c.login(username="test", password="test")
         response = c.get("/editor/provincias/")
         self.assertEqual(response.status_code, 200)
-        self.assertContains(response, 'Quiz "Provincias"')
+        self.assertContains(response, 'Mapquiz "Provincias"')
         self.assertContains(response, '<div id="editor-map"></div>', html=True)
         self.assertContains(response, "¿Dónde está Soria?")
 
-    def test_publish(self):
+    def test_publish_no_settings(self):
         c = Client()
         c.login(username="test", password="test")
         response = c.get("/")
         self.assertNotContains(response, "Provincias")
+        response = c.get("/editor/publish/1/")
+        self.assertEqual(response.status_code, 412)
+
+    @patch("editor.upload.ContainerClient", autospec=True)
+    def test_publish(self, MockContainerClient):
+        instance = MockContainerClient.from_container_url("")
+        instance.return_value = instance
+
+        c = Client()
+        c.login(username="test", password="test")
+        response = c.get("/")
+        self.assertNotContains(response, "Provincias")
+        response = c.post("/editor/settings/1/", {"front_image": open("mapaly.png", "rb")})
+        assert response.status_code == 302
         response = c.get("/editor/publish/1/")
         self.assertEqual(response.status_code, 302)
         response = c.get("/")
@@ -132,3 +149,44 @@ class EditorTestCase(TestCase):
         response = c.get("/editor/provincias/")
         self.assertEqual(response.status_code, 200)
         self.assertNotContains(response, '¿Dónde está Burgos?')
+
+    def test_submit_settings_description(self):
+        c = Client()
+        c.login(username="test", password="test")
+        response = c.post("/editor/settings/1/", {"description": "Descripción de un mapquiz"})
+        assert response.status_code == 302
+        response = c.get("/editor/provincias/")
+        assert response.status_code == 200
+        self.assertContains(response, "Descripción de un mapquiz")
+
+    @patch("editor.upload.ContainerClient", autospec=True)
+    def test_submit_settings_image(self, MockContainerClient):
+        instance = MockContainerClient.from_container_url("")
+        instance.return_value = instance
+
+        c = Client()
+        c.login(username="test", password="test")
+        response = c.post("/editor/settings/1/", {"front_image": open("mapaly.png", "rb")})
+        assert response.status_code == 302
+        response = c.get("/editor/provincias/")
+        assert response.status_code == 200
+        self.assertContains(response, "mapaly.png")
+        
+        instance.upload_blob.assert_called_once()
+
+    @patch("editor.upload.ContainerClient", autospec=True)
+    def test_submit_settings_both(self, MockContainerClient):
+        instance = MockContainerClient.from_container_url("")
+        instance.return_value = instance
+
+        c = Client()
+        c.login(username="test", password="test")
+        response = c.post("/editor/settings/1/", {"front_image": open("mapaly.png", "rb"), "description": "Descripción de un mapquiz"})
+        assert response.status_code == 302
+        response = c.get("/editor/provincias/")
+        assert response.status_code == 200
+        self.assertContains(response, "mapaly.png")
+        self.assertContains(response, "Descripción de un mapquiz")
+
+        instance.upload_blob.assert_called_once()
+        

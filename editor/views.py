@@ -9,7 +9,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 
 from editor.forms import QuizForm
 from quiz.models import Quiz, Question
-from editor.upload import upload_image
+from editor.upload import upload_image, delete_image
 
 
 def slugizer(name):
@@ -93,14 +93,17 @@ def delete_question(request, pk):
         question.delete()
         return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
     else:
-        return HttpResponse(status_code=403)
+        return HttpResponse(status=403)
 
 
 @login_required
 def publish_quiz(request, pk):
     quiz = Quiz.objects.get(pk=pk)
     if quiz.author != request.user:
-        return HttpResponse(status_code=403)
+        return HttpResponse(status=403)
+
+    if quiz.front_image is None or not quiz.description:
+        return HttpResponse(status=412)
 
     quiz.status = Quiz.QuizStatus.PUBLISHED
     quiz.save()
@@ -133,8 +136,15 @@ def save_quiz_settings(request, pk):
     quiz = Quiz.objects.get(pk=pk)
     if quiz.author != request.user:
         return HttpResponse(status_code=403)
-    quiz.description = request.POST["description"]
-    quiz.front_image = upload_image(request.FILES["front_image"])
+    if description := request.POST.get("description"):
+        quiz.description = description
+    if request.FILES.get("front_image"):
+        image_to_delete = None
+        if quiz.front_image is not None:
+            image_to_delete = quiz.front_image
+        quiz.front_image = upload_image(request.FILES["front_image"])
+        if image_to_delete is not None:
+            delete_image(image_to_delete)
     quiz.save()
     return redirect("editor", quiz.slug)
 

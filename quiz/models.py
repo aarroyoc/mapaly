@@ -27,7 +27,7 @@ class Quiz(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     modified_at = models.DateTimeField(auto_now=True)
     status = models.CharField(max_length=2, choices=QuizStatus.choices, default=QuizStatus.DRAFT)
-    front_image = models.TextField(blank=False)
+    front_image = models.TextField(blank=False, null=True)
     top = models.BooleanField(default=False)
 
     @property
