@@ -117,7 +117,9 @@ main{
 
 .quiz-grid{
     display: flex;
+    flex-wrap: wrap;
     margin: 10px;
+    gap: 10px;
 }
 .quiz-item{
     border-width: 5px;
@@ -126,13 +128,19 @@ main{
     border-radius: 10px;
     display: flex;
     flex-direction: column;
-    width: 20vw;
-    height: 20vw;
+    max-width: 14em;
+    min-width: 8em;
+    height: 10em;
     background-color: white;
+    padding-left: 5px;
+    padding-right: 5px;
+    flex: 1;
 }
 
 .quiz-item > img {
     object-fit: cover;
+    width: 100%;
+    height: calc(100% - 3em);
 }
 
 /* Login/Register */
