@@ -7,7 +7,7 @@
     <div class="quiz-item">
         <img src="{{ quiz.front_image_url }}">
         <a href="{% url 'quiz' quiz.slug %}">{{ quiz.name }}</a>
-        <small><a href="{% url 'profile' quiz.author %}">{{ quiz.author }}</a></small>
+        <small><a href="/profile/{{ quiz.author.username }}/">{{ quiz.author.username }}</a></small>
     </div>
     {% endfor %}
 </div>
@@ -17,7 +17,7 @@
     <div class="quiz-item">
         <img src="{{ quiz.front_image_url }}">
         <a href="{% url 'quiz' quiz.slug %}">{{ quiz.name }}</a>
-        <small><a href="{% url 'profile' quiz.author %}">{{ quiz.author }}</a></small>
+        <small><a href="/profile/{{ quiz.author.username }}/">{{ quiz.author.username }}</a></small>
     </div>
     {% endfor %}
     {% if page_obj.has_previous %}

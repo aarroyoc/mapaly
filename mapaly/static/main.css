@@ -6,7 +6,6 @@ body{
 
 header{
     margin-top: -20px;
-    margin-bottom: -20px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -77,6 +76,7 @@ footer{
     padding-right: 5px;
     text-decoration: none;
     margin-right: 10px;
+    border: none;
 }
 
 .red-action-button{
@@ -98,6 +98,26 @@ footer{
 
 .blue{
     color: #0066ff;
+}
+
+.search{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 5px;
+    margin-bottom: -20px;
+}
+
+.search > input[type="search"] {
+    border-color: #37c837;
+    border-radius: 12px;
+    border-width: 2px;
+    border-style: solid;
+    padding-left: 12px;
+}
+
+.search > input[type="image"]{
+    margin-top: -5px;
 }
 
 main{

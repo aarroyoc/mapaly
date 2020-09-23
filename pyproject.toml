@@ -10,6 +10,7 @@ Django = "^3.0.5"
 djangorestframework = "^3.11.0"
 uwsgi = "^2.0.18"
 azure-storage-blob = "^12.5.0"
+lunr = {extras = ["languages"], version = "^0.5.8"}
 
 [tool.poetry.dev-dependencies]
 flake8 = "^3.8.3"

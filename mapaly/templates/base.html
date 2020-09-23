@@ -26,8 +26,12 @@
                 <a class="primary-action-button" href="{% url 'login' %}">Iniciar sesión</a>
                 <a class="secondary-action-button" href="{% url 'register' %}">Registrarse</a>
                 {% endif %}
-            </div>
+            </div>            
         </header>
+        <form class="search" method="GET" action="/search">
+            <input name="q" type="search" placeholder="Regiones, Alemania...">
+            <input class="secondary-action-button" type="image" width="24" height="24" src="{% static 'search.svg' %}">
+        </form>
         <main>
             {% block main %}{% endblock %}
         </main>

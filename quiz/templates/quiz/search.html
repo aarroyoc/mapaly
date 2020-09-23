@@ -1,12 +1,13 @@
 {% extends "base.html" %}
 
 {% block main %}
-<h2>Mapquizs de "{{ user }}"</h2>
+<h2>Resultados de "{{ query }}"</h2>
 <div class="quiz-grid">
     {% for quiz in page_obj %}
     <div class="quiz-item">
         <img src="{{ quiz.front_image_url }}">
         <a href="{% url 'quiz' quiz.slug %}">{{ quiz.name }}</a>
+        <small><a href="{% url 'profile' user=quiz.author.username %}">{{ quiz.author }}</a></small>
     </div>
     {% endfor %}
     {% if page_obj.has_previous %}

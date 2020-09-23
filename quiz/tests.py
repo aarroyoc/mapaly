@@ -79,6 +79,24 @@ class QuizTestCase(TestCase):
         response = c.get("/profile/non-existant/")
         self.assertEqual(response.status_code, 404)
 
+    def test_search(self):
+        c = Client()
+        response = c.get("/search/?q=provincia")
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, "Provincias")
+
+    def test_search_description(self):
+        c = Client()
+        response = c.get("/search/?q=españa")
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, "Provincias")
+
+    def test_search_nothing(self):
+        c = Client()
+        response = c.get("/search/?q=inexistente")
+        self.assertEqual(response.status_code, 200)
+        self.assertNotContains(response, "Provincias")
+
 
 class QuizBrowserTestCase(StaticLiveServerTestCase):
     def setUp(self):
