@@ -14,7 +14,7 @@ from mapaly.testing import get_selenium_browser
 
 class QuizTestCase(TestCase):
     def setUp(self):
-        user = User.objects.create()
+        user = User.objects.create_user("test", "test@mail.com", "test")
         f = open("spain_provincia.geojson")
         map = Map.objects.create(
             name="Provincias de España",
@@ -67,6 +67,17 @@ class QuizTestCase(TestCase):
         c = Client()
         response = c.get("/api/quiz/provincias/", HTTP_ACCEPT="application/json")
         self.assertEqual(response.status_code, 200)
+
+    def test_profile_page(self):
+        c = Client()
+        response = c.get("/profile/test/")
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, "Provincias")
+
+    def test_profile_nonexistant(self):
+        c = Client()
+        response = c.get("/profile/non-existant/")
+        self.assertEqual(response.status_code, 404)
 
 
 class QuizBrowserTestCase(StaticLiveServerTestCase):
