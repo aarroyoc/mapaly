@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block main %}
-<h2>Top Mapaly</h2>
+<h2>Top Mapaquiz</h2>
 <div class="quiz-grid">
     {% for quiz in top %}
     <div class="quiz-item">
@@ -11,7 +11,7 @@
     </div>
     {% endfor %}
 </div>
-<h2>Mapquizs más recientes</h2>
+<h2>Mapaquizs más recientes</h2>
 <div class="quiz-grid">
     {% for quiz in page_obj %}
     <div class="quiz-item">

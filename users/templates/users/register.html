@@ -3,7 +3,7 @@
 {% block main %}
 <div class="center-form">
     <form method="POST" class="login-form">
-        <p>Regístrate en Mapaly para poder crear tus propios mapquizs y comentar en mapquizs de otros usuarios</p>
+        <p>Regístrate en Mapaquiz para poder crear tus propios mapaquizs y comentar en mapaquizs de otros usuarios</p>
         <ul class="errors">
         {% for error in error_messages %}
             <li>{{ error }}</li>
@@ -11,7 +11,7 @@
         </ul>
         {{ form.as_p }}
         {% csrf_token %}
-        <p>En Mapaly guardamos únicamente tu usuario, tu correo electrónico, tu contraseña (cifrada), los comentarios que realizas y los mapquizs que creas. No compartimos tus datos con terceros. En cualquier momento puedes pedir que borremos tus datos contactando con nosotros.</p>
+        <p>En Mapaquiz guardamos únicamente tu usuario, tu correo electrónico, tu contraseña (cifrada), los comentarios que realizas y los mapquizs que creas. No compartimos tus datos con terceros. En cualquier momento puedes pedir que borremos tus datos contactando con nosotros.</p>
         <input type="submit" value="Registrarse">
     </form>
 </div>

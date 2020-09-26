@@ -1,5 +1,5 @@
 # mapaly
-Mapaly is an educational geography website
+Mapaly is an educational geography website. On its operations its called: Mapaquiz
 
 ## Development
 
