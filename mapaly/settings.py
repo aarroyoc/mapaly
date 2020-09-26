@@ -26,7 +26,7 @@ SECRET_KEY = '_l-+!5#^@2w4@ry(u%=2(x=3nlu421xffokt%plqnz*cu6qu(e'
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    "mapaly.com",
+    "mapaquiz.com",
     "localhost",
     "nginx",
     "127.0.0.1"
