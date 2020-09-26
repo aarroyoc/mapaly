@@ -49,3 +49,6 @@ python manage.py test
 ```
 docker-compose up
 ```
+
+Configurable settings (as environment variables):
+* AZURE_ACCESS_KEY
