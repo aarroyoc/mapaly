@@ -133,7 +133,7 @@ class QuizBrowserTestCase(StaticLiveServerTestCase):
 
     def test_home_page(self):
         self.browser.get(self.live_server_url)
-        assert "Mapaly" in self.browser.title
+        assert "Mapaquiz" in self.browser.title
 
         self.browser.find_element_by_link_text("Provincias")
         assert True
@@ -143,7 +143,7 @@ class QuizBrowserTestCase(StaticLiveServerTestCase):
         quiz_link = self.browser.find_element_by_link_text("Provincias")
         quiz_link.click()
 
-        WebDriverWait(self.browser, 10).until(expected_conditions.title_contains("Mapaly"))
+        WebDriverWait(self.browser, 10).until(expected_conditions.title_contains("Mapaquiz"))
 
         assert f"{self.live_server_url}/quiz/provincias/" == self.browser.current_url
 
