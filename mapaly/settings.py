@@ -12,6 +12,9 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 
 import os
 
+import sentry_sdk
+from sentry_sdk.integrations.django import DjangoIntegration
+
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -134,3 +137,15 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
 
 AZURE_CONTAINER_URL_FRONT = "https://mapaly.blob.core.windows.net/front/"
 AZURE_ACCESS_KEY = os.environ.get("AZURE_ACCESS_KEY")
+
+# Sentry
+
+sentry_sdk.init(
+    dsn="https://4cc7c931e4ec4e17b46f9135a25a6728@o453425.ingest.sentry.io/5442209",
+    integrations=[DjangoIntegration()],
+    traces_sample_rate=1.0,
+
+    # If you wish to associate users to errors (assuming you are using
+    # django.contrib.auth) you may enable sending PII data.
+    send_default_pii=True
+)
