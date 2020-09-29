@@ -1,5 +1,7 @@
 import {QuizState, Question, cleanupQuestion} from "./models";
 
+export type QuizAnswer = "ok" | "wrong" | "inactive";
+
 class Store implements QuizState {
     score = 0;
     questions: Question[] = [];
@@ -30,16 +32,21 @@ class Store implements QuizState {
         this.callback(this);
     }
 
-    submitAnswer(answer: string): void{
+    submitAnswer(answer: string): QuizAnswer{
         if(this.activeQuestion){
+            let result: QuizAnswer = "ok";
             if(answer === this.activeQuestion.answer){
                 this.activeQuestion.done = true;
                 this.selectQuestion();
                 this.score += 25;
             }else{
                 this.score = Math.max(0, this.score-10);
+                result = "wrong";
             }
             this.callback(this);
+            return result;
+        }else{
+            return "inactive";
         }
     }
 

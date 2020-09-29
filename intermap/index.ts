@@ -31,7 +31,41 @@ async function initGame(){
     function onEachFeature(feature: any, layer: any){
         layer.on("click",(e: any)=>{
             let props = e.target.feature.properties;
-            store.submitAnswer(props.mapaly_id);
+            const result = store.submitAnswer(props.mapaly_id);
+            if(result === "ok"){
+                layer.setStyle({fillColor: "#00c800"});
+                setTimeout(()=>{
+                    layer.setStyle({fillColor: "#14c814"});
+                },100);
+                setTimeout(()=>{
+                    layer.setStyle({fillColor: "#28c828"});
+                },200);
+                setTimeout(()=>{
+                    layer.setStyle({fillColor: "#31c831"});
+                },300);
+                setTimeout(()=>{
+                    layer.setStyle({fillColor: "#37c837"});
+                },400);
+            }
+            if(result === "wrong"){
+                layer.setStyle({fillColor: "#c84737"});
+                setTimeout(()=>{
+                    layer.setStyle({fillColor: "#c85c4f"});
+                },100);
+                setTimeout(()=>{
+                    layer.setStyle({fillColor: "#c87267"});
+                },200);
+                setTimeout(()=>{
+                    layer.setStyle({fillColor: "#c8877f"});
+                },300);
+                setTimeout(()=>{
+                    layer.setStyle({fillColor: "#7fc87f"});
+                },400);
+                setTimeout(()=>{
+                    layer.setStyle({fillColor: "#37c837"});
+                },500);
+            }
+
         });
     }
 
