@@ -93,7 +93,7 @@ async function initEditor(){
     function onEachFeature(feature: any, layer: any){
         layer.on("click",(e: any)=>{
             let props = e.target.feature.properties;
-            id_answer.textContent = props.mapaly_id;
+            id_answer.textContent = props.mapaly_name;
             answer.value = props.mapaly_id;
         });
     }
