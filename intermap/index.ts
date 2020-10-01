@@ -2,10 +2,13 @@ declare var L: any;
 
 import store from "./src/store";
 import style from "./src/style";
+import { Sound, SoundControl} from "./src/sound";
 import { showDialog, quitDialog } from "./src/dialog";
 import { QuizState, cleanupQuestion} from "./src/models";
 
 async function initGame(){
+    const sound = new Sound();
+
     let urlSplit = window.location.href.split("/");
     let slug = urlSplit[urlSplit.length-2];
     let dataRequest = await fetch(`/api/quiz/${slug}`);
@@ -33,6 +36,7 @@ async function initGame(){
             let props = e.target.feature.properties;
             const result = store.submitAnswer(props.mapaly_id);
             if(result === "ok"){
+                sound.playOk();
                 layer.setStyle({fillColor: "#00c800"});
                 setTimeout(()=>{
                     layer.setStyle({fillColor: "#14c814"});
@@ -48,6 +52,7 @@ async function initGame(){
                 },400);
             }
             if(result === "wrong"){
+                sound.playBad();
                 layer.setStyle({fillColor: "#c84737"});
                 setTimeout(()=>{
                     layer.setStyle({fillColor: "#c85c4f"});
@@ -75,6 +80,8 @@ async function initGame(){
         attribution: data.map.license
     })
     .addTo(map);
+
+    SoundControl(sound).addTo(map);
 
     document.getElementById("share")?.addEventListener("click", () => showDialog("share-dialog"));
     document.getElementById("close-share-dialog")?.addEventListener("click", () => quitDialog());

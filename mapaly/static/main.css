@@ -346,6 +346,10 @@ main{
     min-height: 50vh;
     flex: 5;
 }
+.volume{
+    width: 24px;
+    height: 24px;
+}
 #panel-info{
     display: grid;
     grid-template-rows: auto auto auto auto auto 1fr auto;
