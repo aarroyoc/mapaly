@@ -47,7 +47,7 @@ class QuizTestCase(TestCase):
         response = c.get("/")
         self.assertEqual(response.status_code, 200)
         self.assertTrue(len(response.context["page_obj"]) > 0)
-        self.assertContains(response, '<a href="/quiz/provincias/">Provincias</a>', html=True)
+        self.assertContains(response, '<a title="Provincias" href="/quiz/provincias/">Provincias</a>', html=True)
 
     def test_quiz_page(self):
         """Quiz page shows a Leaflet map"""
