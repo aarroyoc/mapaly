@@ -77,6 +77,7 @@ footer{
     text-decoration: none;
     margin-right: 10px;
     border: none;
+    cursor: pointer;
 }
 
 .red-action-button{
@@ -471,4 +472,27 @@ main{
 }
 #share-dialog-whatsapp{
     background-image: url("whatsapp.svg");
+}
+
+/* Comments */
+@media(min-width: 600px){
+    #comments{
+        width: 50vw;
+    }
+}
+
+#comments{
+    margin-top: 25px;
+    margin-left: 20px;
+    margin-right: 20px;
+    background-color: white;
+}
+
+#comments-center{
+    display: flex;
+    justify-content: center;
+}
+
+#comment-content{
+    width: 100%;
 }

@@ -16,7 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
-from quiz.views import QuizView, HomeView, ProfileView, SearchView
+from quiz.views import QuizView, HomeView, ProfileView, SearchView, add_comment
 from quiz.api import QuizDetailAPI
 from users.views import LoginView, LogoutView, RegisterView
 from editor.views import DashboardView, DeleteMapView, EditorView, NewView, \
@@ -25,6 +25,7 @@ from editor.views import DashboardView, DeleteMapView, EditorView, NewView, \
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('quiz/<str:slug>/', QuizView.as_view(), name="quiz"),
+    path('comments/<int:pk>/', add_comment, name="add-comment"),
     path('profile/<user>/', ProfileView.as_view(), name="profile"),
     path('search/', SearchView.as_view(), name="search"),
     path('users/login/', LoginView.as_view(), name="login"),

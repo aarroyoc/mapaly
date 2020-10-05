@@ -24,10 +24,40 @@
         </div>
         <div></div>
         <div class="panel-center">
-            <a class="secondary-action-button" href="{% url 'remix' quiz.pk %}">Remix</a>
             <a class="secondary-action-button" id="share">Compartir</a>
         </div>
     </div>
+</div>
+<div id="comments-center">
+<div id="comments">
+    {% if num_comments == 0 %}
+    <div>
+        No hay comentarios todavía. Sé el primero en dejar tu opinión.
+    </div>
+    {% else %}
+    {% for comment in comments %}
+    <div>
+        <p>{{ comment.content }}</p>
+        <small><a href="/profile/{{ comment.author.username }}/">{{ comment.author.username }}</a> - {{ comment.created_at | date:"j/n/Y G:i" }} </small>
+    </div>
+    {% endfor %}
+    {% endif %}
+    <hr/>
+    <h4>Dejar nuevo comentario</h4>
+    {% if user.is_authenticated %}
+    <form method="POST" action="{% url 'add-comment' quiz.pk %}">
+        {% csrf_token %}
+        <label for="comment-content">Texto:</label>
+        <textarea name="content" required id="comment-content" placeholder="Un mapa muy interesante. 10/10"></textarea>
+        <input class="secondary-action-button" type="submit" value="Publicar comentario">
+    </form>
+    {% else %}
+    <div>
+        <a href="{% url 'login' %}">Inicia sesión</a> o <a href="{% url 'register' %}">regístrate</a> para dejar un comentario.
+    </div>
+    <hr/>
+    {% endif %}
+</div>
 </div>
 <div id="dialog-background"></div>
 <div id="share-dialog" class="dialog">

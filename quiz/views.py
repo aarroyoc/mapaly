@@ -1,18 +1,22 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponseNotFound
 from django.views.generic import View, ListView
 from django.contrib.auth.models import User
+from django.contrib.auth.decorators import login_required
 from lunr import lunr
 
-from quiz.models import Quiz
+from quiz.models import Quiz, QuizComment
 
 
 class QuizView(View):
     def get(self, request, slug):
         try:
             quiz = Quiz.objects.get(slug=slug)
+            comments = QuizComment.objects.filter(author=quiz.author).order_by("created_at")
             context = {
-                "quiz": quiz
+                "quiz": quiz,
+                "comments": comments,
+                "num_comments": len(comments),
             }
             return render(request, "quiz/quiz.html", context)
         except Quiz.DoesNotExist:
@@ -69,3 +73,15 @@ class SearchView(ListView):
         context = super().get_context_data(**kwargs)
         context["query"] = self.request.GET["q"]
         return context
+
+
+@login_required
+def add_comment(request, pk):
+    quiz = get_object_or_404(Quiz, pk=pk)
+    comment = QuizComment.objects.create(
+        quiz=quiz,
+        author=request.user,
+        content=request.POST["content"]
+    )
+    comment.save()
+    return redirect("quiz", quiz.slug)
