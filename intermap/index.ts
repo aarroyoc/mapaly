@@ -29,7 +29,7 @@ async function initGame(){
         info.textContent = data.description;
     }
 
-    let map = L.map("map",{attributionControl: false}).setView([40.416775, -3.703790], 6);
+    const map = L.map("map",{attributionControl: false});
 
     function onEachFeature(feature: any, layer: any){
         layer.on("click",(e: any)=>{
@@ -74,12 +74,14 @@ async function initGame(){
         });
     }
 
-    L.geoJSON(mapData,{
+    const geojson = L.geoJSON(mapData,{
         style: style,
         onEachFeature: onEachFeature,
         attribution: data.map.license
-    })
-    .addTo(map);
+    });
+    const bounds = geojson.getBounds();
+    geojson.addTo(map);
+    map.fitBounds(bounds);
 
     SoundControl(sound).addTo(map);
 
