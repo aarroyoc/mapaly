@@ -141,12 +141,14 @@ async function initEditor(){
         });
     }
 
-    L.geoJSON(mapData,{
+    const geojson = L.geoJSON(mapData,{
         style: style,
         onEachFeature: onEachFeature,
         attribution: data.map.license
-    })
-    .addTo(map);
+    });
+    const bounds = geojson.getBounds();
+    geojson.addTo(map);
+    map.fitBounds(bounds);
 }
 
 window.addEventListener("load",function(){
