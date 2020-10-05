@@ -161,6 +161,10 @@ main{
     width: 100%;
     height: calc(100% - 3em);
 }
+.quiz-item > a {
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
 
 /* Login/Register */
 .center-form{
