@@ -1,0 +1,137 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-10-12 13:26+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: editor/forms.py:12 editor/templates/editor/dashboard.html:11
+msgid "Name"
+msgstr "Nombre"
+
+#: editor/forms.py:13 editor/templates/editor/dashboard.html:12
+msgid "Base map"
+msgstr "Mapa base"
+
+#: editor/templates/editor/dashboard.html:5
+#, python-format
+msgid "%(username)s's mapquizs"
+msgstr "Mapaquizs de %(username)s"
+
+#: editor/templates/editor/dashboard.html:8
+msgid "Create new mapaquiz"
+msgstr "Crear nuevo mapaquiz"
+
+#: editor/templates/editor/dashboard.html:18
+msgid "Edit"
+msgstr "Editar"
+
+#: editor/templates/editor/dashboard.html:19
+#: editor/templates/editor/delete.html:13
+#: editor/templates/editor/editor.html:30
+msgid "Delete"
+msgstr "Borrar"
+
+#: editor/templates/editor/dashboard.html:23
+msgid "Previous"
+msgstr "Anterior"
+
+#: editor/templates/editor/dashboard.html:26
+msgid "Next"
+msgstr "Siguiente"
+
+#: editor/templates/editor/delete.html:8
+#, python-format
+msgid "Are you sure you want to delete \"%(name)s\"?"
+msgstr "¿Estás seguro de querer borrar \"%(name)s\"?"
+
+#: editor/templates/editor/delete.html:12 editor/templates/editor/new.html:10
+msgid "Cancel"
+msgstr "Cancelar"
+
+#: editor/templates/editor/editor.html:11
+msgid "Question:"
+msgstr "Pregunta:"
+
+#: editor/templates/editor/editor.html:12
+msgid "Where is the Eiffel Tower?"
+msgstr "¿Dónde está la Torre Eiffel?"
+
+#: editor/templates/editor/editor.html:13
+msgid "Answer:"
+msgstr "Respuesta:"
+
+#: editor/templates/editor/editor.html:14
+msgid "Click on the map to select an answer"
+msgstr "Haz click en el mapa para seleccionar una respuesta"
+
+#: editor/templates/editor/editor.html:17
+msgid "Add question"
+msgstr "Añadir pregunta"
+
+#: editor/templates/editor/editor.html:20
+msgid "Mapaquiz questions"
+msgstr "Preguntas del mapaquiz"
+
+#: editor/templates/editor/editor.html:21
+msgid "These are the questions which are already part of the mapaquiz"
+msgstr "Estas son las preguntas que ya forman parte del mapaquiz"
+
+#: editor/templates/editor/editor.html:23
+msgid "Question"
+msgstr "Pregunta"
+
+#: editor/templates/editor/editor.html:24
+msgid "Answer"
+msgstr "Respuesta"
+
+#: editor/templates/editor/editor.html:34
+msgid "General settings"
+msgstr "Ajustes generales"
+
+#: editor/templates/editor/editor.html:38
+msgid "Mapaquiz description"
+msgstr "Descripción del mapaquiz"
+
+#: editor/templates/editor/editor.html:39
+msgid "A mapaquiz to discover the museums in Europe..."
+msgstr "Un mapaquiz para descubrir museos por Europa..."
+
+#: editor/templates/editor/editor.html:42
+msgid "Front image"
+msgstr "Imagen de portada"
+
+#: editor/templates/editor/editor.html:46
+msgid "Save settings"
+msgstr "Guardar ajustes"
+
+#: editor/templates/editor/editor.html:51
+msgid "Publish on Mapaquiz!"
+msgstr "¡Publicar en Mapaquiz!"
+
+#: editor/templates/editor/editor.html:52
+msgid "Once published, the mapaquiz will be public and everybody could play it"
+msgstr ""
+"Una vez publicado el mapaquiz será público y cualquier persona podrá jugar "
+"con él"
+
+#: editor/templates/editor/editor.html:54
+msgid "Before publishing, you need to fill the general settings"
+msgstr "Antes de publicar debes rellenar los ajustes generales"
+
+#: editor/templates/editor/new.html:12
+msgid "Create mapaquiz"
+msgstr "Crear mapaquiz"

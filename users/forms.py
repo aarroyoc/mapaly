@@ -1,15 +1,16 @@
 from django import forms
+from django.utils.translation import gettext_lazy as _
 
 
 class LoginForm(forms.Form):
-    username = forms.CharField(label="Usuario")
-    password = forms.CharField(label="Contraseña", widget=forms.PasswordInput())
+    username = forms.CharField(label=_("Username"))
+    password = forms.CharField(label=_("Password"), widget=forms.PasswordInput())
 
 
 class RegisterForm(forms.Form):
-    username = forms.CharField(label="Usuario")
-    email = forms.EmailField(label="Email")
-    password = forms.CharField(label="Contraseña", widget=forms.PasswordInput())
+    username = forms.CharField(label=_("Username"))
+    email = forms.EmailField(label=_("Email"))
+    password = forms.CharField(label=_("Password"), widget=forms.PasswordInput())
 
     def clean(self):
         cleaned_data = super().clean()

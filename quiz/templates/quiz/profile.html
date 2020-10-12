@@ -1,7 +1,8 @@
 {% extends "base.html" %}
+{% load i18n %}
 
 {% block main %}
-<h2>Mapaquizs de "{{ user }}"</h2>
+<h2>{% blocktranslate %}{{ user }}'s mapquizs{% endblocktranslate %}</h2>
 <div class="quiz-grid">
     {% for quiz in page_obj %}
     <div class="quiz-item">
@@ -10,10 +11,10 @@
     </div>
     {% endfor %}
     {% if page_obj.has_previous %}
-    <a href="?page={{ page_obj.previous_page_number }}">Anterior</a>
+    <a href="?page={{ page_obj.previous_page_number }}">{% translate "Previous" %}</a>
     {% endif %}
     {% if page_obj.has_next %}
-    <a href="?page={{ page_obj.next_page_number }}">Siguiente</a>
+    <a href="?page={{ page_obj.next_page_number }}">{% translate "Next" %}</a>
     {% endif %}
 </div>
 {% endblock %}

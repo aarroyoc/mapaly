@@ -1,0 +1,52 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-10-12 13:26+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: mapaly/templates/base.html:8
+msgid "Play and create interactive maps to learn"
+msgstr ""
+
+#: mapaly/templates/base.html:25
+msgid "My profile"
+msgstr "Mi perfil"
+
+#: mapaly/templates/base.html:26
+msgid "Exit session"
+msgstr "Cerrar sesión"
+
+#: mapaly/templates/base.html:28
+msgid "Login"
+msgstr "Iniciar sesión"
+
+#: mapaly/templates/base.html:29
+msgid "Register"
+msgstr "Registrarse"
+
+#: mapaly/templates/base.html:34
+msgid "Regions, Europe, ..."
+msgstr "Regiones, provincias, ..."
+
+#: mapaly/templates/base.html:42
+msgid ""
+"Play and learn with mapaquizs. What is a mapaquiz? A quiz game where the "
+"answers lies down in the map. Create your own mapaquizs and share them with "
+"other users"
+msgstr "Juega y aprende con mapaquizs. ¿Qué es un mapaquiz? Un juego de preguntas "
+"donde la respuesta está clicando en un mapa. Crea tus propios mapaquizs y "
+"compártelos con otros usuarios."

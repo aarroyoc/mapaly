@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load i18n %}
 
 {% block main %}
 <div class="center-form">
@@ -6,9 +7,9 @@
         {{ form.as_p }}
         {% csrf_token %}
         <div class="center-button">
-            <a class="secondary-action-button" href="{% url 'dashboard' %}">Cancelar</a>
+            <a class="secondary-action-button" href="{% url 'dashboard' %}">{% translate "Cancel" %}</a>
         </div>
-        <input class="primary-action-input" type="submit" value="Crear mapaquiz">
+        <input class="primary-action-input" type="submit" value="{% translate 'Create mapaquiz' %}">
     </form>
 </div>
 {% endblock %}

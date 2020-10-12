@@ -1,28 +1,29 @@
 {% extends "base.html" %}
+{% load i18n %}
 
 {% block main %}
-<h2>Mapaquizs de {{ user.username }}</h2>
+<h2>{% blocktranslate with username=user.username %}{{ username }}'s mapquizs{% endblocktranslate %}</h2>
 <div class="dashboard">
     <div class="sidebar">
-        <a class="primary-action-button" href="{% url 'create-quiz' %}">Crear nuevo mapaquiz</a>
+        <a class="primary-action-button" href="{% url 'create-quiz' %}">{% translate "Create new mapaquiz" %}</a>
     </div>
     <div class="quiz-list">
-        <span class="header-list">Nombre</span>
-        <span class="header-list">Mapa base</span>
+        <span class="header-list">{% translate "Name" %}</span>
+        <span class="header-list">{% translate "Base map" %}</span>
         <span></span>
         <span></span>
         {% for quiz in page_obj %}
             <a href="{% url 'quiz' quiz.slug %}">{{ quiz.name }}</a>
             <span>{{ quiz.map.name }}</span>
-            <div class="center-button"><a class="primary-action-button" href="{% url 'editor' quiz.slug %}">Editar</a></div>
-            <div class="center-button"><a class="red-action-button" href="{% url 'delete-quiz' quiz.pk %}">Borrar</a></div>
+            <div class="center-button"><a class="primary-action-button" href="{% url 'editor' quiz.slug %}">{% translate "Edit" %}</a></div>
+            <div class="center-button"><a class="red-action-button" href="{% url 'delete-quiz' quiz.pk %}">{% translate "Delete" %}</a></div>
         {% endfor %}
         <span></span>
         {% if page_obj.has_previous %}
-        <a href="?page={{ page_obj.previous_page_number }}">Anterior</a>
+        <a href="?page={{ page_obj.previous_page_number }}">{% translate "Previous" %}</a>
         {% endif %}
         {% if page_obj.has_next %}
-        <a href="?page={{ page_obj.next_page_number }}">Siguiente</a>
+        <a href="?page={{ page_obj.next_page_number }}">{% translate "Next" %}</a>
         {% endif %}
         <span></span>
     </div>

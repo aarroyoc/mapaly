@@ -1,0 +1,62 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-10-12 13:26+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: users/forms.py:6 users/forms.py:11
+msgid "Username"
+msgstr ""
+
+#: users/forms.py:7 users/forms.py:13
+msgid "Password"
+msgstr ""
+
+#: users/forms.py:12
+msgid "Email"
+msgstr ""
+
+#: users/templates/users/login.html:8
+msgid ""
+"Login at Mapaquiz to be able to create your own Mapaquizs and leave comments."
+msgstr ""
+
+#: users/templates/users/login.html:17
+msgid "Don't you have an account?"
+msgstr ""
+
+#: users/templates/users/login.html:17 users/templates/users/register.html:16
+msgid "Register"
+msgstr ""
+
+#: users/templates/users/login.html:18
+msgid "Login"
+msgstr ""
+
+#: users/templates/users/register.html:7
+msgid ""
+"Register at Mapaquiz to be able to create your own mapaquizs and leave "
+"comments"
+msgstr ""
+
+#: users/templates/users/register.html:15
+msgid ""
+"At Mapaquiz we only store your username, your email, your password (hashed), "
+"the comments you made and the mapaquizs you create. We don't share data with "
+"any third party. At every moment you can request that we delete your data "
+"from our servers."
+msgstr ""

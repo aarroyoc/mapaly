@@ -1,0 +1,110 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-10-12 13:26+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: quiz/templates/quiz/home.html:15
+msgid "Most recent mapquizs"
+msgstr "Mapaquizs más recientes"
+
+#: quiz/templates/quiz/home.html:25 quiz/templates/quiz/profile.html:14
+#: quiz/templates/quiz/search.html:15
+msgid "Previous"
+msgstr "Anterior"
+
+#: quiz/templates/quiz/home.html:28 quiz/templates/quiz/profile.html:17
+#: quiz/templates/quiz/search.html:18
+msgid "Next"
+msgstr "Siguiente"
+
+#: quiz/templates/quiz/profile.html:5
+#, python-format
+msgid "%(user)s's mapquizs"
+msgstr "Mapaquizs de %(user)s"
+
+#: quiz/templates/quiz/quiz.html:18
+msgid "Score:"
+msgstr "Puntuación:"
+
+#: quiz/templates/quiz/quiz.html:28
+msgid "Share"
+msgstr "Compartir"
+
+#: quiz/templates/quiz/quiz.html:35
+msgid "There are no comments yet. Be the first one to leave an opinion"
+msgstr "No hay comentarios todavía. Sé el primero en dejar tu opinión."
+
+#: quiz/templates/quiz/quiz.html:45
+msgid "Leave a comment"
+msgstr "Deja un comentario"
+
+#: quiz/templates/quiz/quiz.html:49
+msgid "Too difficult but entertaining"
+msgstr "Demasiado difícil pero entretenido"
+
+#: quiz/templates/quiz/quiz.html:50
+msgid "Publish comment"
+msgstr "Publicar comentario"
+
+#: quiz/templates/quiz/quiz.html:54
+msgid "Login"
+msgstr "Iniciar sesión"
+
+#: quiz/templates/quiz/quiz.html:54
+msgid " or "
+msgstr " o "
+
+#: quiz/templates/quiz/quiz.html:54
+msgid "register"
+msgstr "regístrate"
+
+#: quiz/templates/quiz/quiz.html:54
+msgid " to leave a comment"
+msgstr " para dejar un comentario"
+
+#: quiz/templates/quiz/quiz.html:63
+msgid "Share:"
+msgstr "Compartir:"
+
+#: quiz/templates/quiz/quiz.html:67
+msgid "Share the mapquiz in social networks"
+msgstr "Comparte el mapaquiz en redes sociales"
+
+#: quiz/templates/quiz/quiz.html:80
+msgid "Victory!"
+msgstr "¡Victoria!"
+
+#: quiz/templates/quiz/quiz.html:84
+#, fuzzy, python-format
+#| msgid ""
+#| "Congratulations for finishing the mapaquiz {{ quiz.name}}! You did it in "
+msgid "Congratulations for finishing the mapaquiz %(name)s! You did it in "
+msgstr "¡Enhorabuena por terminar el mapaquiz %(name)s! Lo hiciste en "
+
+#: quiz/templates/quiz/quiz.html:84
+msgid " and you have scored "
+msgstr " y has conseguido "
+
+#: quiz/templates/quiz/quiz.html:84
+msgid " points."
+msgstr " puntos."
+
+#: quiz/templates/quiz/search.html:5
+#, python-format
+msgid "Results of %(query)s"
+msgstr "Resultados de %(query)s"

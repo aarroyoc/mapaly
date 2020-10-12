@@ -114,7 +114,7 @@ function updatePage(clock: NodeJS.Timeout){
             question.textContent = state.activeQuestion.question;
         }
         if(question && state.activeQuestion === null){
-            question.textContent = "¡Fin del quiz!";
+            question.textContent = "";
             clearInterval(clock);
             showDialog("win-dialog");
         }

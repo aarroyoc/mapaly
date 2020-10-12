@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load static %}
+{% load i18n %}
 
 {% block main %}
 <h2>Mapaquiz "{{ quiz.name }}"</h2>
@@ -7,50 +8,50 @@
     <div class="top-editor">
         <div id="editor-map"></div>
         <form method="POST" class="question-adder">
-            <label class="question-item" for="id_question">Pregunta: </label>
-            <input class="question-item" required id="id_question" name="question" type="text" placeholder="¿Dónde nació Felipe II?">
-            <label class="question-item" for="id_answer">Respuesta: </label>
-            <output class="question-item" id="id_answer">Haz click en el mapa para seleccionar una respuesta</output>
+            <label class="question-item" for="id_question">{% translate "Question:" %}</label>
+            <input class="question-item" required id="id_question" name="question" type="text" placeholder="{% translate 'Where is the Eiffel Tower?' %}">
+            <label class="question-item" for="id_answer">{% translate "Answer:" %}</label>
+            <output class="question-item" id="id_answer">{% translate "Click on the map to select an answer" %}</output>
             <input id="answer" type="hidden" name="answer" value="">
             {% csrf_token %}
-            <input type="submit" class="primary-action-button" value="Añadir pregunta">
+            <input type="submit" class="primary-action-button" value="{% translate 'Add question' %}">
         </form>
     </div>
-    <h3>Preguntas del mapaquiz</h3>
-    <p>Estas son las preguntas y respuestas que ya forman parte del mapaquiz.</p>
+    <h3>{% translate "Mapaquiz questions" %}</h3>
+    <p>{% translate "These are the questions which are already part of the mapaquiz" %}</p>
     <div class="list-questions">
-        <span class="header-list">Pregunta</span>
-        <span class="header-list">Respuesta</span>
+        <span class="header-list">{% translate "Question" %}</span>
+        <span class="header-list">{% translate "Answer" %}</span>
         <span></span>
     {% for question in questions %}
         <span>{{ question.question }}</span>
         <span>{{ question.answer }}</span>
         <div class="center-button">
-            <a class="red-action-button" href="{% url 'delete-question' question.pk %}">Borrar</a>
+            <a class="red-action-button" href="{% url 'delete-question' question.pk %}">{% translate "Delete" %}</a>
         </div>
     {% endfor %}
     </div>
-    <h3>Ajustes generales</h3>
+    <h3>{% translate "General settings" %}</h3>
     <form enctype="multipart/form-data" method="POST" action="{% url 'save-quiz-settings' quiz.pk %}" class="general-settings">
         {% csrf_token %}
         <div>
-            <label>Descripción del mapquiz</label>
-            <textarea name="description" placeholder="Un mapaquiz para descubrir América Latina...">{{ quiz.description }}</textarea>
+            <label>{% translate "Mapaquiz description" %}</label>
+            <textarea name="description" placeholder="{% translate 'A mapaquiz to discover the museums in Europe...' %}">{{ quiz.description }}</textarea>
         </div>
         <div>
-            <label>Imagen de portada</label>
+            <label>{% translate "Front image" %}</label>
             <input type="file" name="front_image">
             <img src="{{ quiz.front_image_url }}" alt="">
         </div>
-        <input class="primary-action-button" style="padding-bottom:5px;" type="submit" value="Guardar ajustes">
+        <input class="primary-action-button" style="padding-bottom:5px;" type="submit" value="{% translate 'Save settings' %}">
     </form>
     {% if quiz.status == "DF" %}
     <div class="end-menu">
         {% if quiz.description and quiz.front_image %}
-            <a class="primary-action-button" href="{% url 'publish' quiz.pk %}">¡Publicar en Mapaquiz!</a>
-            <p>Una vez publicado, el mapaquiz será público y ya se podrá jugar a él.</p>
+            <a class="primary-action-button" href="{% url 'publish' quiz.pk %}">{% translate "Publish on Mapaquiz!" %}</a>
+            <p>{% translate "Once published, the mapaquiz will be public and everybody could play it" %}</p>
         {% else %}
-            <p>Antes de publicar debes rellenar los ajustes generales con una descripción y una imagen de portada.</p>
+            <p>{% translate "Before publishing, you need to fill the general settings" %}</p>
         {% endif %}
     </div>
     {% endif %}

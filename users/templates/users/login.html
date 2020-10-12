@@ -1,10 +1,11 @@
 {% extends "base.html" %}
+{% load i18n %}
 
 {% block main %}
 <div class="center-form">
     <form method="POST" class="login-form">
         <p>
-            Inicia sesión en Mapaly para poder crear tus propios mapaquizs y comentar en mapaquizs de otros usuarios.
+            {% translate "Login at Mapaquiz to be able to create your own Mapaquizs and leave comments." %}
         </p>
         <ul class="errors">
         {% for error in error_messages %}
@@ -13,8 +14,8 @@
         </ul>
         {{ form.as_p }}
         {% csrf_token %}
-        <p>¿No tienes cuenta? <a href="{% url 'register' %}">Regístrate</a></p>
-        <input type="submit" value="Iniciar sesión">
+        <p>{% translate "Don't you have an account?" %} <a href="{% url 'register' %}">{% translate "Register" %}</a></p>
+        <input type="submit" value="{% translate 'Login' %}">
     </form>
 </div>
 {% endblock %}

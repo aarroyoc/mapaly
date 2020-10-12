@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load static %}
+{% load i18n %}
 
 
 {% block main %}
@@ -14,7 +15,7 @@
             <span id="time-string">0:00</span>
         </div>
         <div id="progress">
-            <p>Puntuación: <span id="points">0</span></p>
+            <p>{% translate "Score:" %} <span id="points">0</span></p>
         </div>
         <div id="info">
 
@@ -24,16 +25,14 @@
         </div>
         <div></div>
         <div class="panel-center">
-            <a class="secondary-action-button" id="share">Compartir</a>
+            <a class="secondary-action-button" id="share">{% translate "Share" %}</a>
         </div>
     </div>
 </div>
 <div id="comments-center">
 <div id="comments">
     {% if num_comments == 0 %}
-    <div>
-        No hay comentarios todavía. Sé el primero en dejar tu opinión.
-    </div>
+    <div>{% translate "There are no comments yet. Be the first one to leave an opinion" %}</div>
     {% else %}
     {% for comment in comments %}
     <div>
@@ -43,17 +42,16 @@
     {% endfor %}
     {% endif %}
     <hr/>
-    <h4>Dejar nuevo comentario</h4>
+    <h4>{% translate "Leave a comment" %}</h4>
     {% if user.is_authenticated %}
     <form method="POST" action="{% url 'add-comment' quiz.pk %}">
         {% csrf_token %}
-        <label for="comment-content">Texto:</label>
-        <textarea name="content" required id="comment-content" placeholder="Un mapa muy interesante. 10/10"></textarea>
-        <input class="secondary-action-button" type="submit" value="Publicar comentario">
+        <textarea name="content" required id="comment-content" placeholder="{% translate 'Too difficult but entertaining' %}"></textarea>
+        <input class="secondary-action-button" type="submit" value="{% translate 'Publish comment' %}">
     </form>
     {% else %}
     <div>
-        <a href="{% url 'login' %}">Inicia sesión</a> o <a href="{% url 'register' %}">regístrate</a> para dejar un comentario.
+        <a href="{% url 'login' %}">{% translate "Login" %}</a>{% translate " or " %}<a href="{% url 'register' %}">{% translate "register" %}</a>{% translate " to leave a comment" %}
     </div>
     <hr/>
     {% endif %}
@@ -62,11 +60,11 @@
 <div id="dialog-background"></div>
 <div id="share-dialog" class="dialog">
     <div id="share-dialog-top">
-        <h2>Compartir:</h2>
+        <h2>{% translate "Share:" %}</h2>
         <div id="close-share-dialog"></div>
     </div>
     <div id="share-dialog-middle">
-        <p>Comparte el mapaquiz en redes sociales</p>
+        <p>{% translate "Share the mapquiz in social networks" %}</p>
         <div id="share-icons">
             <a href="https://www.facebook.com/sharer.php?u=https://mapaquiz.com{{ request.path }}" id="share-dialog-facebook"></a>
             <a href="https://www.twitter.com/share?url=https://mapaquiz.com{{ request.path }}&via=mapaly"" id="share-dialog-twitter"></a>
@@ -79,11 +77,11 @@
 </div>
 <div id="win-dialog" class="dialog">
     <div id="win-dialog-top">
-        <h2>¡Victoria!</h2>
+        <h2>{% translate "Victory!" %}</h2>
         <div id="close-win-dialog"></div>
     </div>
     <div id="win-dialog-middle">
-        <p>¡Enhorabuena por acabar el mapaquiz "{{ quiz.name }}"! Has tardado <span id="time-string-dialog"></span> y has conseguido <span id="points-dialog"></span> puntos.</p>
+        <p>{% blocktranslate with name=quiz.name %}Congratulations for finishing the mapaquiz {{ name }}! You did it in {% endblocktranslate %}<span id="time-string-dialog"></span>{% translate " and you have scored " %}<span id="points-dialog"></span>{% translate " points." %}</p>
     </div>
 </div>
 <script type="module" src="{% static 'bundle.js' %}"></script>
