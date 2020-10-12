@@ -1,4 +1,4 @@
-FROM node:12.18.1 AS builder
+FROM node:12.19.0 AS builder
 
 WORKDIR /opt/intermap
 
