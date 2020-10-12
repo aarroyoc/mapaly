@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-10-12 13:26+0000\n"
+"POT-Creation-Date: 2020-10-12 15:15+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,16 +18,24 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: quiz/templates/quiz/home.html:15
+#: quiz/templates/quiz/home.html:6
+msgid "Showing mapaquizs in: "
+msgstr "Mostrando mapaquizs en: "
+
+#: quiz/templates/quiz/home.html:18 quiz/templates/quiz/home.html:20
+msgid "All languages"
+msgstr "Todos los idiomas"
+
+#: quiz/templates/quiz/home.html:33
 msgid "Most recent mapquizs"
 msgstr "Mapaquizs más recientes"
 
-#: quiz/templates/quiz/home.html:25 quiz/templates/quiz/profile.html:14
+#: quiz/templates/quiz/home.html:43 quiz/templates/quiz/profile.html:14
 #: quiz/templates/quiz/search.html:15
 msgid "Previous"
 msgstr "Anterior"
 
-#: quiz/templates/quiz/home.html:28 quiz/templates/quiz/profile.html:17
+#: quiz/templates/quiz/home.html:46 quiz/templates/quiz/profile.html:17
 #: quiz/templates/quiz/search.html:18
 msgid "Next"
 msgstr "Siguiente"

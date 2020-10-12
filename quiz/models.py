@@ -19,6 +19,10 @@ class Quiz(models.Model):
         DRAFT = "DF", "Draft"
         PUBLISHED = "PB", "Published"
 
+    class QuizLanguage(models.TextChoices):
+        SPANISH = "es", "Español"
+        ENGLISH = "en", "English"
+
     slug = models.SlugField(max_length=150, unique=True, allow_unicode=True)
     name = models.CharField(max_length=150)
     author = models.ForeignKey(User, on_delete=models.CASCADE)
@@ -29,6 +33,7 @@ class Quiz(models.Model):
     status = models.CharField(max_length=2, choices=QuizStatus.choices, default=QuizStatus.DRAFT)
     front_image = models.TextField(blank=False, null=True)
     top = models.BooleanField(default=False)
+    language = models.CharField(max_length=2, choices=QuizLanguage.choices)
 
     @property
     def front_image_url(self):

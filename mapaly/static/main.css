@@ -134,6 +134,12 @@ main{
     height: 100%;
     background-color: white;
 }
+.language-selector{
+    background-color: white;
+}
+.language-selector > a, .language-selector > a:visited{
+    color: #0066ff;
+}
 
 .quiz-grid{
     display: flex;

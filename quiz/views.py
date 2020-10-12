@@ -7,7 +7,6 @@ from lunr import lunr
 
 from quiz.models import Quiz, QuizComment
 
-
 class QuizView(View):
     def get(self, request, slug):
         try:
@@ -28,11 +27,18 @@ class HomeView(ListView):
     template_name = "quiz/home.html"
 
     def get_queryset(self):
-        return Quiz.objects.filter(status=Quiz.QuizStatus.PUBLISHED).order_by("-created_at")
+        qs = Quiz.objects.filter(status=Quiz.QuizStatus.PUBLISHED).order_by("-created_at")
+        if self.request.COOKIES.get("show_all_lang"):
+            return qs
+        else:
+            language_code = self.request.LANGUAGE_CODE
+            return qs.filter(language=language_code) 
 
     def get_context_data(self, **kwargs):
+        language_code = self.request.LANGUAGE_CODE
         context = super().get_context_data(**kwargs)
-        context["top"] = Quiz.objects.filter(status=Quiz.QuizStatus.PUBLISHED, top=True).order_by("-created_at")[0:5]
+        context["top"] = Quiz.objects.filter(status=Quiz.QuizStatus.PUBLISHED, language=language_code, top=True).order_by("-created_at")[0:5]
+        context["language"] = self.request.COOKIES.get("show_all_lang", language_code)
         return context
 
 
@@ -85,3 +91,13 @@ def add_comment(request, pk):
     )
     comment.save()
     return redirect("quiz", quiz.slug)
+
+def set_language(request):
+    response = redirect("home")
+    lang = request.GET["lang"]
+    if lang == "all":
+        response.set_cookie("show_all_lang", "all")
+    else:
+        response.delete_cookie("show_all_lang")
+        response.set_cookie("django_language", lang)
+    return response

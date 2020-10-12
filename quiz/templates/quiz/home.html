@@ -2,6 +2,24 @@
 {% load i18n %}
 
 {% block main %}
+<div class="language-selector">
+    <span>{% translate "Showing mapaquizs in: " %}</span>
+    {% if language == "en" %}
+        <span>English</span>
+    {% else %}
+        <a href="{% url 'set-language' %}?lang=en">English</a>
+    {% endif %}
+    {% if language == "es" %}
+        <span>Español</span>
+    {% else %}
+        <a href="{% url 'set-language' %}?lang=es">Español</a>
+    {% endif %}
+    {% if language == "all" %}
+        <span>{% translate "All languages" %}</span>
+    {% else %}
+        <a href="{% url 'set-language' %}?lang=all">{% translate "All languages" %}</a>
+    {% endif %}
+</div>
 <h2>Top Mapaquiz</h2>
 <div class="quiz-grid">
     {% for quiz in top %}
