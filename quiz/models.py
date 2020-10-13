@@ -4,11 +4,16 @@ from django.contrib.auth.models import User
 from mapaly.settings import AZURE_CONTAINER_URL_FRONT
 
 class Map(models.Model):
+    class MapLanguage(models.TextChoices):
+        SPANISH = "es", "Español"
+        ENGLISH = "en", "English"
+
     name = models.CharField(max_length=150)
     content = models.TextField()
     license = models.CharField(max_length=150)
     created_at = models.DateTimeField(auto_now_add=True)
     modified_at = models.DateTimeField(auto_now=True)
+    language = models.CharField(max_length=2, choices=MapLanguage.choices)
 
     def __str__(self):
         return self.name
@@ -18,10 +23,6 @@ class Quiz(models.Model):
     class QuizStatus(models.TextChoices):
         DRAFT = "DF", "Draft"
         PUBLISHED = "PB", "Published"
-
-    class QuizLanguage(models.TextChoices):
-        SPANISH = "es", "Español"
-        ENGLISH = "en", "English"
 
     slug = models.SlugField(max_length=150, unique=True, allow_unicode=True)
     name = models.CharField(max_length=150)
@@ -33,7 +34,6 @@ class Quiz(models.Model):
     status = models.CharField(max_length=2, choices=QuizStatus.choices, default=QuizStatus.DRAFT)
     front_image = models.TextField(blank=False, null=True)
     top = models.BooleanField(default=False)
-    language = models.CharField(max_length=2, choices=QuizLanguage.choices)
 
     @property
     def front_image_url(self):

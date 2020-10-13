@@ -32,12 +32,12 @@ class HomeView(ListView):
             return qs
         else:
             language_code = self.request.LANGUAGE_CODE
-            return qs.filter(language=language_code) 
+            return qs.filter(map__language=language_code) 
 
     def get_context_data(self, **kwargs):
         language_code = self.request.LANGUAGE_CODE
         context = super().get_context_data(**kwargs)
-        context["top"] = Quiz.objects.filter(status=Quiz.QuizStatus.PUBLISHED, language=language_code, top=True).order_by("-created_at")[0:5]
+        context["top"] = Quiz.objects.filter(status=Quiz.QuizStatus.PUBLISHED, map__language=language_code, top=True).order_by("-created_at")[0:5]
         context["language"] = self.request.COOKIES.get("show_all_lang", language_code)
         return context
 

@@ -3,9 +3,32 @@
 
 {% block main %}
 <div class="center-form">
-    <form method="POST" class="login-form">
-        {{ form.as_p }}
+    <form method="POST" class="create-form">
         {% csrf_token %}
+        <label for="name">{% translate "Name:" %}</label>
+        <input type="text" id="name" name="name">
+        <div class="map-selector">
+            <input class="option" type="radio" name="lang" id="english" checked>
+            <input class="option" type="radio" name="lang" id="spanish">
+            <label class="option_label" for="english">English</label>
+            <label class="option_label" for="spanish">Español</label>
+            <div class="option__content">
+                {% for map in english %}
+                <div>
+                    <input type="radio" name="map" id="{{ map.id }}" value="{{ map.id }}">
+                    <label for="{{ map.id }}">{{ map.name }}</label>
+                </div>
+                {% endfor %}
+            </div>
+            <div class="option__content">
+                {% for map in spanish %}
+                <div>
+                    <input type="radio" name="map" id="{{ map.id }}" value="{{ map.id }}">
+                    <label for="{{ map.id }}">{{ map.name }}</label>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
         <div class="center-button">
             <a class="secondary-action-button" href="{% url 'dashboard' %}">{% translate "Cancel" %}</a>
         </div>

@@ -7,8 +7,7 @@ from django.views.generic import View, ListView
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 
-from editor.forms import QuizForm
-from quiz.models import Quiz, Question
+from quiz.models import Quiz, Question, Map
 from editor.upload import upload_image, delete_image
 
 
@@ -22,25 +21,22 @@ def slugizer(name):
 
 class NewView(LoginRequiredMixin, View):
     def get(self, request):
-        form = QuizForm()
+        english_maps = Map.objects.filter(language="en")
+        spanish_maps = Map.objects.filter(language="es")
         context = {
-            "form": form
+            "english": english_maps,
+            "spanish": spanish_maps
         }
         return render(request, "editor/new.html", context)
 
     def post(self, request):
         quiz = Quiz()
         quiz.author = request.user
-        form = QuizForm(request.POST, instance=quiz)
-        if form.is_valid():
-            quiz.slug = slugizer(form.cleaned_data["name"])
-            form.save()
-            return redirect("editor", quiz.slug)
-        else:
-            context = {
-                "form": form
-            }
-            return render(request, "editor/new.html", context)
+        quiz.name = request.POST["name"]
+        quiz.map = Map.objects.get(pk=int(request.POST["map"]))
+        quiz.slug = slugizer(request.POST["name"])
+        quiz.save()
+        return redirect("editor", quiz.slug)
 
 
 class EditorView(LoginRequiredMixin, View):
