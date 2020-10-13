@@ -181,6 +181,10 @@ main{
     height: 1.5em;
 }
 
+.random-button{
+    text-align: center;
+}
+
 /* Login/Register */
 .center-form{
     margin: 10px;

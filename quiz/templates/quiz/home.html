@@ -46,4 +46,7 @@
     <a href="?page={{ page_obj.next_page_number }}">{% translate "Next" %}</a>
     {% endif %}
 </div>
+<div class="random-button">
+    <a class="primary-action-button" href="{% url 'random-quiz' %}">{% translate "Choose a random quiz" %}</a>
+</div>
 {% endblock %}

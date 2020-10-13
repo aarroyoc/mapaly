@@ -16,7 +16,8 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
-from quiz.views import QuizView, HomeView, ProfileView, SearchView, add_comment, set_language
+from quiz.views import QuizView, HomeView, ProfileView, SearchView, \
+    add_comment, set_language, get_random_quiz
 from quiz.api import QuizDetailAPI
 from users.views import LoginView, LogoutView, RegisterView
 from editor.views import DashboardView, DeleteMapView, EditorView, NewView, \
@@ -41,5 +42,6 @@ urlpatterns = [
     path('editor/settings/<int:pk>/', save_quiz_settings, name="save-quiz-settings"),
     path('api/quiz/<str:slug>/', QuizDetailAPI.as_view(), name="quiz_detail_api"),
     path('language/', set_language, name="set-language"),
+    path('random/', get_random_quiz, name="random-quiz"),
     path('', HomeView.as_view(), name="home"),
 ]

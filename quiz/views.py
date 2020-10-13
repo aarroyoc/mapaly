@@ -1,3 +1,5 @@
+import random
+
 from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponseNotFound
 from django.views.generic import View, ListView
@@ -22,17 +24,20 @@ class QuizView(View):
             return HttpResponseNotFound()
 
 
+def get_local_queryset(request):
+    qs = Quiz.objects.filter(status=Quiz.QuizStatus.PUBLISHED).order_by("-created_at")
+    if request.COOKIES.get("show_all_lang"):
+        return qs
+    else:
+        language_code = request.LANGUAGE_CODE
+        return qs.filter(map__language=language_code) 
+
 class HomeView(ListView):
     paginate_by = 20
     template_name = "quiz/home.html"
 
     def get_queryset(self):
-        qs = Quiz.objects.filter(status=Quiz.QuizStatus.PUBLISHED).order_by("-created_at")
-        if self.request.COOKIES.get("show_all_lang"):
-            return qs
-        else:
-            language_code = self.request.LANGUAGE_CODE
-            return qs.filter(map__language=language_code) 
+        return get_local_queryset(self.request)
 
     def get_context_data(self, **kwargs):
         language_code = self.request.LANGUAGE_CODE
@@ -101,3 +106,9 @@ def set_language(request):
         response.delete_cookie("show_all_lang")
         response.set_cookie("django_language", lang)
     return response
+
+def get_random_quiz(request):
+    pks = get_local_queryset(request).values_list("pk", flat=True)
+    random_pk = random.choice(pks)
+    random_quiz = Quiz.objects.get(pk=random_pk)
+    return redirect("quiz", random_quiz.slug)
