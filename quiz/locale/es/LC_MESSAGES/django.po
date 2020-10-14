@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-10-13 19:09+0000\n"
+"POT-Creation-Date: 2020-10-14 19:03+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -39,6 +39,10 @@ msgstr "Anterior"
 #: quiz/templates/quiz/search.html:18
 msgid "Next"
 msgstr "Siguiente"
+
+#: quiz/templates/quiz/home.html:50
+msgid "Play a random quiz"
+msgstr "Juega a un mapaquiz aleatorio"
 
 #: quiz/templates/quiz/profile.html:5
 #, python-format

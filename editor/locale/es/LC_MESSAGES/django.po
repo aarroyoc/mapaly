@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-10-13 19:09+0000\n"
+"POT-Creation-Date: 2020-10-14 19:03+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,18 +18,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: editor/forms.py:12 editor/templates/editor/dashboard.html:11
-msgid "Name"
-msgstr "Nombre"
-
-#: editor/forms.py:13 editor/templates/editor/dashboard.html:12
-msgid "Base map"
-msgstr "Mapa base"
-
-#: editor/forms.py:14
-msgid "Language"
-msgstr "Idioma"
-
 #: editor/templates/editor/dashboard.html:5
 #, python-format
 msgid "%(username)s's mapquizs"
@@ -38,6 +26,14 @@ msgstr "Mapaquizs de %(username)s"
 #: editor/templates/editor/dashboard.html:8
 msgid "Create new mapaquiz"
 msgstr "Crear nuevo mapaquiz"
+
+#: editor/templates/editor/dashboard.html:11
+msgid "Name"
+msgstr "Nombre"
+
+#: editor/templates/editor/dashboard.html:12
+msgid "Base map"
+msgstr "Mapa base"
 
 #: editor/templates/editor/dashboard.html:18
 msgid "Edit"
@@ -62,7 +58,7 @@ msgstr "Siguiente"
 msgid "Are you sure you want to delete \"%(name)s\"?"
 msgstr "¿Estás seguro de querer borrar \"%(name)s\"?"
 
-#: editor/templates/editor/delete.html:12 editor/templates/editor/new.html:10
+#: editor/templates/editor/delete.html:12 editor/templates/editor/new.html:33
 msgid "Cancel"
 msgstr "Cancelar"
 
@@ -136,6 +132,15 @@ msgstr ""
 msgid "Before publishing, you need to fill the general settings"
 msgstr "Antes de publicar debes rellenar los ajustes generales"
 
-#: editor/templates/editor/new.html:12
+#: editor/templates/editor/new.html:8
+#, fuzzy
+#| msgid "Name"
+msgid "Name:"
+msgstr "Nombre"
+
+#: editor/templates/editor/new.html:35
 msgid "Create mapaquiz"
 msgstr "Crear mapaquiz"
+
+#~ msgid "Language"
+#~ msgstr "Idioma"

@@ -14,7 +14,8 @@ class DashboardTestCase(TestCase):
         map = Map.objects.create(
             name="Provincias de España",
             content=f.read(),
-            license="Creative Commons 4.0 BY"
+            license="Creative Commons 4.0 BY",
+            language="en"
         )
         f.close()
         quiz = Quiz.objects.create(
@@ -40,7 +41,7 @@ class DashboardTestCase(TestCase):
         c.login(username="test", password="test")
         response = c.get("/dashboard/")
         self.assertEqual(response.status_code, 200)
-        self.assertContains(response, '<a class="primary-action-button" href="/dashboard/create/">Crear nuevo mapaquiz</a>', html=True)
+        self.assertContains(response, '<a class="primary-action-button" href="/dashboard/create/">Create new mapaquiz</a>', html=True)
         self.assertContains(response, '<a href="/quiz/provincias/">Provincias</a>', html=True)
 
     def test_show_delete_quiz(self):
@@ -48,7 +49,7 @@ class DashboardTestCase(TestCase):
         c.login(username="test", password="test")
         response = c.get("/dashboard/delete/1/")
         self.assertEqual(response.status_code, 200)
-        self.assertContains(response, '¿Estás seguro que deseas borrar el mapaquiz "Provincias"?')
+        self.assertContains(response, 'Are you sure you want to delete "Provincias"?')
 
     def test_delete_quiz_ok(self):
         c = Client()
@@ -80,7 +81,8 @@ class EditorTestCase(TestCase):
         map = Map.objects.create(
             name="Provincias de España",
             content=f.read(),
-            license="Creative Commons 4.0 BY"
+            license="Creative Commons 4.0 BY",
+            language="en"
         )
         f.close()
         quiz = Quiz.objects.create(

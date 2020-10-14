@@ -19,7 +19,8 @@ class QuizTestCase(TestCase):
         map = Map.objects.create(
             name="Provincias de España",
             content=f.read(),
-            license="Creative Commons 4.0 BY"
+            license="Creative Commons 4.0 BY",
+            language="en"
         )
         f.close()
         quiz = Quiz.objects.create(
@@ -106,7 +107,8 @@ class QuizBrowserTestCase(StaticLiveServerTestCase):
         map = Map.objects.create(
             name="Provincias de España",
             content=f.read(),
-            license="Creative Commons 4.0 BY"
+            license="Creative Commons 4.0 BY",
+            language="en"
         )
         f.close()
         quiz = Quiz.objects.create(
@@ -156,13 +158,15 @@ class QuizBrowserTestCase(StaticLiveServerTestCase):
         self.browser.implicitly_wait(10)
         map = self.browser.find_element_by_id("map")
         WebDriverWait(self.browser, 30).until(expected_conditions.text_to_be_present_in_element((By.ID, "question"), "¿Dónde está"))
+        self.browser.find_element_by_class_name("leaflet-interactive")
         question = self.browser.find_element_by_id("question")
         action = ActionChains(self.browser)
         question1 = str(question.text)
+        self.browser.get_screenshot_as_file("test-render.png") 
         if question1 == "¿Dónde está Burgos?":
-            action.move_to_element_with_offset(map, 505, 142)
+            action.move_to_element_with_offset(map, 536, 179)
         else:
-            action.move_to_element_with_offset(map, 555, 190)
+            action.move_to_element_with_offset(map, 565, 195)
         action.click()
         action.perform()
         score = self.browser.find_element_by_id("points")
@@ -176,7 +180,7 @@ class QuizBrowserTestCase(StaticLiveServerTestCase):
         WebDriverWait(self.browser, 30).until(expected_conditions.text_to_be_present_in_element((By.ID, "question"), "¿Dónde está"))
         question = self.browser.find_element_by_id("question")
         action = ActionChains(self.browser)
-        action.move_to_element_with_offset(map, 400, 400)
+        action.move_to_element_with_offset(map, 479, 259)
         action.click()
         action.perform()
         score = self.browser.find_element_by_id("points")
@@ -189,17 +193,20 @@ class QuizBrowserTestCase(StaticLiveServerTestCase):
         self.browser.implicitly_wait(10)
         map = self.browser.find_element_by_id("map")
         WebDriverWait(self.browser, 30).until(expected_conditions.text_to_be_present_in_element((By.ID, "question"), "¿Dónde está"))
+        self.browser.find_element_by_class_name("leaflet-interactive")
         question = self.browser.find_element_by_id("question")
         action = ActionChains(self.browser)
         question1 = str(question.text)
         if question1 == "¿Dónde está Burgos?":
-            action.move_to_element_with_offset(map, 505, 142)
+            action.move_to_element_with_offset(map, 536, 179)
         else:
-            action.move_to_element_with_offset(map, 555, 190)
+            action.move_to_element_with_offset(map, 565, 195)
         action.click()
         action.perform()
+        score = self.browser.find_element_by_id("points")
+        self.assertEqual(int(score.text), 25)
         action = ActionChains(self.browser)
-        action.move_to_element_with_offset(map, 400, 400)
+        action.move_to_element_with_offset(map, 479, 259)
         action.click()
         action.perform()
         score = self.browser.find_element_by_id("points")
