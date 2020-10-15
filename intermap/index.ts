@@ -149,6 +149,16 @@ async function initEditor(){
     const bounds = geojson.getBounds();
     geojson.addTo(map);
     map.fitBounds(bounds);
+
+    /* Set answers */
+    document.querySelectorAll(".question-text").forEach((text)=>{
+        const answer_id = text.textContent;
+        for(let feature of mapData.features){
+            if(feature.properties.mapaly_id === answer_id){
+                text.textContent = feature.properties.mapaly_name;
+            }
+        }
+    });
 }
 
 window.addEventListener("load",function(){

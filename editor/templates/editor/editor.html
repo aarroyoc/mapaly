@@ -25,7 +25,7 @@
         <span></span>
     {% for question in questions %}
         <span>{{ question.question }}</span>
-        <span>{{ question.answer }}</span>
+        <span class="question-text">{{ question.answer }}</span>
         <div class="center-button">
             <a class="red-action-button" href="{% url 'delete-question' question.pk %}">{% translate "Delete" %}</a>
         </div>
