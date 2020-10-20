@@ -511,6 +511,13 @@ main{
     padding: 22px;
     display: none;
 }
+@media(max-width: 600px){
+    .dialog{
+        width: 60vw;
+        left: 14vw;
+        height: auto;
+    }
+}
 #dialog-background{
     position: fixed;
     top: 0;
