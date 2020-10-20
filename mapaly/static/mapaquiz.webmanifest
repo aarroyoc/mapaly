@@ -1,0 +1,31 @@
+{
+    "name": "Mapaquiz",
+    "short_name": "Mapaquiz",
+    "description": "Play and create interactive maps to learn",
+    "icons": [
+        {
+            "src" : "favicon.png",
+            "sizes": "32x32",
+            "type": "image/png"
+        },
+        {
+            "src": "icon128.png",
+            "sizes": "128x128",
+            "type": "image/png"
+        },
+        {
+            "src": "icon196.png",
+            "sizes": "196x196",
+            "type": "image/png"
+        },
+        {
+            "src": "icon512.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        }
+    ],
+    "start_url": "/",
+    "display": "standalone",
+    "theme_color": "#37c837",
+    "background_color": "#37c837"
+}

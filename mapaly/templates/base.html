@@ -5,11 +5,14 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width">
+        <meta name="description" content="Play and create interactive maps to learn">
+        <meta name="theme-color" content="#37c837">
         <title>{% block title %}Mapaquiz - {% translate "Play and create interactive maps to learn" %}{% endblock %}</title>
         <link rel="stylesheet" href="{% static 'leaflet.css' %}">
         <link rel="stylesheet" href="{% static 'fonts.css' %}">
         <link rel="stylesheet" href="{% static 'main.css' %}">
-	<link rel="icon" href="{% static 'favicon.png' %}">
+        <link rel="manifest" href="{% static 'mapaquiz.webmanifest' %}">
+	    <link rel="icon" href="{% static 'favicon.png' %}">
         <script src="{% static 'leaflet.js' %}"></script>
     </head>
     <body>
@@ -53,6 +56,11 @@
         gtag('js', new Date());
 
         gtag('config', 'UA-20035972-42');
+        </script>
+        <script>
+        if('serviceWorker' in navigator){
+            navigator.serviceWorker.register("{% static 'service-worker.js' %}");
+        }
         </script>
     </body>
 </html>
