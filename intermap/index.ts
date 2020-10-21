@@ -4,14 +4,17 @@ import store from "./src/store";
 import style from "./src/style";
 import { Sound, SoundControl} from "./src/sound";
 import { showDialog, quitDialog } from "./src/dialog";
-import { QuizState, cleanupQuestion} from "./src/models";
+import { QuizState, cleanupQuestion, Score} from "./src/models";
+
+const slug = () => {
+    const urlSplit = window.location.href.split("/");
+    return urlSplit[urlSplit.length-2];
+};
 
 async function initGame(){
     const sound = new Sound();
-
-    let urlSplit = window.location.href.split("/");
-    let slug = urlSplit[urlSplit.length-2];
-    let dataRequest = await fetch(`/api/quiz/${slug}`);
+    
+    let dataRequest = await fetch(`/api/quiz/${slug()}`);
     let data = await dataRequest.json();
     let mapData = JSON.parse(data.map.content);
 
@@ -102,12 +105,9 @@ function updatePage(clock: NodeJS.Timeout){
         }
         const time = document.getElementById("time-string");
         const timeDialog = document.getElementById("time-string-dialog");
-        if(time && timeDialog){
-            const minutes = Math.floor(state.time / 60);
-            const seconds = state.time % 60;
-            const secondsStr = seconds < 10 ? `0${seconds}` : `${seconds}`;
-            time.textContent = `${minutes}:${secondsStr}`;
-            timeDialog.textContent = `${minutes}:${secondsStr}`;
+        if(time && timeDialog){ 
+            time.textContent = formatTime(state.time);
+            timeDialog.textContent = formatTime(state.time);
         }
         const question = document.getElementById("question");
         if(question && state.activeQuestion){
@@ -117,14 +117,59 @@ function updatePage(clock: NodeJS.Timeout){
             question.textContent = "";
             clearInterval(clock);
             showDialog("win-dialog");
+            showScore(state.score, state.time);
         }
     }
 }
 
+const formatTime = (time: number) => {
+    const minutes = Math.floor(time / 60);
+    const seconds = time % 60;
+    const secondsStr = seconds < 10 ? `0${seconds}` : `${seconds}`;
+    return `${minutes}:${secondsStr}`;
+};
+
+async function showScore(score: number, time: number){
+    const meResponse = await fetch("/api/me/",{ credentials: "include"});
+    const username = (await meResponse.json()).username;
+    if(username === ""){
+
+    }else{
+        const body: Score = {
+            quiz: decodeURIComponent(slug()),
+            user: username,
+            score,
+            time,
+        };
+        const token = /csrftoken=(\w*)/.exec(document.cookie);
+        if(token){
+            await fetch(`/api/score/${slug()}/`, {
+                credentials: "include",
+                method: "POST",
+                body: JSON.stringify(body),
+                headers: {
+                    'Accepts': 'application/json',
+                    'Content-Type': 'application/json',
+                    'X-CSRFToken': token[1]
+                }
+            });
+        }
+    }
+
+    const response = await fetch(`/api/score/${slug()}/`, {
+        credentials: "include",
+    });
+    const scores: Score[] = await response.json();
+    const table = document.getElementById("win-dialog-score-table");
+    scores.forEach(score => {
+        const row = document.createElement("tr");
+        row.innerHTML = `<td>${score.user}</td><td>${score.score}</td><td>${formatTime(score.time)}</td>`;
+        table?.appendChild(row);
+    });
+}
+
 async function initEditor(){
-    let urlSplit = window.location.href.split("/");
-    let slug = urlSplit[urlSplit.length-2];
-    let dataRequest = await fetch(`/api/quiz/${slug}`);
+    let dataRequest = await fetch(`/api/quiz/${slug()}`);
     let data = await dataRequest.json();
     let mapData = JSON.parse(data.map.content);
 

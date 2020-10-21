@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-10-14 19:03+0000\n"
+"POT-Creation-Date: 2020-10-21 20:16+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,31 +18,31 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: mapaly/templates/base.html:8
+#: mapaly/templates/base.html:10
 msgid "Play and create interactive maps to learn"
 msgstr "Juega y crea mapas interactivos para aprender"
 
-#: mapaly/templates/base.html:25
+#: mapaly/templates/base.html:29
 msgid "My profile"
 msgstr "Mi perfil"
 
-#: mapaly/templates/base.html:26
+#: mapaly/templates/base.html:30
 msgid "Exit session"
 msgstr "Cerrar sesión"
 
-#: mapaly/templates/base.html:28
+#: mapaly/templates/base.html:32
 msgid "Login"
 msgstr "Iniciar sesión"
 
-#: mapaly/templates/base.html:29
+#: mapaly/templates/base.html:33
 msgid "Register"
 msgstr "Registrarse"
 
-#: mapaly/templates/base.html:34
+#: mapaly/templates/base.html:38
 msgid "Regions, Europe, ..."
 msgstr "Regiones, provincias, ..."
 
-#: mapaly/templates/base.html:42
+#: mapaly/templates/base.html:46
 msgid ""
 "Play and learn with mapaquizs. What is a mapaquiz? A quiz game where the "
 "answers lies down in the map. Create your own mapaquizs and share them with "

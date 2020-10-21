@@ -83,6 +83,19 @@
     <div id="win-dialog-middle">
         <p>{% blocktranslate with name=quiz.name %}Congratulations for finishing the mapaquiz {{ name }}! You did it in {% endblocktranslate %}<span id="time-string-dialog"></span>{% translate " and you have scored " %}<span id="points-dialog"></span>{% translate " points." %}</p>
     </div>
+    <div id="win-dialog-score">
+        <h3>{% translate "Leaderboard" %}</h3>
+        <table id="win-dialog-score-table">
+            <tr>
+                <th>{% translate "Username" %}</th>
+                <th>{% translate "Score" %}</th>
+                <th>{% translate "Time" %}</th>
+            </tr>
+        </table>
+        {% if not user.is_authenticated %}
+        <small>{% translate "Leaderboard only registers scores from logged in users" %}</small>
+        {% endif %}
+    </div>
 </div>
 <script type="module" src="{% static 'bundle.js' %}"></script>
 {% endblock %}

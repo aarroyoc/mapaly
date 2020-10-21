@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-10-14 19:03+0000\n"
+"POT-Creation-Date: 2020-10-21 20:16+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -113,6 +113,28 @@ msgstr " y has conseguido "
 #: quiz/templates/quiz/quiz.html:84
 msgid " points."
 msgstr " puntos."
+
+#: quiz/templates/quiz/quiz.html:87
+msgid "Leaderboard"
+msgstr "Ranking"
+
+#: quiz/templates/quiz/quiz.html:90
+msgid "Username"
+msgstr "Usuario"
+
+#: quiz/templates/quiz/quiz.html:91
+#, fuzzy
+#| msgid "Score:"
+msgid "Score"
+msgstr "Puntuación:"
+
+#: quiz/templates/quiz/quiz.html:92
+msgid "Time"
+msgstr "Tiempo"
+
+#: quiz/templates/quiz/quiz.html:96
+msgid "Leaderboard only registers scores from logged in users"
+msgstr "El ranking solo registra puntuaciones de usuarios registrados"
 
 #: quiz/templates/quiz/search.html:5
 #, python-format

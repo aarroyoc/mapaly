@@ -41,6 +41,7 @@ ALLOWED_HOSTS = [
 INSTALLED_APPS = [
     'quiz',
     'editor',
+    'score',
     'users',
     'mapaly',
     'django.contrib.admin',
@@ -144,7 +145,7 @@ AZURE_ACCESS_KEY = os.environ.get("AZURE_ACCESS_KEY")
 sentry_sdk.init(
     dsn="https://4cc7c931e4ec4e17b46f9135a25a6728@o453425.ingest.sentry.io/5442209",
     integrations=[DjangoIntegration()],
-    traces_sample_rate=1.0,
+    traces_sample_rate=0.0,
 
     # If you wish to associate users to errors (assuming you are using
     # django.contrib.auth) you may enable sending PII data.

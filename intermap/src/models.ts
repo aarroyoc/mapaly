@@ -20,3 +20,10 @@ export function cleanupQuestion(origin: any[]): Question[]{
         }
     });
 }
+
+export interface Score{
+    quiz: string;
+    user: string;
+    score: number;
+    time: number;
+}

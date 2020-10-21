@@ -9,8 +9,7 @@ RUN npm install
 
 COPY ./intermap/ .
 
-RUN npm run build
-RUN npm run bundle
+RUN npm run build && npm run bundle
 
 FROM python:3.8.6
 
