@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'editor',
     'score',
     'users',
+    'text',
     'mapaly',
     'django.contrib.admin',
     'django.contrib.auth',

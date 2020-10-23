@@ -39,14 +39,23 @@
         <small><a href="/profile/{{ quiz.author.username }}/">{{ quiz.author.username }}</a></small>
     </div>
     {% endfor %}
-    {% if page_obj.has_previous %}
-    <a href="?page={{ page_obj.previous_page_number }}">{% translate "Previous" %}</a>
-    {% endif %}
-    {% if page_obj.has_next %}
-    <a href="?page={{ page_obj.next_page_number }}">{% translate "Next" %}</a>
-    {% endif %}
+</div>
+<div class="list-nav">
+    <div>
+        {% if page_obj.has_previous %}
+        <a href="?page={{ page_obj.previous_page_number }}">&lt;&lt;&lt;</a>
+        {% endif %}
+    </div>
+    <div>
+        {% if page_obj.has_next %}
+        <a href="?page={{ page_obj.next_page_number }}">&gt;&gt;&gt;</a>
+        {% endif %}
+    </div>
 </div>
 <div class="random-button">
     <a class="primary-action-button" href="{% url 'random-quiz' %}">{% translate "Play a random quiz" %}</a>
+</div>
+<div class="random-button">
+    <p>Learn about <a href="/text/africa/">Africa</a>, <a href="/text/asia/">Asia</a>, <a href="/text/america/">America</a>, <a href="/text/europe/">Europe</a> and <a href="/text/oceania/">Oceania</a> (English texts)</p>
 </div>
 {% endblock %}

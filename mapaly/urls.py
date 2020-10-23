@@ -23,6 +23,7 @@ from users.views import LoginView, LogoutView, RegisterView
 from editor.views import DashboardView, DeleteMapView, EditorView, NewView, \
     delete_question, publish_quiz, remix_quiz, save_quiz_settings
 from score.api import ScoreAPI, me
+from text.views import render_page
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -44,6 +45,7 @@ urlpatterns = [
     path('api/quiz/<str:slug>/', QuizDetailAPI.as_view(), name="quiz_detail_api"),
     path('api/score/<str:slug>/', ScoreAPI.as_view(), name="score-api"),
     path('api/me/', me, name="me"),
+    path('text/<str:slug>/', render_page, name="render-page"),
     path('language/', set_language, name="set-language"),
     path('random/', get_random_quiz, name="random-quiz"),
     path('', HomeView.as_view(), name="home"),

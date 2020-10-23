@@ -29,8 +29,10 @@ def get_local_queryset(request):
     if request.COOKIES.get("show_all_lang"):
         return qs
     else:
-        language_code = request.LANGUAGE_CODE
-        return qs.filter(map__language=language_code) 
+        language_code = request.LANGUAGE_CODE[0:2]
+        if language_code not in ["en", "es"]:
+            language_code = "en"
+        return qs.filter(map__language=language_code)
 
 class HomeView(ListView):
     paginate_by = 20
@@ -57,7 +59,7 @@ class ProfileView(ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["user"] = self.kwargs["user"]
+        context["username"] = self.kwargs["user"]
         return context
 
 
