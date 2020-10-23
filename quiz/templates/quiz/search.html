@@ -15,12 +15,12 @@
 <div class="list-nav">
     <div>
         {% if page_obj.has_previous %}
-        <a href="?page={{ page_obj.previous_page_number }}">&lt;&lt;&lt;</a>
+        <a href="?page={{ page_obj.previous_page_number }}&q={{ query }}">&lt;&lt;&lt;</a>
         {% endif %}
     </div>
     <div>
         {% if page_obj.has_next %}
-        <a href="?page={{ page_obj.next_page_number }}">&gt;&gt;&gt;</a>
+        <a href="?page={{ page_obj.next_page_number }}&q={{ query }}">&gt;&gt;&gt;</a>
         {% endif %}
     </div>
 </div>
