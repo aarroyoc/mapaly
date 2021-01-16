@@ -12,7 +12,7 @@ COPY ./intermap/ .
 RUN npm run build
 RUN npm run bundle
 
-FROM python:3.8.5
+FROM python:3.9.1
 
 WORKDIR /opt/mapaly
 
