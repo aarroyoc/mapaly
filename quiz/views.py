@@ -1,7 +1,7 @@
 import random
 
 from django.shortcuts import render, get_object_or_404, redirect
-from django.http import HttpResponseNotFound
+from django.http import HttpResponseNotFound, HttpResponseBadRequest
 from django.views.generic import View, ListView
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
@@ -76,7 +76,10 @@ class SearchView(ListView):
         """
         # Lunr could be replaced by ElasticSearch in if gets slow
         # First call to Lunr is long: downloads NLTK data
-        query = self.request.GET["q"]
+        query = self.request.GET.get("q")
+        if query is None:
+            return HttpResponseBadRequest()
+
         docs = Quiz.objects.filter(status=Quiz.QuizStatus.PUBLISHED).values("id", "name", "description")
         idx = lunr(ref="id", fields=("name", "description"), documents=docs, languages=["en", "es"])
         result = [result["ref"] for result in idx.search(query)]
