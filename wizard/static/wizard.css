@@ -1,0 +1,56 @@
+.wizard{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+#quadra{
+    display: grid;
+    width: 82vmin;
+    height: 82vmin;
+    grid-gap: 1vmin;
+    justify-content: center;
+    align-items: center;
+}
+.smallQuadra{
+    grid-template-columns: 40vmin 40vmin;
+    grid-template-rows: 40vmin 40vmin;
+}
+.smallImg {
+    width: 40vmin;
+    height: 40vmin;
+}
+.bigImg {
+    width: 82vmin;
+    height: 82vmin;
+}
+#bar{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+.timeBar {
+    background-color: #37C837;
+    width: 100%;
+    height: 1em;
+    animation-duration: 2s;
+    animation-name: disappear;
+}
+
+@keyframes disappear {
+    from {
+        width: 100%;
+    }
+
+    to {
+        width: 0%;
+    }
+}
+
+#game-over{
+    display: none;
+}
+#game-over-text{
+    display: none;
+}

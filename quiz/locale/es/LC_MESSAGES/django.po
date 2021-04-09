@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-10-21 20:16+0000\n"
+"POT-Creation-Date: 2021-04-09 22:29+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,125 +18,126 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: quiz/templates/quiz/home.html:6
+#: templates/quiz/home.html:6
 msgid "Showing mapaquizs in: "
 msgstr "Mostrando mapaquizs en: "
 
-#: quiz/templates/quiz/home.html:18 quiz/templates/quiz/home.html:20
+#: templates/quiz/home.html:18 templates/quiz/home.html:20
 msgid "All languages"
 msgstr "Todos los idiomas"
 
-#: quiz/templates/quiz/home.html:33
+#: templates/quiz/home.html:33
 msgid "Most recent mapquizs"
 msgstr "Mapaquizs más recientes"
 
-#: quiz/templates/quiz/home.html:43 quiz/templates/quiz/profile.html:14
-#: quiz/templates/quiz/search.html:15
-msgid "Previous"
-msgstr "Anterior"
-
-#: quiz/templates/quiz/home.html:46 quiz/templates/quiz/profile.html:17
-#: quiz/templates/quiz/search.html:18
-msgid "Next"
-msgstr "Siguiente"
-
-#: quiz/templates/quiz/home.html:50
+#: templates/quiz/home.html:56
 msgid "Play a random quiz"
 msgstr "Juega a un mapaquiz aleatorio"
 
-#: quiz/templates/quiz/profile.html:5
-#, python-format
-msgid "%(user)s's mapquizs"
+#: templates/quiz/home.html:57
+msgid "Play Wizard of Map game"
+msgstr "Jugar a Wizard of Map"
+
+#: templates/quiz/profile.html:5
+#, fuzzy, python-format
+#| msgid "%(user)s's mapquizs"
+msgid "%(username)s's mapquizs"
 msgstr "Mapaquizs de %(user)s"
 
-#: quiz/templates/quiz/quiz.html:18
+#: templates/quiz/quiz.html:18
 msgid "Score:"
 msgstr "Puntuación:"
 
-#: quiz/templates/quiz/quiz.html:28
+#: templates/quiz/quiz.html:28
 msgid "Share"
 msgstr "Compartir"
 
-#: quiz/templates/quiz/quiz.html:35
+#: templates/quiz/quiz.html:35
 msgid "There are no comments yet. Be the first one to leave an opinion"
 msgstr "No hay comentarios todavía. Sé el primero en dejar tu opinión."
 
-#: quiz/templates/quiz/quiz.html:45
+#: templates/quiz/quiz.html:45
 msgid "Leave a comment"
 msgstr "Deja un comentario"
 
-#: quiz/templates/quiz/quiz.html:49
+#: templates/quiz/quiz.html:49
 msgid "Too difficult but entertaining"
 msgstr "Demasiado difícil pero entretenido"
 
-#: quiz/templates/quiz/quiz.html:50
+#: templates/quiz/quiz.html:50
 msgid "Publish comment"
 msgstr "Publicar comentario"
 
-#: quiz/templates/quiz/quiz.html:54
+#: templates/quiz/quiz.html:54
 msgid "Login"
 msgstr "Iniciar sesión"
 
-#: quiz/templates/quiz/quiz.html:54
+#: templates/quiz/quiz.html:54
 msgid " or "
 msgstr " o "
 
-#: quiz/templates/quiz/quiz.html:54
+#: templates/quiz/quiz.html:54
 msgid "register"
 msgstr "regístrate"
 
-#: quiz/templates/quiz/quiz.html:54
+#: templates/quiz/quiz.html:54
 msgid " to leave a comment"
 msgstr " para dejar un comentario"
 
-#: quiz/templates/quiz/quiz.html:63
+#: templates/quiz/quiz.html:63
 msgid "Share:"
 msgstr "Compartir:"
 
-#: quiz/templates/quiz/quiz.html:67
+#: templates/quiz/quiz.html:67
 msgid "Share the mapquiz in social networks"
 msgstr "Comparte el mapaquiz en redes sociales"
 
-#: quiz/templates/quiz/quiz.html:80
+#: templates/quiz/quiz.html:80
 msgid "Victory!"
 msgstr "¡Victoria!"
 
-#: quiz/templates/quiz/quiz.html:84
+#: templates/quiz/quiz.html:84
 #, python-format
 msgid "Congratulations for finishing the mapaquiz %(name)s! You did it in "
 msgstr "¡Enhorabuena por terminar el mapaquiz %(name)s! Lo hiciste en "
 
-#: quiz/templates/quiz/quiz.html:84
+#: templates/quiz/quiz.html:84
 msgid " and you have scored "
 msgstr " y has conseguido "
 
-#: quiz/templates/quiz/quiz.html:84
+#: templates/quiz/quiz.html:84
 msgid " points."
 msgstr " puntos."
 
-#: quiz/templates/quiz/quiz.html:87
+#: templates/quiz/quiz.html:87
 msgid "Leaderboard"
 msgstr "Ranking"
 
-#: quiz/templates/quiz/quiz.html:90
+#: templates/quiz/quiz.html:90
 msgid "Username"
 msgstr "Usuario"
 
-#: quiz/templates/quiz/quiz.html:91
+#: templates/quiz/quiz.html:91
 #, fuzzy
 #| msgid "Score:"
 msgid "Score"
 msgstr "Puntuación:"
 
-#: quiz/templates/quiz/quiz.html:92
+#: templates/quiz/quiz.html:92
 msgid "Time"
 msgstr "Tiempo"
 
-#: quiz/templates/quiz/quiz.html:96
+#: templates/quiz/quiz.html:96
 msgid "Leaderboard only registers scores from logged in users"
 msgstr "El ranking solo registra puntuaciones de usuarios registrados"
 
-#: quiz/templates/quiz/search.html:5
+#: templates/quiz/search.html:5
 #, python-format
 msgid "Results of %(query)s"
 msgstr "Resultados de %(query)s"
+
+#~ msgid "Previous"
+#~ msgstr "Anterior"
+
+#~ msgid "Next"
+#~ msgstr "Siguiente"

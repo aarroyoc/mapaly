@@ -26,7 +26,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '_l-+!5#^@2w4@ry(u%=2(x=3nlu421xffokt%plqnz*cu6qu(e'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = [
     "mapaquiz.com",
@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'score',
     'users',
     'text',
+    'wizard',
     'mapaly',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -139,6 +140,7 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
 # Azure Storage Account
 
 AZURE_CONTAINER_URL_FRONT = "https://mapaly.blob.core.windows.net/front/"
+AZURE_CONTAINER_URL_WIZARD_MAP = "https://mapaly.blob.core.windows.net/wizard-map/"
 AZURE_ACCESS_KEY = os.environ.get("AZURE_ACCESS_KEY")
 
 # Sentry

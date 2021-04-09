@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% load static %}
+{% load i18n %}
+
+{% block main %}
+<link rel="stylesheet" href="{% static 'wizard.css' %}"/>
+<div class="wizard">
+    <h1>Wizard of Map</h1>
+    <h4>{% translate "Guess the map given a satellite image" %}</h4>
+    <input type="hidden" id="wizard-data-url" value="{{ wizard_data_url }}"/>
+    <button class="primary-action-button" id="play">{% translate "Start Playing" %}</button>
+    <h2 id="game-over">{% translate "Game over!" %}</h2>
+    <div id="score"></div>
+    <div id="game-over-text">
+        <button id="reload" class="primary-action-button">{% translate "Play again!" %}</button>
+    </div>
+    <div id="bar"></div>
+    <div id="quadra"></div>
+</div>
+<script src="{% static 'wizard.js' %}"></script>
+{% endblock main %}
