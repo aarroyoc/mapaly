@@ -1,4 +1,5 @@
 import random
+from django.http.response import Http404
 
 from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponseNotFound, HttpResponseBadRequest
@@ -77,8 +78,8 @@ class SearchView(ListView):
         # Lunr could be replaced by ElasticSearch in if gets slow
         # First call to Lunr is long: downloads NLTK data
         query = self.request.GET.get("q")
-        if query is None:
-            return HttpResponseBadRequest()
+        if query is None or query == "":
+            raise Http404("")
 
         docs = Quiz.objects.filter(status=Quiz.QuizStatus.PUBLISHED).values("id", "name", "description")
         idx = lunr(ref="id", fields=("name", "description"), documents=docs, languages=["en", "es"])
@@ -104,7 +105,7 @@ def add_comment(request, pk):
 
 def set_language(request):
     response = redirect("home")
-    lang = request.GET["lang"]
+    lang = request.GET.get("lang", None)
     if lang == "all":
         response.set_cookie("show_all_lang", "all")
     else:
