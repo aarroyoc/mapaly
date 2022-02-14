@@ -1,4 +1,4 @@
-FROM node:14.17.3-alpine3.12 AS builder
+FROM node:16.14.0-alpine3.14 AS builder
 
 WORKDIR /opt/intermap
 
@@ -11,7 +11,7 @@ COPY ./intermap/ .
 
 RUN npm run build && npm run bundle
 
-FROM python:3.9.6
+FROM python:3.10.2
 
 WORKDIR /opt/mapaly
 

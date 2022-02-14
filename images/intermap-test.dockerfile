@@ -1,4 +1,4 @@
-FROM node:14.17.3-alpine3.13 AS builder
+FROM node:16.14.0-alpine3.14 AS builder
 
 WORKDIR /opt/intermap
 
