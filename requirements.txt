@@ -103,9 +103,9 @@ lunr==0.5.9; python_version >= "3.6" \
 msrest==0.6.21 \
     --hash=sha256:c840511c845330e96886011a236440fafc2c9aff7b2df9c0a92041ee2dee3782 \
     --hash=sha256:72661bc7bedc2dc2040e8f170b6e9ef226ee6d3892e01affd4d26b06474d68d8
-nltk==3.4.5; python_version >= "3.6" \
-    --hash=sha256:a08bdb4b8a1c13de16743068d9eb61c8c71c2e5d642e8e08205c528035843f82 \
-    --hash=sha256:bed45551259aa2101381bbdd5df37d44ca2669c5c3dad72439fa459b29137d94
+nltk==3.6.6; python_version >= "3.6" \
+    --hash=sha256:0f8ff4e261c78605bca284e8d2025e562304766156af32a1731f56b396ee364b \
+    --hash=sha256:69470ba480ff4408e8ea82c530c8dc9571bab899f49d4571e8c8833e0916abd0
 oauthlib==3.2.0; python_version >= "3.6" and python_full_version < "3.0.0" or python_full_version >= "3.4.0" and python_version >= "3.6" \
     --hash=sha256:6db33440354787f9b7f3a6dbd4febf5d0f93758354060e802f6c06cb493022fe \
     --hash=sha256:23a8208d75b902797ea29fd31fa80a15ed9dc2c6c16fe73f5d346f83f6fa27a2
