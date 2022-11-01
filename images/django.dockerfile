@@ -15,12 +15,16 @@ FROM python:3.11.0
 
 WORKDIR /opt/mapaly
 
-COPY requirements.txt .
-
 RUN apt-get update && \
     apt-get install -y gettext && \
-    python -m pip install -r requirements.txt && \
     rm -rf /var/lib/apt/lists/*
+
+RUN python -m pip install poetry==1.2.2
+
+COPY pyproject.toml .
+COPY poetry.lock .
+
+RUN poetry export -f requirements.txt | pip install -r /dev/stdin
 
 COPY . .
 

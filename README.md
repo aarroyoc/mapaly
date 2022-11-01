@@ -12,7 +12,6 @@ poetry shell
 If you want to update packages:
 ```
 poetry update
-poetry export -frequirements.txt > requirements.txt
 ```
 
 If you modify the models:
