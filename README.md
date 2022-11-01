@@ -41,7 +41,8 @@ cp intermap/build/bundle.js mapaly/static/
 cp intermap/node_modules/leaflet/dist/leaflet.css mapaly/static/
 cp intermap/node_modules/leaflet/dist/leaflet.js mapaly/static/
 flake8 --ignore=E501
-mypy . --ignore-missing-imports
+mypy .
+black . --check
 python manage.py test
 ```
 

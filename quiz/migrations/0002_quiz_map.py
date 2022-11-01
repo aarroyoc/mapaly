@@ -7,14 +7,16 @@ import django.db.models.deletion
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('quiz', '0001_initial'),
+        ("quiz", "0001_initial"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='quiz',
-            name='map',
-            field=models.ForeignKey(default=1, on_delete=django.db.models.deletion.CASCADE, to='quiz.Map'),
+            model_name="quiz",
+            name="map",
+            field=models.ForeignKey(
+                default=1, on_delete=django.db.models.deletion.CASCADE, to="quiz.Map"
+            ),
             preserve_default=False,
         ),
     ]

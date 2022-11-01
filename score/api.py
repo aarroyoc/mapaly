@@ -15,6 +15,7 @@ class ScoreAPI(ListCreateAPIView):
         slug = self.kwargs["slug"]
         return Score.objects.filter(quiz__slug=slug).order_by("-score", "time")[0:10]
 
+
 @api_view(["GET"])
 def me(request):
     return Response({"username": request.user.username})

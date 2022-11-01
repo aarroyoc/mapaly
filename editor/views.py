@@ -23,10 +23,7 @@ class NewView(LoginRequiredMixin, View):
     def get(self, request):
         english_maps = Map.objects.filter(language="en")
         spanish_maps = Map.objects.filter(language="es")
-        context = {
-            "english": english_maps,
-            "spanish": spanish_maps
-        }
+        context = {"english": english_maps, "spanish": spanish_maps}
         return render(request, "editor/new.html", context)
 
     def post(self, request):
@@ -70,9 +67,7 @@ class DashboardView(LoginRequiredMixin, ListView):
 class DeleteMapView(LoginRequiredMixin, View):
     def get(self, request, pk):
         quiz = Quiz.objects.get(pk=pk)
-        context = {
-            "quiz": quiz
-        }
+        context = {"quiz": quiz}
         return render(request, "editor/delete.html", context)
 
     def post(self, request, pk):
@@ -87,7 +82,7 @@ def delete_question(request, pk):
     question = Question.objects.get(pk=pk)
     if question.quiz.author == request.user:
         question.delete()
-        return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+        return HttpResponseRedirect(request.META.get("HTTP_REFERER"))
     else:
         return HttpResponse(status=403)
 
@@ -103,7 +98,7 @@ def publish_quiz(request, pk):
 
     quiz.status = Quiz.QuizStatus.PUBLISHED
     quiz.save()
-    return redirect("quiz", quiz.slug) 
+    return redirect("quiz", quiz.slug)
 
 
 @login_required
@@ -127,6 +122,7 @@ def remix_quiz(request, pk):
 
     return redirect("editor", remix.slug)
 
+
 @login_required
 def save_quiz_settings(request, pk):
     quiz = Quiz.objects.get(pk=pk)
@@ -143,4 +139,3 @@ def save_quiz_settings(request, pk):
             delete_image(image_to_delete)
     quiz.save()
     return redirect("editor", quiz.slug)
-

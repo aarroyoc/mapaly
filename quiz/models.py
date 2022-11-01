@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 
 from mapaly.settings import AZURE_CONTAINER_URL_FRONT
 
+
 class Map(models.Model):
     class MapLanguage(models.TextChoices):
         SPANISH = "es", "Español"
@@ -31,7 +32,9 @@ class Quiz(models.Model):
     map = models.ForeignKey(Map, on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
     modified_at = models.DateTimeField(auto_now=True)
-    status = models.CharField(max_length=2, choices=QuizStatus.choices, default=QuizStatus.DRAFT)
+    status = models.CharField(
+        max_length=2, choices=QuizStatus.choices, default=QuizStatus.DRAFT
+    )
     front_image = models.TextField(blank=False, null=True)
     top = models.BooleanField(default=False)
 

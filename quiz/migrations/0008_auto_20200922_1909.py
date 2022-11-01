@@ -6,18 +6,18 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('quiz', '0007_quiz_top'),
+        ("quiz", "0007_quiz_top"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='quiz',
-            name='front_image',
+            model_name="quiz",
+            name="front_image",
             field=models.TextField(null=True),
         ),
         migrations.AlterField(
-            model_name='quiz',
-            name='slug',
+            model_name="quiz",
+            name="slug",
             field=models.SlugField(allow_unicode=True, max_length=150, unique=True),
         ),
     ]

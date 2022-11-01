@@ -7,57 +7,65 @@ import django.utils.timezone
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('quiz', '0003_quiz_slug'),
+        ("quiz", "0003_quiz_slug"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='map',
-            name='created_at',
-            field=models.DateTimeField(auto_now_add=True, default=django.utils.timezone.now),
+            model_name="map",
+            name="created_at",
+            field=models.DateTimeField(
+                auto_now_add=True, default=django.utils.timezone.now
+            ),
             preserve_default=False,
         ),
         migrations.AddField(
-            model_name='map',
-            name='modified_at',
+            model_name="map",
+            name="modified_at",
             field=models.DateTimeField(auto_now=True),
         ),
         migrations.AddField(
-            model_name='question',
-            name='created_at',
-            field=models.DateTimeField(auto_now_add=True, default=django.utils.timezone.now),
+            model_name="question",
+            name="created_at",
+            field=models.DateTimeField(
+                auto_now_add=True, default=django.utils.timezone.now
+            ),
             preserve_default=False,
         ),
         migrations.AddField(
-            model_name='question',
-            name='modified_at',
+            model_name="question",
+            name="modified_at",
             field=models.DateTimeField(auto_now=True),
         ),
         migrations.AddField(
-            model_name='quiz',
-            name='created_at',
-            field=models.DateTimeField(auto_now_add=True, default=django.utils.timezone.now),
+            model_name="quiz",
+            name="created_at",
+            field=models.DateTimeField(
+                auto_now_add=True, default=django.utils.timezone.now
+            ),
             preserve_default=False,
         ),
         migrations.AddField(
-            model_name='quiz',
-            name='modified_at',
+            model_name="quiz",
+            name="modified_at",
             field=models.DateTimeField(auto_now=True),
         ),
         migrations.AddField(
-            model_name='quizcomment',
-            name='created_at',
-            field=models.DateTimeField(auto_now_add=True, default=django.utils.timezone.now),
+            model_name="quizcomment",
+            name="created_at",
+            field=models.DateTimeField(
+                auto_now_add=True, default=django.utils.timezone.now
+            ),
             preserve_default=False,
         ),
         migrations.AddField(
-            model_name='quizcomment',
-            name='modified_at',
+            model_name="quizcomment",
+            name="modified_at",
             field=models.DateTimeField(auto_now=True),
         ),
         migrations.AlterField(
-            model_name='quiz',
-            name='slug',
+            model_name="quiz",
+            name="slug",
             field=models.CharField(max_length=150, unique=True),
         ),
     ]

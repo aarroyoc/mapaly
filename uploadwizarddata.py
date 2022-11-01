@@ -4,11 +4,11 @@ from pathlib import Path
 
 from azure.storage.blob import ContainerClient, ContentSettings
 
+
 class AzureBlobService:
     def __init__(self, azure_container_url, azure_access_key):
         self.container_client = ContainerClient.from_container_url(
-            azure_container_url,
-            azure_access_key
+            azure_container_url, azure_access_key
         )
 
     def get_settings(self, path):
@@ -26,25 +26,26 @@ class AzureBlobService:
 
         with open(path, "rb") as f:
             self.container_client.upload_blob(
-                path.name,
-                f,
-                content_settings=settings,
-                overwrite=True
+                path.name, f, content_settings=settings, overwrite=True
             )
+
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument("--azure-container-url", help="Azure container URL", required=True)
+    parser.add_argument(
+        "--azure-container-url", help="Azure container URL", required=True
+    )
     parser.add_argument("--azure-access-key", help="Azure Access Key", required=True)
     args = parser.parse_args()
-    
+
     data_dir = Path.cwd() / "wizard-map-data"
     if not data_dir.exists():
         raise Exception("Data folder doesn't exist yet")
-    
+
     azure = AzureBlobService(args.azure_container_url, args.azure_access_key)
     pool = multiprocessing.Pool()
     pool.map(azure.upload, data_dir.glob("*"))
+
 
 if __name__ == "__main__":
     main()

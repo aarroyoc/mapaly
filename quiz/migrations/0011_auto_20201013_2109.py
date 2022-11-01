@@ -6,18 +6,22 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('quiz', '0010_auto_20201012_1456'),
+        ("quiz", "0010_auto_20201012_1456"),
     ]
 
     operations = [
         migrations.RemoveField(
-            model_name='quiz',
-            name='language',
+            model_name="quiz",
+            name="language",
         ),
         migrations.AddField(
-            model_name='map',
-            name='language',
-            field=models.CharField(choices=[('es', 'Español'), ('en', 'English')], default='es', max_length=2),
+            model_name="map",
+            name="language",
+            field=models.CharField(
+                choices=[("es", "Español"), ("en", "English")],
+                default="es",
+                max_length=2,
+            ),
             preserve_default=False,
         ),
     ]

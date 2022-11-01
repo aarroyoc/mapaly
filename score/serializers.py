@@ -4,9 +4,12 @@ from django.contrib.auth.models import User
 from quiz.models import Quiz
 from score.models import Score
 
+
 class ScoreSerializer(serializers.ModelSerializer):
-    quiz = serializers.SlugRelatedField(slug_field='slug', queryset=Quiz.objects.all())
-    user = serializers.SlugRelatedField(slug_field='username', queryset=User.objects.all())
+    quiz = serializers.SlugRelatedField(slug_field="slug", queryset=Quiz.objects.all())
+    user = serializers.SlugRelatedField(
+        slug_field="username", queryset=User.objects.all()
+    )
 
     def validate_user(self, value):
         if value.username != self.context["request"].user.username:

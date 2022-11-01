@@ -6,14 +6,14 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('quiz', '0002_quiz_map'),
+        ("quiz", "0002_quiz_map"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='quiz',
-            name='slug',
-            field=models.CharField(default='', max_length=150),
+            model_name="quiz",
+            name="slug",
+            field=models.CharField(default="", max_length=150),
             preserve_default=False,
         ),
     ]

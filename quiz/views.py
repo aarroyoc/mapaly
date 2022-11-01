@@ -10,11 +10,14 @@ from lunr import lunr
 
 from quiz.models import Quiz, QuizComment
 
+
 class QuizView(View):
     def get(self, request, slug):
         try:
             quiz = Quiz.objects.get(slug=slug)
-            comments = QuizComment.objects.filter(author=quiz.author).order_by("created_at")
+            comments = QuizComment.objects.filter(author=quiz.author).order_by(
+                "created_at"
+            )
             context = {
                 "quiz": quiz,
                 "comments": comments,
@@ -35,6 +38,7 @@ def get_local_queryset(request):
             language_code = "en"
         return qs.filter(map__language=language_code)
 
+
 class HomeView(ListView):
     paginate_by = 20
     template_name = "quiz/home.html"
@@ -45,7 +49,9 @@ class HomeView(ListView):
     def get_context_data(self, **kwargs):
         language_code = self.request.LANGUAGE_CODE
         context = super().get_context_data(**kwargs)
-        context["top"] = Quiz.objects.filter(status=Quiz.QuizStatus.PUBLISHED, map__language=language_code, top=True).order_by("-created_at")[0:5]
+        context["top"] = Quiz.objects.filter(
+            status=Quiz.QuizStatus.PUBLISHED, map__language=language_code, top=True
+        ).order_by("-created_at")[0:5]
         context["language"] = self.request.COOKIES.get("show_all_lang", language_code)
         return context
 
@@ -56,7 +62,9 @@ class ProfileView(ListView):
 
     def get_queryset(self):
         user = get_object_or_404(User, username=self.kwargs["user"])
-        return Quiz.objects.filter(status=Quiz.QuizStatus.PUBLISHED, author=user).order_by("-created_at")
+        return Quiz.objects.filter(
+            status=Quiz.QuizStatus.PUBLISHED, author=user
+        ).order_by("-created_at")
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -81,8 +89,15 @@ class SearchView(ListView):
         if query is None or query == "":
             raise Http404("")
 
-        docs = Quiz.objects.filter(status=Quiz.QuizStatus.PUBLISHED).values("id", "name", "description")
-        idx = lunr(ref="id", fields=("name", "description"), documents=docs, languages=["en", "es"])
+        docs = Quiz.objects.filter(status=Quiz.QuizStatus.PUBLISHED).values(
+            "id", "name", "description"
+        )
+        idx = lunr(
+            ref="id",
+            fields=("name", "description"),
+            documents=docs,
+            languages=["en", "es"],
+        )
         result = [result["ref"] for result in idx.search(query)]
         return Quiz.objects.filter(id__in=result)
 
@@ -96,12 +111,11 @@ class SearchView(ListView):
 def add_comment(request, pk):
     quiz = get_object_or_404(Quiz, pk=pk)
     comment = QuizComment.objects.create(
-        quiz=quiz,
-        author=request.user,
-        content=request.POST["content"]
+        quiz=quiz, author=request.user, content=request.POST["content"]
     )
     comment.save()
     return redirect("quiz", quiz.slug)
+
 
 def set_language(request):
     response = redirect("home")
@@ -112,6 +126,7 @@ def set_language(request):
         response.delete_cookie("show_all_lang")
         response.set_cookie("django_language", lang)
     return response
+
 
 def get_random_quiz(request):
     pks = get_local_queryset(request).values_list("pk", flat=True)

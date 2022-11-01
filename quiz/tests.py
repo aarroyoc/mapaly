@@ -20,7 +20,7 @@ class QuizTestCase(TestCase):
             name="Provincias de España",
             content=f.read(),
             license="Creative Commons 4.0 BY",
-            language="en"
+            language="en",
         )
         f.close()
         quiz = Quiz.objects.create(
@@ -32,14 +32,10 @@ class QuizTestCase(TestCase):
             status=Quiz.QuizStatus.PUBLISHED,
         )
         Question.objects.create(
-            quiz=quiz,
-            question="¿Dónde está Burgos?",
-            answer="burgos"
+            quiz=quiz, question="¿Dónde está Burgos?", answer="burgos"
         )
         Question.objects.create(
-            quiz=quiz,
-            question="¿Dónde está Soria?",
-            answer="soria"
+            quiz=quiz, question="¿Dónde está Soria?", answer="soria"
         )
 
     def test_home_page(self):
@@ -48,7 +44,11 @@ class QuizTestCase(TestCase):
         response = c.get("/")
         self.assertEqual(response.status_code, 200)
         self.assertTrue(len(response.context["page_obj"]) > 0)
-        self.assertContains(response, '<a title="Provincias" href="/quiz/provincias/">Provincias</a>', html=True)
+        self.assertContains(
+            response,
+            '<a title="Provincias" href="/quiz/provincias/">Provincias</a>',
+            html=True,
+        )
 
     def test_quiz_page(self):
         """Quiz page shows a Leaflet map"""
@@ -108,7 +108,7 @@ class QuizBrowserTestCase(StaticLiveServerTestCase):
             name="Provincias de España",
             content=f.read(),
             license="Creative Commons 4.0 BY",
-            language="en"
+            language="en",
         )
         f.close()
         quiz = Quiz.objects.create(
@@ -120,14 +120,10 @@ class QuizBrowserTestCase(StaticLiveServerTestCase):
             status=Quiz.QuizStatus.PUBLISHED,
         )
         Question.objects.create(
-            quiz=quiz,
-            question="¿Dónde está Burgos?",
-            answer="burgos"
+            quiz=quiz, question="¿Dónde está Burgos?", answer="burgos"
         )
         Question.objects.create(
-            quiz=quiz,
-            question="¿Dónde está Soria?",
-            answer="soria"
+            quiz=quiz, question="¿Dónde está Soria?", answer="soria"
         )
 
     def tearDown(self):
@@ -145,24 +141,34 @@ class QuizBrowserTestCase(StaticLiveServerTestCase):
         quiz_link = self.browser.find_element_by_link_text("Provincias")
         quiz_link.click()
 
-        WebDriverWait(self.browser, 10).until(expected_conditions.title_contains("Mapaquiz"))
+        WebDriverWait(self.browser, 10).until(
+            expected_conditions.title_contains("Mapaquiz")
+        )
 
         assert f"{self.live_server_url}/quiz/provincias/" == self.browser.current_url
 
     def test_timer(self):
         self.browser.get(f"{self.live_server_url}/quiz/provincias/")
-        WebDriverWait(self.browser, 10).until(expected_conditions.text_to_be_present_in_element((By.ID, "time-string"), "0:05"))
+        WebDriverWait(self.browser, 10).until(
+            expected_conditions.text_to_be_present_in_element(
+                (By.ID, "time-string"), "0:05"
+            )
+        )
 
     def test_click_correct_province(self):
         self.browser.get(f"{self.live_server_url}/quiz/provincias/")
         self.browser.implicitly_wait(10)
         map = self.browser.find_element_by_id("map")
-        WebDriverWait(self.browser, 30).until(expected_conditions.text_to_be_present_in_element((By.ID, "question"), "¿Dónde está"))
+        WebDriverWait(self.browser, 30).until(
+            expected_conditions.text_to_be_present_in_element(
+                (By.ID, "question"), "¿Dónde está"
+            )
+        )
         self.browser.find_element_by_class_name("leaflet-interactive")
         question = self.browser.find_element_by_id("question")
         action = ActionChains(self.browser)
         question1 = str(question.text)
-        self.browser.get_screenshot_as_file("test-render.png") 
+        self.browser.get_screenshot_as_file("test-render.png")
         if question1 == "¿Dónde está Burgos?":
             action.move_to_element_with_offset(map, 536, 179)
         else:
@@ -177,7 +183,11 @@ class QuizBrowserTestCase(StaticLiveServerTestCase):
         self.browser.get(f"{self.live_server_url}/quiz/provincias/")
         self.browser.implicitly_wait(10)
         map = self.browser.find_element_by_id("map")
-        WebDriverWait(self.browser, 30).until(expected_conditions.text_to_be_present_in_element((By.ID, "question"), "¿Dónde está"))
+        WebDriverWait(self.browser, 30).until(
+            expected_conditions.text_to_be_present_in_element(
+                (By.ID, "question"), "¿Dónde está"
+            )
+        )
         question = self.browser.find_element_by_id("question")
         action = ActionChains(self.browser)
         action.move_to_element_with_offset(map, 479, 259)
@@ -192,7 +202,11 @@ class QuizBrowserTestCase(StaticLiveServerTestCase):
         self.browser.get(f"{self.live_server_url}/quiz/provincias/")
         self.browser.implicitly_wait(10)
         map = self.browser.find_element_by_id("map")
-        WebDriverWait(self.browser, 30).until(expected_conditions.text_to_be_present_in_element((By.ID, "question"), "¿Dónde está"))
+        WebDriverWait(self.browser, 30).until(
+            expected_conditions.text_to_be_present_in_element(
+                (By.ID, "question"), "¿Dónde está"
+            )
+        )
         self.browser.find_element_by_class_name("leaflet-interactive")
         question = self.browser.find_element_by_id("question")
         action = ActionChains(self.browser)

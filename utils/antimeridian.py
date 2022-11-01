@@ -1,5 +1,6 @@
 import json
 
+
 def main():
     with open("oceania_2.geojson") as f:
         geo = json.load(f)
@@ -18,6 +19,7 @@ def main():
                             c3[0] += 360
     with open("oceania_3.geojson", "w") as f:
         json.dump(geo, f)
+
 
 if __name__ == "__main__":
     main()

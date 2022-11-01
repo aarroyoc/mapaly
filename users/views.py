@@ -10,9 +10,7 @@ class LoginView(View):
     def get(self, request):
         form = LoginForm()
 
-        context = {
-            "form": form
-        }
+        context = {"form": form}
         return render(request, "users/login.html", context)
 
     def post(self, request):
@@ -31,10 +29,7 @@ class LoginView(View):
             for error in form.errors:
                 msg = form.errors[error]
                 error_messages.append(f"{error}: {msg}")
-        context = {
-            "form": form,
-            "error_messages": error_messages
-        }
+        context = {"form": form, "error_messages": error_messages}
         return render(request, "users/login.html", context)
 
 
@@ -49,9 +44,7 @@ class RegisterView(View):
     def get(self, request):
         form = RegisterForm()
 
-        context = {
-            "form": form
-        }
+        context = {"form": form}
         return render(request, "users/register.html", context)
 
     def post(self, request):

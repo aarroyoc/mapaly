@@ -12,6 +12,7 @@ from typing import List
 import aiohttp
 from SPARQLWrapper import SPARQLWrapper2, JSON
 
+
 @dataclass
 class City:
     id: str
@@ -19,6 +20,7 @@ class City:
     lat: float
     lon: float
     link: str
+
 
 @dataclass
 class Index:
@@ -60,7 +62,6 @@ class MapboxService:
                 f.write(chunk)
 
         return city
-        
 
 
 class WikidataService:
@@ -75,10 +76,13 @@ class WikidataService:
         matches = self.geore.match(result["geo"].value)
         lon = float(matches.group(1))
         lat = float(matches.group(2))
-        return City(uuid.uuid4().hex, result["name"].value, lat, lon, result["wikilink"].value)
+        return City(
+            uuid.uuid4().hex, result["name"].value, lat, lon, result["wikilink"].value
+        )
 
     def get_cities(self):
-        self.sparql.setQuery("""
+        self.sparql.setQuery(
+            """
         PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
         SELECT DISTINCT ?name ?geo ?population ?wikilink
         WHERE {
@@ -94,16 +98,30 @@ class WikidataService:
             SERVICE wikibase:label { bd:serviceParam wikibase:language "en". }
         }
         ORDER BY DESC (?population)
-        """)
+        """
+        )
         return map(self._convert_result, self.sparql.query().bindings)
 
 
 async def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--mapbox-token", help="MapBox token", required=True)
-    parser.add_argument("--mapbox-map-style", help="User and ID of flat map style (ex. aarroyoc/eryer233)", required=True)
-    parser.add_argument("--mapbox-sat-style", help="User and ID of flat sat style (ex. aarroyoc/trew3267)", required=True)
-    parser.add_argument("--max-number", help="Limit number of cities to download", type=int, default=10000)
+    parser.add_argument(
+        "--mapbox-map-style",
+        help="User and ID of flat map style (ex. aarroyoc/eryer233)",
+        required=True,
+    )
+    parser.add_argument(
+        "--mapbox-sat-style",
+        help="User and ID of flat sat style (ex. aarroyoc/trew3267)",
+        required=True,
+    )
+    parser.add_argument(
+        "--max-number",
+        help="Limit number of cities to download",
+        type=int,
+        default=10000,
+    )
     args = parser.parse_args()
 
     data_dir = Path.cwd() / "wizard-map-data"
@@ -117,13 +135,15 @@ async def main():
 
     done_cities = list()
     async with aiohttp.ClientSession() as session:
-        mapbox = MapboxService(args.mapbox_token, args.mapbox_map_style, args.mapbox_sat_style, session)
+        mapbox = MapboxService(
+            args.mapbox_token, args.mapbox_map_style, args.mapbox_sat_style, session
+        )
 
         def download(city):
             return mapbox.download_pair(city, data_dir)
 
         downloads = islice(map(download, cities), args.max_number)
-        
+
         for task in asyncio.as_completed(downloads):
             try:
                 city = await task
@@ -133,6 +153,7 @@ async def main():
     index = Index(done_cities)
     with open(data_dir / "index.json", "w") as f:
         json.dump(asdict(index), f)
+
 
 loop = asyncio.get_event_loop()
 loop.run_until_complete(main())
