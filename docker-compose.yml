@@ -9,7 +9,7 @@ services:
     - ./data:/opt/mapaly/data
     - static:/opt/mapaly/static
   nginx:
-    image: nginx:1.23.1-alpine
+    image: nginx:1.23.4-alpine
     restart: always
     ports:
     - 1133:1133
