@@ -17,7 +17,7 @@ sentry-sdk = "^1.14.0"
 flake8 = "^3.8.3"
 selenium = "^3.141.0"
 SPARQLWrapper = "^1.8.5"
-aiohttp = "^3.9.2"
+aiohttp = "^3.9.4"
 
 [tool.poetry.group.dev.dependencies]
 mypy = "^0.982"
